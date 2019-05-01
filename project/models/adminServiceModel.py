@@ -50,3 +50,18 @@ class adminServiceModel(object):
 
         # Close
         cur.close()
+
+    # Fetch Data from trip_id
+    def serviceDataFetchOne(self, trip_id):
+        # Create cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            SELECT * FROM service
+            WHERE trip_id = %s
+        ''', [trip_id])
+
+        service_data = cur.fetchone()
+
+        return service_data

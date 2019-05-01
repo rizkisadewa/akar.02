@@ -88,3 +88,18 @@ class adminModel(object):
 
         # Close
         cur.close()
+
+    # Fetch the admin data
+    def adminIdFetchOne(self, username):
+        # Create cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            SELECT admin_id FROM admin
+            WHERE username = %s
+        ''', [username])
+
+        admin_data = cur.fetchone()
+
+        return admin_data
