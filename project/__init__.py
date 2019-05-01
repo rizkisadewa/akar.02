@@ -11,18 +11,11 @@ app.config['SECRET_KEY'] = 'random'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'myakar01'
+app.config['MYSQL_DB'] = 'myakar02'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 # Configuration in Deployment
 
-# app.config['SECRET_KEY'] = 'random'
-# # Config MySQL
-# app.config['MYSQL_HOST'] = 'localhost'
-# app.config['MYSQL_USER'] = 'jepunkuc'
-# app.config['MYSQL_PASSWORD'] = 'ird26y4B2E'
-# app.config['MYSQL_DB'] = 'jepunkuc_myakar-v0.3'
-# app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 mysql = MySQL(app)
 
