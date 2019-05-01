@@ -1,0 +1,123 @@
+{% extends "layout/client-service-layout-template.html" %}
+{% block title %}{{ super() }} Paket Wisata {{destination}} | {{ destination_srv_dtl_data.name_of_service }}  {% endblock %}
+
+{% block description %}
+Paket Wisata {{ destination_srv_dtl_data.name_of_service }} adalah pilihan yang cocok bagi Anda yang ingin mengenal Indonesia lebih dalam lagi. | Jepunku | 082144534828
+{% endblock %}
+
+{% block keywords %} paket tour, {{ destination_srv_dtl_data.name_of_service }} {% endblock %}
+{% block body %}
+
+<main>
+  <div class="service-dtl-card">
+    <h1>{{ destination_srv_dtl_data.name_of_service }}</h1>
+    <p>{{ destination_srv_dtl_data.tag_line }}</p>
+    <hr class="card-hl">
+
+    <div class="service-dtl-body">
+
+      <!-- Left Side -->
+      <section id="service-dtl-left">
+
+        <div id="arrow-left" class="arrow"></div>
+        <!-- Service Image -->
+        <div class="srv-gallery">
+
+          {% for i in range(0, service_image_data|length ) %}
+          <div class="slide">
+            <img class="srv-img" src="{{ url_for('static', filename='images/services/')}}{{ service_image_data[i].file_name }}" alt="{{ service_image_data[i].file_name }}">
+          </div>
+          {% endfor %}
+
+
+        </div>
+        <div id="arrow-right" class="arrow"></div>
+
+
+        <!-- /Service Image -->
+
+        <!-- Service Inclusions -->
+
+        <div class="inclusion">
+          <h2>Harga Termasuk : </h2>
+          {{ destination_srv_dtl_data.inclusions|safe }}
+        </div>
+
+        <!-- /Service Inclusions -->
+
+        <!-- call to action -->
+        <div class="call-to-action">
+          <div class="cta-email">
+            <a href="mailto: rizki.sadewa@jepunku.com" target="_blank" class="btn-cta">Permintaan Harga</a>
+          </div>
+          <div class="cta-wa">
+            <a href="https://wa.me/+6282144534828" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <!-- /call to action -->
+
+      </section>
+      <!-- /Left Side -->
+
+      <!-- Right Side -->
+      <section id="service-dtl-right">
+        <div class="validity">
+          <h2>Masa Berlaku : </h2>
+          <p>{{ destination_srv_dtl_data.validity_date_start.strftime('%d-%B-%Y') }} <strong>s.d.</strong> {{ destination_srv_dtl_data.validity_date_finish.strftime('%d-%B-%Y') }}</p>
+        </div>
+        <hr class="card-right">
+
+        <article id="main-col">
+
+          <h2>Detail Program : </h2>
+
+          <div class="boundary">
+            <div class="boundary-left">
+              <hr>
+            </div>
+            <div class="boundary-center">
+              <span class="star">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </span>
+            </div>
+            <div class="boundary-right">
+              <hr>
+            </div>
+          </div>
+
+          {% for program_detail_data in program_detail_data %}
+          <h3>Hari ke- {{ program_detail_data.day_no }}: {{ program_detail_data.package_title }}</h3>
+          {{ program_detail_data.package_description|safe }}
+
+          <div class="boundary">
+            <div class="boundary-left">
+              <hr>
+            </div>
+            <div class="boundary-center">
+              <span class="star">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </span>
+            </div>
+            <div class="boundary-right">
+              <hr>
+            </div>
+          </div>
+          {% endfor %}
+
+
+        </article>
+      </section>
+      <!-- /Right Side -->
+
+    </div>
+
+    <hr class="card-hl">
+
+  </div>
+</main>
+
+{% endblock %}

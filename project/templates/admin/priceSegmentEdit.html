@@ -1,0 +1,72 @@
+{% extends "layout/admin-layout-template.html" %}
+{% block body %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Price Segment
+    <small>Center</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i>Product Data Center</a></li>
+    <li class="active">Price Segment Center</li>
+  </ol>
+</section>
+<!-- Content Header (Page header) -->
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <!-- Price Segment Add Form -->
+    <div class="col-md-12">
+
+      <div class="box box-info">
+        <!-- box header -->
+        <div class="box-header with-border">
+          <h3 class="box-title">Update Price Segment</h3>
+        </div>
+        <!-- /box header -->
+
+        <!-- form start -->
+        <!-- box-body -->
+        {% from "includes/_formhelpers.html" import render_field %}
+        <form class="form-horizontal" action="" method="POST">
+          <div class="box-body">
+            <div class="col-sm-3">
+              {{ render_field(form.segment_type, class="form-control")}}
+            </div>
+            <div class="col-sm-3">
+              {{ form.validity_date_start.label }}
+              <div class="input-group date">
+                {{ form.validity_date_start(class="form-control", type="date")}}
+                <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-th"></span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              {{ form.validity_date_finish.label }}
+              <div class="input-group date">
+                {{ form.validity_date_finish(class="form-control", type="date")}}
+                <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-th"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /box-body -->
+          <!-- box-footer -->
+          <div class="box-footer">
+            <button type="submit" class="btn btn-info">Update Price Segment</button>
+          </div>
+          <!-- /box-footer -->
+        </form>
+        <!-- /form start -->
+      </div>
+
+    </div>
+    <!-- /Price Segment Add Form -->
+
+  </div>
+</section>
+
+{% endblock %}

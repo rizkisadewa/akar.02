@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="Menyediakan berbagai paket wisata di Indonesia untuk outing kantor, tamasya keluarga, honeymoon dengan rekomendasi akomadasi sesuai dengan keinginan. | Jepunku | 082144534828">
+  <meta name="keywords" content="paket liburan, jalan-jalan, wisata murah">
+  <link rel="stylesheet" href="{{ url_for('static', filename='client-prop/indexstyle.css') }}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131279693-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-131279693-1');
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-W2JGMS3');</script>
+  <!-- End Google Tag Manager -->
+
+  <link rel="shortcut icon" href="{{ url_for('static', filename='properties/favicon.ico') }}">
+  <title>Paket Tour Indonesia | Bandung | Jepunku Destination</title>
+
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W2JGMS3"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header>
+    <div class="header-top">
+      <div id="header-left">
+        <a href="#">Beranda |</a>
+        <a href="#why-choose-us">Tentang Kami</a>
+      </div>
+      <div id="header-center">
+        <img src="{{ url_for('static', filename='properties/client/services/JepunkuLogo-V2.png') }}" alt="jepunku-logo">
+      </div>
+      <div id="header-right">
+        <div class="phone-no"> <a href="https://wa.me/+6282144534828" target="_blank"><i class="fab fa-whatsapp"></i> : 0821 4453 4828 (Whatsapp Kami)</a></div>
+        <div class="operation-hour"><p>Buka Hari ini : 08.00 - 17.00</p></div>
+        <div class="social-media">
+          Follow kami di :
+          <a href="https://twitter.com/JepunkuD" class="fab fa-twitter" target="_blank"></a>
+          <a href="https://linkedin.com/company/jepunku" class="fab fa-linkedin-in" target="_blank"></a>
+          <a href="https://www.facebook.com/hellojepunku/?modal=admin_todo_tour" class="fab fa-facebook" target="_blank"></a>
+          <a href="https://www.instagram.com/jepunkutravel/?hl=id" class="fab fa-instagram" target="_blank"></a>
+        </div>
+      </div>
+    </div>
+
+  </header>
+
+  <nav class="navbar-bottom">
+
+    <div class="mobile-logo" aria-hidden="true">
+      Jepunku
+      <img src="{{ url_for('static', filename='properties/client/services/JepunkuLogoOnly-WhiteLogo.png') }}" alt="jepunku-logo">
+    </div>
+    <input type="checkbox" id="chk">
+    <label for="chk" class="show-menu-btn">
+      <i class="fa fa-bars" aria-hidden="true"></i>
+    </label>
+
+    <ul class="menu">
+      <a class="scroll" id="menu-home" href="#">Beranda</a>
+      <a class="scroll" href="#destination">Destinasi</a>
+      <a class="scroll" href="#service">Jenis Perjalanan</a>
+      <a class="scroll" id="menu-about" href="#why-choose-us">Tentang</a>
+      <a href="http://blog.jepunku.com/" target="_blank">Blog</a>
+      <a class="scroll" href="#contact-us">Kontak</a>
+      <label for="chk" class="hide-menu-btn">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </label>
+    </ul>
+  </nav>
+
+  <main>
+
+    <section class="slider">
+      <div class='slide1'></div>
+      <div class='slide2'></div>
+      <div class='slide3'></div>
+      <div class='slide4'></div>
+    </section>
+
+    <section id="destination">
+
+      <hr>
+      <h2>Pilih Destinasi Perjalananmu</h2>
+      <hr>
+
+      <div class="destination-option">
+
+        <div class="destination-card">
+          <a href="/paket-wisata/Lombok">
+            <div class="card-pict">
+              <img src="{{url_for('static', filename='properties/client/img/index/lombok-index-jepunku.jpg')}}" class="portrait" alt="lombok-jepunku">
+            </div>
+            <div class="destination-caption">
+              <h2>Lombok</h2>
+              <p>Temukan pantai terindah dan terfavorit kamu di destinasi ini, kami siap untuk membuat cerita bahagia kamu di Lombok menunggumu.</p>
+              <div class="btn-area">
+                <button class="destination-btn" type="button" name="button">Lihat Produk Lombok</button>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="destination-card">
+          <a href="/paket-wisata/Yogyakarta">
+            <div class="card-pict">
+              <img src="{{url_for('static', filename='properties/client/img/index/borobudur-index-jepunku.jpg')}}" class="portrait" alt="yogyakarta-jepunku">
+            </div>
+            <div class="destination-caption">
+              <h2>Yogyakarta</h2>
+              <p>Mengunjungi beberapa situs bersejarah, candi - candi yang akan menjadikan pengalamanmu tak terlupakan.</p>
+              <div class="btn-area">
+                <button class="destination-btn" type="button" name="button">Lihat Produk Yogyakarta</button>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="destination-card">
+          <a href="/paket-wisata/Bali">
+            <div class="card-pict">
+              <img src="{{url_for('static', filename='properties/client/img/index/ulun-danu-beratan-index-jepunku.jpg')}}" class="portrait" alt="bali-jepunku">
+            </div>
+            <div class="destination-caption">
+              <h2>Bali</h2>
+              <p>Sebagai Negara yang kaya akan budaya, destinasi yang wajib dikunjungi untuk merasakan aura khas pulau ini.</p>
+              <div class="btn-area">
+                <button class="destination-btn" type="button" name="button">Lihat Produk Bali</button>
+              </div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="testimony-section">
+      <div id="testimony">
+        <div class="testimony-box">
+          <div class="testimony-img-box">
+            <img src="{{url_for('static', filename='properties/client/img/index/rizki-sadewa-jepunku.jpg')}}" alt="rizki-sadewa-jepunku">
+          </div>
+          <p>Perjalanan mengubahmu, karena saya percaya moment itu tidak akan pernah bisa dibeli dengan uang.</p>
+          <h4>Rizki Sadewa <br><span>Travel Consultant</span></h4>
+        </div>
+
+        <div class="testimony-box">
+          <div class="testimony-img-box">
+            <img src="{{url_for('static', filename='properties/client/img/index/dhimas-jepunku.jpg')}}" alt="dhimas-jepunku">
+          </div>
+          <p>I am not the same, having seen sunset on the other side of the world</p>
+          <h4>Travel Consultant<br><span>Travel Consultant</span></h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- Service -->
+  	<section id="service" class="section md-padding">
+
+      <hr>
+      <!-- Section header -->
+      <div class="section-header">
+
+        <h2 class="title">Jenis Perjalanan Kami</h2>
+
+      </div>
+      <!-- /Section header -->
+
+      <hr>
+
+      <div id="service-option">
+
+        <div class="service">
+          <i class="fa fa-hand-peace-o"></i>
+          <h3>FIT</h3>
+          <p>Free Independent Traveller, bagi anda yang menyukai perjalanan wisata tanpa tergantung anggota lainnya, layanan ini akan sangat cocok untuk anda.</p>
+        </div>
+
+        <div class="service">
+          <i class="fa fa-puzzle-piece"></i>
+          <h3>GIT</h3>
+          <p>Group Incentive Travel, ajak teman-temanmu untuk melakukan perjalanan wisata yang menyenangkan dengan anda</p>
+        </div>
+
+        <div class="service">
+          <i class="fa fa-sign-language"></i>
+          <h3>Tailor Made</h3>
+          <p>Perjalanan wisata sesuai dengan jiwa mu, menyediakan perjalanan wisata berdasarkan permintaan anda</p>
+        </div>
+
+        <div class="service">
+          <i class="fa fa-diamond"></i>
+          <h3>MICE</h3>
+          <p>Meeting Incentive Convention Exhibition, merencanakan dengan matang suatu perjalanan dengan tujuan tertentu. Kami memberi jasa pelayanan bagi suatu pertemuan sekelompok orang (negarawan, usahawan, cendikiawan dsb) untuk membahas masalah-masalah yang berkaitan dengan kepentingan bersama.</p>
+        </div>
+
+        <div class="service">
+          <i class="fa fa-pencil"></i>
+          <h3>Tematik Tur</h3>
+          <p>Hobi adalah suatu tindakan yang menyenangkan, kami memberikan produk perjalanan wisata sesuai dengan hobi sehingga tidak hanya memanjakan, melainkan pengalaman yang berbeda</p>
+        </div>
+
+        <div class="service">
+          <i class="fa fa-hand-paper-o"></i>
+          <h3>Open Trip</h3>
+          <p>Mendapatkan teman baru akan sangat menyenangkan, apalagi jika bertemu dengan orang - orang dengan melakukan perjalanan yang sama dengan minat kita.</p>
+        </div>
+      </div>
+
+  	</section>
+  	<!-- /Service -->
+
+    <!-- Why Choose us -->
+    <section id="why-choose-us">
+
+      <div class="wcu-left">
+        <hr>
+        <div class="section-header">
+          <h2 class="title">Kenapa memilih kami</h2>
+        </div>
+        <hr>
+
+        <p>Memberikan layanan yang terbaik adalah tujuan kami, dengan mendengarkan keinginan pelanggan untuk mencapai produk yang sesuai</p>
+        <div class="feature">
+          <i class="fa fa-check"></i>
+          <p><b>Efisien dan Efektif</b>, dalam menyiapkan perencanaan perjalanan wisata anda</p>
+        </div>
+        <div class="feature">
+          <i class="fa fa-check"></i>
+          <p><b>Perjalanan lebih seru</b>, tidak perlu memikirkan banyak hal. Semua akan kami sediakan, mulai dari tiket masuk objek wisata, akomodasi samai rute perjalanan yang direkomendasikan.</p>
+        </div>
+        <div class="feature">
+          <i class="fa fa-check"></i>
+          <p><b>Liburan yang tepat</b>, memberikan saran objek wisata yang tersedia pada destinasi yang dipilih</p>
+        </div>
+      </div>
+
+      <div class="wcu-right">
+        <div class="wcu-slider">
+          <div class='wcu-slide1'></div>
+          <div class='wcu-slide2'></div>
+          <div class='wcu-slide3'></div>
+          <div class='wcu-slide4'></div>
+        </div>
+      </div>
+
+    </section>
+    <!-- /Why Choose us -->
+
+    <!-- Team -->
+    <section id="our-team">
+
+      <!-- Section header -->
+      <div class="member-header">
+        <hr>
+        <div class="section-header">
+          <h2 class="title">Team Kami</h2>
+        </div>
+        <hr>
+      </div>
+      <!-- /Section header -->
+
+      <div class="member-option">
+        <div class="team">
+          <div class="team-img">
+            <img class="img-responsive" src="{{ url_for('static', filename='properties/client/img/Dhimas-Photo-Profile-Jepunku.jpg') }}" alt="">
+            <div class="overlay">
+              <div class="team-social">
+                <a href="https://www.facebook.com/dhimas.riskipradana?jazoest=2651001211044890118988273114746685981177010349711081069081854811310010010081531019011978120105831005112177120122119586510011945738665107101861176950102867212086678482789510810766881149081106908777738010011911951827154518881"><i class="fa fa-facebook"></i></a>
+                <a href="https://twitter.com/dimasriskyp"><i class="fa fa-twitter"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-content">
+            <h3>Dhimas Riski Pradana</h3>
+            <span>Travel Advisor</span>
+          </div>
+        </div>
+
+        <div class="team">
+          <div class="team-img">
+            <img class="img-responsive" src="{{ url_for('static', filename='properties/client/img/rizki-sadewa-jepunku-profile.jpg') }}" alt="">
+            <div class="overlay">
+              <div class="team-social">
+                <a href="https://www.linkedin.com/in/rizki-sadewa-7b05ab64/"><i class="fa fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/rizkykysadewa/?hl=en"><i class="fa fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-content">
+            <h3>Rizki Sadewa</h3>
+            <span>Travel Advisor</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+    <!-- /Team -->
+
+    <!-- Contact Us -->
+    <section id="contact-us" tabindex="-1">
+
+      <!-- Section-header -->
+      <hr>
+      <div class="section-header">
+        <h2 class="title">Hubungi Kami</h2>
+      </div>
+      <hr>
+      <!-- /Section-header -->
+
+      <div class="contact-option">
+        <!-- contact -->
+        <div class="contact">
+          <i class="fa fa-phone"></i>
+          <h3>Phone</h3>
+          <a href="tel:+6282144534828">0821 4453 4828</a>
+        </div>
+        <!-- /contact -->
+
+        <!-- contact -->
+        <div class="contact">
+          <i class="fa fa-envelope"></i>
+          <h3>Email</h3>
+          <p>rizki.sadewa@jepunku.com</p>
+        </div>
+        <!-- /contact -->
+
+        <!-- contact -->
+        <div class="contact">
+          <i class="fa fa-map-marker"></i>
+          <h3>Alamat</h3>
+          <p>Komplek bukit mekar indah blok H 23, rt 4 rw 21, Cimekar, Cileunyi, Jawa Barat</p>
+        </div>
+        <!-- /contact -->
+      </div>
+
+      <!-- contact form -->
+
+      <div id="form-outer">
+        <form action="" id="survey-form" >
+          <div class="rowTab">
+            <div class="labels">
+              <label for="name" id="name-label">* Nama: </label>
+            </div>
+            <div class="rightTab">
+              <input type="text" name="name" id="name" placeholder="Mohon masukkan nama anda" class="input-field">
+            </div>
+          </div>
+
+          <div class="rowTab">
+            <div class="labels">
+              <label for="email" id="email-label">* Email: </label>
+            </div>
+            <div class="rightTab">
+              <input type="email" name="email" id="email" required class="input-field" placeholder="Mohon masukkan email Anda" value="">
+            </div>
+          </div>
+
+          <div class="rowTab">
+            <div class="labels">
+              <label for="age" id="number-label">* Umur: </label>
+            </div>
+            <div class="rightTab">
+              <input type="number" id="number" min="1" max="100" name="" class="input-field" placeholder="Mohon masukkan umur anda">
+            </div>
+          </div>
+
+          <div class="rowTab">
+            <div class="labels">
+              <label for="comments">Deskripsi Permintaan</label>
+            </div>
+            <div class="rightTab">
+              <textarea id="comments" name="comments" rows="8" cols="20" style="height:50px;resize:vertical;" placeholder="Enter your comment here..."></textarea>
+            </div>
+          </div>
+
+          <div class="form-bottom">
+            <button id="submit" type="submit" name="button" class="submit-cmn-btn">Submit</button>
+          </div>
+
+        </form>
+      </div>
+      <!-- /contact form -->
+
+    </section>
+
+    <!-- /Contact Us -->
+
+  </main>
+
+  <footer>
+    <p>&copy; 2019 Created by Jepunku. All Rights Reserverd.</p>
+  </footer>
+
+
+  <script src="{{ url_for('static', filename='client-prop/my.js') }}" charset="utf-8"></script>
+
+</body>
+</html>

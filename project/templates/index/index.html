@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>Yuk Jelajah Indonesia</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+
+	<!-- Owl Carousel -->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.css') }}" />
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.css') }}" />
+
+	<!-- Magnific Popup -->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css') }}" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/mystyle.css') }}" />
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	<link rel="shortcut icon" href="{{ url_for('static', filename='properties/favicon.ico') }}">
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131279693-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-131279693-1');
+	</script>
+
+
+
+</head>
+
+<body>
+
+	<!-- Header -->
+	<header id="home">
+		<!-- Background Image -->
+		<div class="bg-img">
+			<div class="overlay">
+				<ul class="cb-slideshow">
+						<li><span>Image 01</span><div><h3>nikmati hidupmu</h3></div></li>
+						<li><span>Image 02</span><div><h3>hidup cuman sekali</h3></div></li>
+						<li><span>Image 03</span><div><h3>ini dunia kita</h3></div></li>
+						<li><span>Image 04</span><div><h3>destinasi kita</h3></div></li>
+						<li><span>Image 05</span><div><h3>mari jelajahi</h3></div></li>
+						<li><span>Image 06</span><div><h3>dengan gembira</h3></div></li>
+				</ul>
+			</div>
+		</div>
+		<!-- /Background Image -->
+
+
+
+		<!-- Nav -->
+		<nav id="nav" class="navbar nav-transparent">
+			<div class="container">
+
+				<!-- Logo -->
+				<div class="navbar-brand">
+					<a href="#home">
+						<img class="logo" src="{{ url_for('static', filename='properties/client/img/Jepunku-Logo-2.png') }}" alt="logo">
+						<img class="logo-alt nav-center" src="{{ url_for('static', filename='properties/client/img/Jepunku-Logo.png') }}" alt="logo">
+					</a>
+				</div>
+				<!-- /Logo -->
+
+				<!-- Collapse nav button -->
+				<div class="nav-collapse">
+					<span></span>
+				</div>
+				<!-- /Collapse nav button -->
+
+
+				<!--  Main navigation  -->
+				<ul class="main-nav nav navbar-nav navbar-right">
+					<li><a href="#home">Beranda</a></li>
+					<li><a href="#service">Layanan</a></li>
+					<li><a href="#about">Tentang</a></li>
+					<li><a href="#team">Team</a></li>
+					<li><a href="#contact">Kontak</a></li>
+					<li class="has-dropdown"><a href="http://blog.jepunku.com/" target="_blank">Blog</a>
+						<ul class="dropdown">
+							<li><a href="http://blog.jepunku.com/" target="_blank">blog post</a></li>
+						</ul>
+					</li>
+				</ul>
+				<!-- /Main navigation -->
+
+
+
+			</div>
+		</nav>
+		<!-- /Nav -->
+
+
+
+		<!-- home wrapper -->
+		<div class="home-wrapper">
+			<div class="container">
+				<div class="row">
+
+				</div>
+			</div>
+		</div>
+		<!-- /home wrapper -->
+
+	</header>
+	<!-- /Header -->
+
+
+	<!-- Service -PRODUK- -->
+	<div id="service" class="section md-padding">
+
+		<!-- Container -->
+		<div class="container">
+
+			<!-- Row -->
+			<div class="row">
+
+				<!-- Section header -->
+				<div class="section-header text-center">
+					<h2 class="title">Pilih destinasimu sekarang juga!</h2>
+				</div>
+				<!-- /Section header -->
+
+
+			<!-- Trip -->
+			{% for trip_data in trip_data %}
+			<div class="section-body">
+
+				<a href="/services/{{trip_data.destination}}" class="btn-srv btn-srv-3">{{trip_data.destination}}</a>
+
+			</div>
+			{% endfor %}
+
+			<!-- /Trip -->
+
+			</div>
+			<!-- /Row -->
+
+		</div>
+		<!-- /Container -->
+
+	</div>
+	<!-- /Service -PRODUK -->
+
+	<!-- Testimonial -->
+	<div id="testimonial" class="section md-padding">
+
+		<!-- Background Image -->
+		<div class="bg-img" style="background-image: url('../../static/properties/client/img/waerebo-traditional-village-jepunku-min.jpg');">
+
+			<div class="overlay"></div>
+		</div>
+		<!-- /Background Image -->
+
+
+
+		<!-- Container -->
+		<div class="container">
+
+			<!-- Row -->
+			<div class="row">
+
+				<!-- Testimonial slider -->
+				<div class="col-md-10 col-md-offset-1">
+					<div id="testimonial-slider" class="owl-carousel owl-theme">
+
+						<!-- testimonial -->
+						<div class="testimonial">
+							<div class="testimonial-meta">
+								<img src="{{ url_for('static', filename='properties/client/img/rizki-sadewa-photo-jepunku.jpg') }}" alt="">
+								<h3 class="white-text">Rizki Sadewa</h3>
+								<span>Travel Consultant</span>
+							</div>
+							<p class="white-text">Perjalanan mengubahmu, karena saya percaya moment itu tidak akan pernah bisa dibeli dengan uang.</p>
+						</div>
+						<!-- /testimonial -->
+
+						<!-- testimonial -->
+						<div class="testimonial">
+							<div class="testimonial-meta">
+								<img src="{{ url_for('static', filename='properties/client/img/Dhimas-Photo-Profile-Jepunku.jpg') }}" alt="">
+								<h3 class="white-text">Dhimas Riski P.</h3>
+								<span>Travel Consultant</span>
+							</div>
+							<p class="white-text">I am not the same, having seen sunset on the other side of the world</p>
+						</div>
+						<!-- /testimonial -->
+
+					</div>
+				</div>
+				<!-- /Testimonial slider -->
+
+			</div>
+			<!-- /Row -->
+
+		</div>
+		<!-- /Container -->
+
+	</div>
+	<!-- /Testimonial -->
+
+	<!-- Service -->
+	<div id="service" class="section md-padding">
+
+		<!-- Container -->
+		<div class="container">
+
+			<!-- Row -->
+			<div class="row">
+
+				<!-- Section header -->
+				<div class="section-header text-center">
+					<h2 class="title">Jenis Perjalanan Kami</h2>
+				</div>
+				<!-- /Section header -->
+
+				<!-- service -->
+				<div class="col-md-4 col-sm-6">
+					<div class="service">
+						<i class="fa fa-hand-peace-o"></i>
+						<h3>FIT</h3>
+						<p>Free Independent Traveller, bagi anda yang menyukai perjalanan wisata tanpa tergantung anggota lainnya, layanan ini akan sangat cocok untuk anda.</p>
+					</div>
+				</div>
+				<!-- /service -->
+
+				<!-- service -->
+				<div class="col-md-4 col-sm-6">
+					<div class="service">
+						<i class="fa fa-puzzle-piece"></i>
+						<h3>GIT</h3>
+						<p>Group Incentive Travel, ajak teman-temanmu untuk melakukan perjalanan wisata yang menyenangkan dengan anda</p>
+					</div>
+				</div>
+				<!-- /service -->
+
+				<!-- service -->
+				<div class="col-md-4 col-sm-6">
+					<div class="service">
+						<i class="fa fa-sign-language"></i>
+						<h3>Tailor Made</h3>
+						<p>Perjalanan wisata sesuai dengan jiwa mu, menyediakan perjalanan wisata berdasarkan permintaan anda</p>
+					</div>
+				</div>
+				<!-- /service -->
+			</div>
+			<!-- /Row -->
+
+			<!-- Row -->
+			<div class="row">
+				<!-- service -->
+				<div class="col-md-4 col-sm-6">
+					<div class="service">
+						<i class="fa fa-diamond"></i>
+						<h3>MICE</h3>
+						<p>Meeting Incentive Convention Exhibition, merencanakan dengan matang suatu perjalanan dengan tujuan tertentu. Kami memberi jasa pelayanan bagi suatu pertemuan sekelompok orang (negarawan, usahawan, cendikiawan dsb) untuk membahas masalah-masalah yang berkaitan dengan kepentingan bersama.</p>
+					</div>
+				</div>
+				<!-- /service -->
+
+				<!-- service -->
+				<div class="col-md-4 col-sm-6">
+					<div class="service">
+						<i class="fa fa-pencil"></i>
+						<h3>Tematik Tur</h3>
+						<p>Hobi adalah suatu tindakan yang menyenangkan, kami memberikan produk perjalanan wisata sesuai dengan hobi sehingga tidak hanya memanjakan, melainkan pengalaman yang berbeda</p>
+					</div>
+				</div>
+				<!-- /service -->
+
+				<!-- service -->
+				<div class="col-md-4 col-sm-6">
+					<div class="service">
+						<i class="fa fa-hand-paper-o"></i>
+						<h3>Open Trip</h3>
+						<p>Mendapatkan teman baru akan sangat menyenangkan, apalagi jika bertemu dengan orang - orang dengan melakukan perjalanan yang sama dengan minat kita.</p>
+					</div>
+				</div>
+				<!-- /service -->
+			</div>
+			<!-- /Row -->
+
+		</div>
+		<!-- /Container -->
+
+	</div>
+	<!-- /Service -->
+
+	<!-- Testimonial -->
+	<div id="testimonial" class="section md-padding">
+
+		<!-- Background Image -->
+		<div class="bg-img" style="background-image: url('../../static/properties/client/img/background/wakatobi-jepunku.jpg');">
+			<div class="overlay"></div>
+		</div>
+		<!-- /Background Image -->
+
+	</div>
+	<!-- /Testimonial -->
+
+	<!-- About -->
+	<div id="about" class="section md-padding">
+
+		<!-- Container -->
+		<div class="container">
+
+			<!-- Row -->
+			<div class="row">
+
+				<!-- Section header -->
+				<div class="section-header text-center">
+					<h2 class="title">Selamat datang petualang</h2>
+				</div>
+				<!-- /Section header -->
+
+				<!-- about -->
+				<div class="col-md-4">
+					<div class="about">
+						<i class="fa fa-heart"></i>
+						<h3>Visi Kami</h3>
+						<p>Menjadi perusahaan yang selalu memberikan pelayanan terbaik di bidang perusahaan pariwisata</p>
+						<a href="#">Lebih lanjut</a>
+					</div>
+				</div>
+				<!-- /about -->
+
+				<!-- about -->
+				<div class="col-md-4">
+					<div class="about">
+						<i class="fa fa-rocket"></i>
+						<h3>Misi Kami</h3>
+						<p>Menjadi perusahaan yang terdepan dalam jasa pariwisata</p>
+						<a href="#">Lebih lanjut</a>
+					</div>
+				</div>
+				<!-- /about -->
+
+				<!-- about -->
+				<div class="col-md-4">
+					<div class="about">
+						<i class="fa fa-check-square-o"></i>
+						<h3>Moto kami</h3>
+						<p>Keaslian Indonesia</p>
+						<a href="#">Lebih Lanjut</a>
+					</div>
+				</div>
+				<!-- /about -->
+
+			</div>
+			<!-- /Row -->
+
+		</div>
+		<!-- /Container -->
+
+	</div>
+	<!-- /About -->
+
+	<!-- Why Choose Us -->
+	<div id="features" class="section md-padding bg-grey">
+
+		<!-- Container -->
+		<div class="container">
+
+			<!-- Row -->
+			<div class="row">
+
+				<!-- why choose us content -->
+				<div class="col-md-6">
+					<div class="section-header">
+						<h2 class="title">Kenapa memilih kami</h2>
+					</div>
+					<p>Memberikan layanan yang terbaik adalah tujuan kami, dengan mendengarkan keinginan pelanggan untuk mencapai produk yang sesuai</p>
+					<div class="feature">
+						<i class="fa fa-check"></i>
+						<p><b>Efisien dan Efektif</b>, dalam menyiapkan perencanaan perjalanan wisata anda</p>
+					</div>
+					<div class="feature">
+						<i class="fa fa-check"></i>
+						<p><b>Perjalanan lebih seru</b>, tidak perlu memikirkan banyak hal. Semua akan kami sediakan, mulai dari tiket masuk objek wisata, akomodasi samai rute perjalanan yang direkomendasikan.</p>
+					</div>
+					<div class="feature">
+						<i class="fa fa-check"></i>
+						<p><b>Liburan yang tepat</b>, memberikan saran objek wisata yang tersedia pada destinasi yang dipilih</p>
+					</div>
+				</div>
+				<!-- /why choose us content -->
+
+				<!-- About slider -->
+				<div class="col-md-6">
+					<div id="about-slider" class="owl-carousel owl-theme">
+						<img class="img-responsive" src="../../static/properties/client/img/whychooseus/Banyumala-Jepunku-WhyChooseUs.jpg" alt="">
+						<img class="img-responsive" src="../../static/properties/client/img/whychooseus/Jatiluwih-Jepunku-WhyChooseUs.jpg" alt="">
+						<img class="img-responsive" src="../../static/properties/client/img/whychooseus/Kintamani-Jepunku-WhyChooseUs.jpg" alt="">
+						<img class="img-responsive" src="../../static/properties/client/img/whychooseus/Kintamani2-Jepunku-WhyChooseUs.jpg" alt="">
+					</div>
+				</div>
+				<!-- /About slider -->
+
+			</div>
+			<!-- /Row -->
+
+		</div>
+		<!-- /Container -->
+
+	</div>
+	<!-- /Why Choose Us -->
+
+	<!-- Numbers -->
+	<div id="numbers" class="section sm-padding">
+
+		<!-- Background Image -->
+		<div class="bg-img" style="background-image: url('../../static/properties/client/img/background/jatiluwih-jepunku-background.jpg');">
+			<div class="overlay"></div>
+		</div>
+		<!-- /Background Image -->
+
+		<!-- Container -->
+		<div class="container">
+
+			<!-- Row -->
+			<div class="row">
+
+				<!-- number -->
+				<div class="col-sm-3 col-xs-6">
+					<div class="number">
+						<i class="fa fa-users"></i>
+						<h3 class="white-text"><span class="counter">100%</span></h3>
+						<span class="white-text">Kamu akan bahagia</span>
+					</div>
+				</div>
+				<!-- /number -->
+
+				<!-- number -->
+				<div class="col-sm-3 col-xs-6">
+					<div class="number">
+						<i class="fa fa-trophy"></i>
+						<h3 class="white-text"><span class="counter">100%</span></h3>
+						<span class="white-text">Fokus pada layanan</span>
+					</div>
+				</div>
+				<!-- /number -->
+
+				<!-- number -->
+				<div class="col-sm-3 col-xs-6">
+					<div class="number">
+						<i class="fa fa-coffee"></i>
+						<h3 class="white-text"><span class="counter">100%</span></h3>
+						<span class="white-text">Menjamin kualitas layanan</span>
+					</div>
+				</div>
+				<!-- /number -->
+
+				<!-- number -->
+				<div class="col-sm-3 col-xs-6">
+					<div class="number">
+						<i class="fa fa-file"></i>
+						<h3 class="white-text"><span class="counter">100%</span></h3>
+						<span class="white-text">Rekomendasi terbaik</span>
+					</div>
+				</div>
+				<!-- /number -->
+
+			</div>
+			<!-- /Row -->
+
+		</div>
+		<!-- /Container -->
+
+	</div>
+	<!-- /Numbers -->
+
+	<!-- Team -->
+	<div id="team" class="section md-padding">
+
+		<!-- Container -->
+		<div class="container">
+
+			<!-- Row -->
+			<div class="row">
+
+				<!-- Section header -->
+				<div class="section-header text-center">
+					<h2 class="title">Team Kami</h2>
+				</div>
+				<!-- /Section header -->
+
+				<!-- team -->
+				<div class="col-sm-6">
+					<div class="team">
+						<div class="team-img">
+							<img class="img-responsive" src="{{ url_for('static', filename='properties/client/img/Dhimas-Photo-Profile-Jepunku.jpg') }}" alt="">
+							<div class="overlay">
+								<div class="team-social">
+									<a href="https://www.facebook.com/dhimas.riskipradana?jazoest=2651001211044890118988273114746685981177010349711081069081854811310010010081531019011978120105831005112177120122119586510011945738665107101861176950102867212086678482789510810766881149081106908777738010011911951827154518881"><i class="fa fa-facebook"></i></a>
+									<a href="https://twitter.com/dimasriskyp"><i class="fa fa-twitter"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="team-content">
+							<h3>Dhimas Riski Pradana</h3>
+							<span>Travel Advisor</span>
+						</div>
+					</div>
+				</div>
+				<!-- /team -->
+
+				<!-- team -->
+				<div class="col-sm-6">
+					<div class="team">
+						<div class="team-img">
+							<img class="img-responsive" src="{{ url_for('static', filename='properties/client/img/rizki-sadewa-jepunku-profile.jpg') }}" alt="">
+							<div class="overlay">
+								<div class="team-social">
+									<a href="https://www.linkedin.com/in/rizki-sadewa-7b05ab64/"><i class="fa fa-linkedin"></i></a>
+									<a href="https://www.instagram.com/rizkykysadewa/?hl=en"><i class="fa fa-instagram"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="team-content">
+							<h3>Rizki Sadewa</h3>
+							<span>Travel Advisor</span>
+						</div>
+					</div>
+				</div>
+				<!-- /team -->
+
+			</div>
+			<!-- /Row -->
+
+		</div>
+		<!-- /Container -->
+
+	</div>
+	<!-- /Team -->
+
+	<!-- Contact -->
+	<div id="contact" class="section md-padding">
+
+		<!-- Container -->
+		<div class="container">
+
+			<!-- Row -->
+			<div class="row">
+
+				<!-- Section-header -->
+				<div class="section-header text-center">
+					<h2 class="title">Hubungi Kami</h2>
+				</div>
+				<!-- /Section-header -->
+
+				<!-- contact -->
+				<div class="col-sm-4">
+					<div class="contact">
+						<i class="fa fa-phone"></i>
+						<h3>Phone</h3>
+						<a href="tel:+6282144534828">0821 4453 4828</a>
+					</div>
+				</div>
+				<!-- /contact -->
+
+				<!-- contact -->
+				<div class="col-sm-4">
+					<div class="contact">
+						<i class="fa fa-envelope"></i>
+						<h3>Email</h3>
+						<p>rizki.sadewa@jepunku.com</p>
+					</div>
+				</div>
+				<!-- /contact -->
+
+				<!-- contact -->
+				<div class="col-sm-4">
+					<div class="contact">
+						<i class="fa fa-map-marker"></i>
+						<h3>Alamat</h3>
+						<p>Komplek bukit mekar indah blok H 23, rt 4 rw 21, Cimekar, Cileunyi, Jawa Barat</p>
+					</div>
+				</div>
+				<!-- /contact -->
+
+				<!-- contact form -->
+				<div class="col-md-8 col-md-offset-2">
+					<form class="contact-form">
+						<input type="text" class="input" placeholder="Nama">
+						<input type="email" class="input" placeholder="Email">
+						<input type="text" class="input" placeholder="Perihal">
+						<textarea class="input" placeholder="Pesan"></textarea>
+						<button class="main-btn">Kirim Pesan</button>
+					</form>
+				</div>
+				<!-- /contact form -->
+
+			</div>
+			<!-- /Row -->
+
+		</div>
+		<!-- /Container -->
+
+	</div>
+	<!-- /Contact -->
+
+
+	<!-- Footer -->
+	<footer id="footer" class="sm-padding bg-dark">
+
+		<!-- Container -->
+		<div class="container">
+
+			<!-- Row -->
+			<div class="row">
+
+				<div class="col-md-12">
+
+					<!-- footer logo -->
+					<div class="footer-logo">
+						<a href="index.html"><img src="{{ url_for('static', filename='properties/client/img/Jepunku-Logo.png') }}" alt="logo"></a>
+					</div>
+					<!-- /footer logo -->
+
+					<!-- footer follow -->
+					<ul class="footer-follow">
+						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+						<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+						<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+						<li><a href="#"><i class="fa fa-youtube"></i></a></li>
+					</ul>
+					<!-- /footer follow -->
+
+					<!-- footer copyright -->
+					<div class="footer-copyright">
+						<p>Copyright © 2018. All Rights Reserved. Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+					</div>
+					<!-- /footer copyright -->
+
+				</div>
+
+			</div>
+			<!-- /Row -->
+
+		</div>
+		<!-- /Container -->
+
+	</footer>
+	<!-- /Footer -->
+
+	<!-- Back to top -->
+	<div id="back-to-top"></div>
+	<!-- /Back to top -->
+
+	<!-- Preloader -->
+	<div id="preloader">
+		<div class="preloader">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</div>
+	<!-- /Preloader -->
+
+	<!-- jQuery Plugins -->
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.magnific-popup.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1118 @@
+/* GLOBAL PROPERTIES */
+
+@import "//fonts.googleapis.com/css?family=Varela+Round";
+@import url(https://use.fontawesome.com/releases/v5.8.1/css/all.css);
+
+*{
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  font-size: 100%;
+  font-family: "Varela Round", Helvetica, sans-serif;
+}
+
+p{
+  text-align: justify;
+}
+
+/*
+   *** NAVBAR TOP ***
+*/
+
+.header-top{
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  background: #fafafa;
+  padding: 10px;
+}
+
+#menu-home, #menu-about{
+  display: none;
+}
+
+
+#header-left{
+  margin-left: 10%;
+  margin-top: 30px;
+}
+
+#header-left a{
+  text-decoration: none;
+  color: #8BC53D;
+}
+
+#header-center img{
+  width: 200px;
+  height: auto;
+  background: none;
+  margin-left: 35%;
+}
+
+#header-center,
+#header-right,
+.phone-no,
+.operation-hour,
+.social-media{
+  background: none;
+}
+
+#header-right div{
+  margin-left: 10%;
+}
+
+.phone-no a, .phone-no i{
+  text-decoration: none;
+  font-size: 30px;
+  background: none;
+  color: #8BC53D;
+}
+
+.operation-hour{
+  color: #FF0062;
+}
+
+.social-media a{
+  color : #FF0062;
+  text-decoration: none;
+}
+
+
+#navbar{
+  background: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+#header-menu{
+  background: none;
+  margin: 5% 3% 0 40%;
+}
+
+#header-menu a{
+  text-decoration: none;
+  color: #fff;
+  background: none;
+  margin-left: 5px;
+}
+
+#header-menu a:hover{
+  color: #FF0062;
+}
+
+@media screen (height: 150px) {
+  #navbar{
+    background: blue;
+  }
+}
+
+/*
+   *** /NAVBAR TOP ***
+*/
+
+/*
+   *** NAVBAR BOTTOM ***
+*/
+
+nav{
+  height: 50px;
+  background: rgba(0, 0, 0, .8);
+  border-top: 1px solid rgba(255, 255, 255, .2);
+  border-bottom: 1px solid rgba(255, 255, 255, .2);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.navbar-bottom{
+  background-color: #8BC53D;
+  height: 50px;
+  padding: 0 20px;
+  color: #fff;
+}
+
+.mobile-logo{
+  line-height: 50px;
+  float: left;
+}
+
+.mobile-logo img{
+  padding-top: 10px;
+  width: 20px;
+  height: auto;
+  background: none;
+}
+
+.menu{
+  text-align: center;
+  float: none;
+  justify-content:center;
+  line-height: 50px;
+}
+
+.menu a{
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0 10px;
+  transition: 0.4s;
+}
+
+.show-menu-btn, .hide-menu-btn, .mobile-logo{
+  transition: 0.4s;
+  font: 30px;
+  cursor: pointer;
+  display: none;
+  background: none;
+}
+
+.show-menu-btn{
+  float: right;
+}
+
+.show-menu-btn i{
+  line-height: 50px;
+}
+
+.show-menu-btn:hover,
+.hide-menu-btn:hover{
+  color: #8BC53D;
+}
+
+.menu a:hover{
+  color: #FF0062;
+}
+
+.show-menu-btn, .fa-bars{
+  background-color: #8BC53D;
+  color: #fff;
+}
+
+.show-menu-btn, .fa-bars:hover{
+  background-color: #8BC53D;
+  color: #FF0062;
+}
+
+.show-menu-btn, .fa-times{
+  background: #FF0062;
+  color: #fff;
+}
+
+.show-menu-btn, .fa-times:hover{
+  background: #FF0062;
+  color: #8BC53D;
+}
+
+#chk{
+  position: absolute;
+  visibility: hidden;
+  z-index: -1111;
+}
+
+/*
+   *** /NAVBAR BOTTOM SECTION ***
+*/
+
+
+/*
+   *** JUMBOTRON ***
+*/
+
+.slider {
+  max-width: 100%;
+  height: 500px;
+  position: relative;
+}
+.slide1,.slide2,.slide3,.slide4,.slide5 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.slide1 {
+  background: url(../properties/client/img/background/1.jpg)no-repeat center;
+      background-size: cover;
+    animation:fade 8s infinite;
+-webkit-animation:fade 8s infinite;
+
+}
+.slide2 {
+  background: url(../properties/client/img/background/2.jpg)no-repeat center;
+      background-size: cover;
+    animation:fade2 8s infinite;
+-webkit-animation:fade2 8s infinite;
+}
+.slide3 {
+    background: url(../properties/client/img/background/3.jpg)no-repeat center;
+      background-size: cover;
+    animation:fade3 8s infinite;
+-webkit-animation:fade3 8s infinite;
+}
+@keyframes fade
+{
+  0%   {opacity:1}
+  33.333% { opacity: 0}
+  66.666% { opacity: 0}
+  100% { opacity: 1}
+}
+@keyframes fade2
+{
+  0%   {opacity:0}
+  33.333% { opacity: 1}
+  66.666% { opacity: 0 }
+  100% { opacity: 0}
+}
+@keyframes fade3
+{
+  0%   {opacity:0}
+  33.333% { opacity: 0}
+  66.666% { opacity: 1}
+  100% { opacity: 0}
+}
+/*
+   *** /JUMBOTRON ***
+*/
+
+/*
+   *** DESTINATION ***
+*/
+#destination{
+  margin: 0px;
+  padding: 10px;
+  background: #eee;
+}
+
+#destination hr{
+  width: 30%;
+  height: 5px;
+  background-color: #FF0062;
+  margin-left: 35%;
+  border-style: none;
+}
+
+#destination h2{
+  text-align: center;
+  transform: uppercase;
+  font-size: 35px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.destination-option{
+  display: flex;
+}
+
+.destination-card{
+  background: #fff;
+  width: 33%;
+  height: 500px;
+  margin: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  display: grid;
+  grid-template-rows: 50% 50%;
+}
+
+.destination-card a{
+  text-decoration: none;
+  color: black;
+}
+
+.destination-caption{
+  margin: 10px;
+}
+
+.destination-caption h2:hover{
+  color: #FF0062;
+}
+
+.card-pict img{
+  border-radius: 10px 10px 0px 0;
+  width: 100%;
+  max-width: 438px;
+  height: auto;
+}
+
+.btn-area{
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+
+.destination-btn{
+  -moz-box-shadow: inset 0px 1px 0px 0px #d9fbbe;
+  background-color: #8BC53D;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  border: 1px solid #8BC53D;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 7px;
+  text-decoration: none;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.destination-btn:hover{
+  background-color:#94d53d;
+  color: #fff;
+}
+
+/*
+   *** /DESTINATION ***
+*/
+
+
+/*
+   *** TESTIMONY ***
+*/
+
+#testimony-section{
+  margin: 0;
+  padding: 30px;
+  background: url(../properties/client/img/index/wakatobi-jepunku.jpg);
+  background-size: 100%;
+}
+
+#testimony{
+  width: 100%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-gap: 20px;
+  box-sizing: border-box;
+  background: none;
+}
+
+#testimony .testimony-box{
+  position: relative;
+  padding: 80px 40px 40px;
+  text-align: center;
+  background: #fff;
+  transition: 0.5s;
+}
+
+#testimony .testimony-box:hover{
+  background: #ff0057;
+}
+
+#testimony .testimony-box p{
+  margin: 0;
+  padding: 0;
+  transition: 0.5s;
+}
+
+#testimony .testimony-box h4{
+  margin: 20px 0 0;
+  padding: 0;
+  transition: 0.5s;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 20px;
+  text-transform: uppercase;
+  color: #ff0057;
+}
+
+#testimony .testimony-box h4 span{
+  font-weight: 600;
+  font-size: 14px;
+  color: #c5c5c5;
+  transition: 0.5s;
+}
+
+#testimony .testimony-box:hover p,
+#testimony .testimony-box:hover h4,
+#testimony .testimony-box:hover h4 span{
+  color: #fff;
+}
+
+#testimony .testimony-box .testimony-img-box{
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#testimony .testimony-box img{
+  width: 120px;
+  height: auto;
+  border-radius: 50%;
+}
+
+
+#testimony .testimony-box::before{
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  width: 90px;
+  height: 80px;
+  background: url(../properties/client/img/index/quotes.png);
+  background-size: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+#testimony .testimony-box:hover::before{
+  transform: translateY(-80px);
+  opacity: 1;
+}
+
+
+#testimony .testimony-box::after{
+  content: '';
+  position: absolute;
+  bottom: : 20px;
+  left: 40px;
+  width: 90px;
+  height: 80px;
+  background: url(../properties/client/img/index/quotes.png);
+  background-size: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s;
+  transform: rotate(180deg) translateY(0px);
+}
+
+#testimony .testimony-box:hover::after{
+  transform: rotate(180deg) translateY(-20px);
+  opacity: 1;
+}
+
+
+/*
+   *** /TESTIMONY ***
+*/
+
+
+/*
+   *** SERVICES ***
+*/
+
+#service{
+  padding: 10px;
+  margin: 0;
+  background: #eee;
+}
+
+#service .section-header{
+  display: flex;
+  justify-content: center;
+}
+
+#service hr{
+  width: 30%;
+  height: 5px;
+  background-color: #FF0062;
+  margin-left: 35%;
+  border-style: none;
+}
+
+#service .section-header .title{
+  font-size: 30px;
+}
+
+#service-option{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+.service {
+    position: relative;
+    padding: 40px 20px 40px 70px;
+    margin: 15px 0px;
+    border: 1px solid #EEE;
+    background: white;
+    transition: 0.5s;
+}
+
+.service:hover{
+  background: black;
+}
+
+.service i {
+    position: absolute;
+    left: 20px;
+    text-align: center;
+    font-size: 32px;
+    color: #ff0062;
+    border-radius: 50%;
+}
+
+.service:after {
+    content: "";
+    background-color: #1C1D21;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0%;
+    z-index: -1;
+    -webkit-transition: 0.2s width;
+    transition: 0.2s width;
+}
+
+.service:hover:after {
+    width: 100%;
+}
+
+.service h3 {
+  -webkit-transition: 0.2s color;
+  transition: 0.2s color;
+}
+
+.service:hover h3 {
+    color: #fff;
+}
+
+.service:hover p {
+    color: #fff;
+}
+
+/*
+   *** /SERVICES ***
+*/
+
+
+/*
+   *** WHY CHOOSE US ***
+*/
+
+#why-choose-us{
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.wcu-left, .wcu-right{
+  padding: 5%;
+}
+
+#why-choose-us .wcu-left .section-header{
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 10px 0;
+}
+
+#why-choose-us .wcu-left hr{
+  width: 100%;
+  height: 5px;
+  background-color: #FF0062;
+  border-style: none;
+}
+
+
+#why-choose-us .wcu-left .section-header .title{
+  font-size: 30px;
+}
+
+.wcu-slider{
+  margin: 0 5% 0 5%;
+}
+
+
+.wcu-slider {
+  width: 90%;
+  height: 500px;
+  position: relative;
+}
+.wcu-slide1,.wcu-slide2,.wcu-slide3,.wcu-slide4,.wcu-slide5 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.wcu-slide1 {
+  background: url(../properties/client/img/index/whychooseus/Banyumala-Jepunku-WhyChooseUs.jpg)no-repeat center;
+  background-size: cover;
+  animation:fade 8s infinite;
+  -webkit-animation:fade 8s infinite;
+
+}
+.wcu-slide2 {
+  background: url(../properties/client/img/index/whychooseus/Jatiluwih-Jepunku-WhyChooseUs.jpg)no-repeat center;
+  background-size: cover;
+  animation:fade2 8s infinite;
+  -webkit-animation:fade2 8s infinite;
+}
+.wcu-slide3 {
+  background: url(../properties/client/img/index/whychooseus/Kintamani2-Jepunku-WhyChooseUs.jpg)no-repeat center;
+  background-size: cover;
+  animation:fade3 8s infinite;
+  -webkit-animation:fade3 8s infinite;
+}
+
+.wcu-slide4 {
+  background: url(../properties/client/img/index/whychooseus/Kintamani-Jepunku-WhyChooseUs.jpg)no-repeat center;
+  background-size: cover;
+  animation:fade3 8s infinite;
+  -webkit-animation:fade3 8s infinite;
+}
+@keyframes fade
+{
+  0%   {opacity:1}
+  33.333% { opacity: 0}
+  66.666% { opacity: 0}
+  100% { opacity: 1}
+}
+@keyframes fade2
+{
+  0%   {opacity:0}
+  33.333% { opacity: 1}
+  66.666% { opacity: 0 }
+  100% { opacity: 0}
+}
+@keyframes fade3
+{
+  0%   {opacity:0}
+  33.333% { opacity: 0}
+  66.666% { opacity: 1}
+  100% { opacity: 0}
+}
+
+.feature {
+    margin: 15px 0px;
+}
+.feature i {
+    float: left;
+    padding: 5px;
+    border-radius: 50%;
+    color: #8bc53d;
+    border: 1px solid #8bc53d;
+    margin-right: 5px;
+}
+
+.wcu-slider img{
+  width: 50%;
+  height: auto;
+}
+
+/*
+   *** /WHY CHOOSE US ***
+*/
+
+
+/*
+   *** OUR TEAM ***
+*/
+
+#our-team{
+  background: #eee;
+  padding: 10px;
+}
+
+#our-team .member-header{
+  margin: 40px 0 0 0;
+}
+
+#our-team hr{
+  width: 20%;
+  margin-left: 40%;
+  height: 5px;
+  background-color: #FF0062;
+  border-style: none;
+}
+
+#our-team .section-header{
+  display: flex;
+  justify-content: center;
+}
+
+#our-team .section-header .title{
+  font-size: 30px;
+}
+
+.member-option{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 50px;
+  grid-gap: 10px;
+}
+
+.team {
+    position: relative;
+    background-color: #fff;
+    padding: 40px 20px;
+    margin: 15px 0px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+
+.team::after {
+    content: "";
+    background-color: #1C1D21;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 0%;
+    z-index: 3;
+    -webkit-transition: 0.2s height;
+    transition: 0.2s height;
+}
+
+.team:hover:after {
+    height: 100%;
+}
+
+.team-img {
+    position: relative;
+    margin-bottom: 20px;
+    z-index: 4;
+}
+
+.team-img>img {
+  width: 100%;
+}
+
+.team .overlay {
+    background: #1C1D21;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    -webkit-transition: 0.2s opacity;
+    transition: 0.2s opacity;
+}
+
+.team:hover .overlay {
+    opacity: 0.8;
+}
+
+.team .team-content {
+    text-align: center;
+    position: relative;
+    z-index: 4;
+}
+
+.team .team-content h3 {
+    margin-bottom: 10px;
+    -webkit-transition: 0.2s color;
+    transition: 0.2s color;
+}
+
+.team .team-content span {
+    font-size: 14px;
+    text-transform: uppercase;
+    -webkit-transition: 0.2s color;
+    transition: 0.2s color;
+}
+
+.team:hover .team-content h3 {
+    color: #FFF;
+}
+
+.team:hover .team-content span {
+    color: #ff0062;
+}
+
+.team .team-social {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    -webkit-transition: 0.2s opacity;
+    transition: 0.2s opacity;
+}
+
+.team .team-social a {
+    display: block;
+    line-height: 50px;
+    width: 50px;
+    text-align: center;
+    background-color: #ff0062;
+    color: #FFF;
+}
+
+.team:hover .team-social {
+    opacity: 1;
+}
+
+/*
+   *** /OUR TEAM ***
+*/
+
+
+/*
+   *** CONTACT US ***
+*/
+
+#contact-us{
+  padding: 10px;
+}
+
+#contact-us hr{
+  width: 20%;
+  margin-left: 40%;
+  height: 5px;
+  background-color: #FF0062;
+  border-style: none;
+}
+
+#contact-us .section-header{
+  display: flex;
+  justify-content: center;
+}
+
+#contact-us .section-header .title{
+  font-size: 30px;
+}
+
+.contact-option{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.contact-option .contact {
+    margin: 15px 0px;
+    text-align: center;
+}
+
+.contact i {
+    font-size: 36px;
+    color: #8bc53d;
+    margin-bottom: 20px;
+}
+
+.contact p {
+    text-align: center;
+}
+
+.contact a {
+    text-decoration: none;
+    color: black;
+}
+
+
+.contact a:hover {
+    color: #FF0062;
+}
+
+/* Form Contact */
+
+
+#form-outer{
+  background-color: #fff;
+  padding: 10px 20px 10px 20px;
+  margin-left: 20%;
+  margin-right: 20%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+#description{
+  text-align: center;
+}
+
+.rowTab{
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.labels{
+  text-align: right;
+  padding: 10px;
+  vertical-align: top;
+}
+
+.rightTab{
+  display: inline-block;
+  text-align: left;
+  width: 48%;
+  vertical-align: middle;
+}
+
+.input-field{
+  height: 20px;
+  width: 90%;
+  max-width: 280px;
+  padding: 5px 80px 5px 10px;
+  margin: 10px;
+  border: 1px solid #c0c0c0;
+  border-radius: 2px;
+}
+
+#comments{
+  height: 20px;
+  width: 90%;
+  max-width: 280px;
+  padding: 5px 80px 5px 10px;
+  margin: 10px;
+  border: 1px solid #c0c0c0;
+  border-radius: 2px;
+}
+
+#survey-form .form-bottom{
+  display: flex;
+  justify-content: center;
+}
+
+#survey-form .submit-cmn-btn{
+  -moz-box-shadow: inset 0px 1px 0px 0px #d9fbbe;
+  background-color: #8BC53D;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  border: 1px solid #8BC53D;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 7px;
+  text-decoration: none;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+/*
+   *** /CONTACT US ***
+*/
+
+
+/*
+   *** FOOTER ***
+*/
+
+footer{
+  background: black;
+  color: #fff;
+  height: 50px;
+  padding-top: 25px;
+}
+
+/*
+   *** /FOOTER ***
+*/
+
+
+/*
+  *** TABLET SECTION OR IPAD
+*/
+
+@media screen and (max-width: 800px) {
+  /* header */
+  .header-top #header-center img{
+    margin-left: 20px;
+    margin-right: 10px;
+  }
+
+  .header-top #header-right .phone-no a{
+    font-size: 18px;
+  }
+
+  /* main */
+  .destination-option{
+    display: block;
+    padding: 0;
+  }
+
+  .destination-option .destination-card{
+    width: 90%;
+    max-width: 600px;
+    margin-left: 12%;
+  }
+
+
+  .destination-option .destination-card .card-pict img{
+    width: 100%;
+    max-width: 600px;
+  }
+
+
+  #testimony{
+    display: block;
+  }
+
+  #testimony .testimony-box{
+    margin-top: 80px;
+  }
+
+}
+
+/*
+  *** /TABLET SECTION OR IPAD
+*/
+
+/*
+  *** MOBILE SECTION - IPHONE 6/7/8 plus
+*/
+
+@media screen and (max-width: 500px) {
+  .header-top{
+    display: none;
+  }
+
+  /* Navbar Bottom */
+  .show-menu-btn, .hide-menu-btn, .mobile-logo{
+    display: block;
+  }
+
+  .show-menu-btn{
+    margin-right: 50px;
+  }
+
+  .menu{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #FF0062;
+    right: -100%;
+    top: 0;
+    text-align: center;
+    padding: 80px 0;
+    line-height: normal;
+    transition: 0.7s;
+  }
+
+  .menu a{
+    display: block;
+    padding: 20px;
+  }
+
+  .menu a:hover{
+    color: #8BC53D;
+  }
+
+  .hide-menu-btn{
+    position: absolute;
+    top: 40px;
+    right: 40px;
+  }
+  #chk:checked ~ .menu{
+    right: 0;
+  }
+  /* /Navbar Bottom */
+
+  /* main menu */
+
+  .destination-option .destination-card{
+    width: 90%;
+    max-width: 490px;
+    margin: 5%;
+  }
+
+
+  .destination-option .destination-card .card-pict img{
+    width: 100%;
+    max-width: 490px;
+  }
+
+  #service-option, #why-choose-us, .member-option, .contact-option, .rowTab{
+    display: block;
+  }
+
+  .rowTab .labels{
+    text-align: center;
+  }
+
+
+
+}
+/*
+  *** /MOBILE SECTION - IPHONE 6/7/8 plus
+*/

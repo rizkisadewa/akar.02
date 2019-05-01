@@ -1,0 +1,826 @@
+*{
+  font-family: Varela Round;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+p{
+  text-align: justify;
+}
+
+/*
+   *** TABLE OF CONTENT ***
+   ** TEMPLATE **
+   1. NAVBAR TOP SECTION
+   2. NAVBAR BOTTOM SECTION
+
+   ** SERVICES **
+   3. TABLET SECTION
+   4. MOBILE SECTION
+   5. CONTENT SECTION
+   6. BUTTON SECTION
+
+   ** SERVICE DETAIL **
+   7. SERVICE DETAIL CARD
+*/
+
+
+/*
+   *** NAVBAR TOP ***
+*/
+.navbar-top{
+  background-color: #fff;
+}
+
+.fa-whatsapp{
+  pointer: cursor;
+}
+
+.fa-whatsapp:hover{
+  color: #FF0062;
+}
+
+.phone-no a{
+  text-decoration: none;
+}
+
+/* the box */
+.header-box{
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+}
+
+/* logo in the left */
+.header-logo{
+  padding: 10px 10px 10px 100px;
+}
+
+.header-logo img{
+  background-color: #ffffff;
+  width: 150px;
+  height: auto;
+}
+
+/* menu in the middle */
+.header-menu{
+  background-color: #ffffff;
+  padding:70px 20px 10px 20px;
+  text-decoration: none;
+  color: #8BC53D;
+  list-style-type: none;
+}
+
+.header-menu ul, a{
+  text-decoration: none;
+  color: #8BC53D;
+  list-style-type: none;
+  text-align: center;
+}
+
+.header-menu ul, a:hover{
+  color: #FF0062;
+}
+
+/* contact in the right */
+.header-contact{
+  padding: 25px 0px 0px 0px;
+}
+.header-contact .phone-no, i{
+  color: #8BC53D;
+  background-color: #ffffff;
+  font-size: 20px;
+}
+
+.header-contact .operation-hour{
+  background-color: #ffffff;
+  color: #FF0062;
+}
+
+.header-contact .social-media a{
+  background-color: #ffffff;
+  color: #8BC53D;
+  padding: 0px 0px 0px 0px;
+}
+
+.header-contact .social-media{
+  background-color: #ffffff;
+  color: #8BC53D;
+}
+
+.header-contact{
+  line-height: normal;
+}
+
+/* Sticky Navbar */
+header{
+  position: sticky;
+  top: 0px;
+  z-index: 5;
+}
+
+/*
+   *** /NAVBAR TOP ***
+*/
+
+/*
+   *** NAVBAR BOTTOM ***
+*/
+.navar-bottom{
+  background-color: #8BC53D;
+  height: 50px;
+  padding: 0 20px;
+  color: #fff;
+}
+
+.mobile-logo{
+  line-height: 50px;
+  float: left;
+}
+
+.mobile-logo img{
+  padding-top: 10px;
+  width: 20px;
+  height: auto;
+}
+
+.menu{
+  text-align: center;
+  float: none;
+  justify-content:center;
+  line-height: 50px;
+}
+
+.menu a{
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0 10px;
+  transition: 0.4s;
+}
+
+.show-menu-btn, .hide-menu-btn, .mobile-logo{
+  transition: 0.4s;
+  font: 30px;
+  cursor: pointer;
+  display: none;
+}
+
+.show-menu-btn{
+  float: right;
+}
+
+.show-menu-btn i{
+  line-height: 50px;
+}
+
+.show-menu-btn:hover,
+.hide-menu-btn:hover{
+  color: #8BC53D;
+}
+
+.menu a:hover{
+  color: #FF0062;
+}
+
+.show-menu-btn, .fa-bars{
+  background-color: #8BC53D;
+  color: #fff;
+}
+
+.show-menu-btn, .fa-bars:hover{
+  background-color: #8BC53D;
+  color: #FF0062;
+}
+
+.show-menu-btn, .fa-times{
+  background: #FF0062;
+  color: #fff;
+}
+
+.show-menu-btn, .fa-times:hover{
+  background: #FF0062;
+  color: #8BC53D;
+}
+
+#chk{
+  position: absolute;
+  visibility: hidden;
+  z-index: -1111;
+}
+
+/*
+   *** /NAVBAR BOTTOM SECTION ***
+*/
+
+
+/*
+  *** TABLET SECTION OR IPAD
+*/
+@media screen and (max-width: 800px) {
+  .header-logo{
+    padding-left: 50px;
+  }
+
+  .content .service-card{
+    grid-template-columns: 30% 50% 20%;
+  }
+
+  .content .service-card-right{
+    grid-template-columns: 100%;
+  }
+
+  .content .service-card-right .btn-srv-itn{
+    font-size: 10px;
+  }
+
+  .content .service-card-right .btn-srv-req{
+    display: none;
+  }
+
+  /*Service Detail */
+  section .arrow{
+    top: 30%;
+  }
+
+  section #arrow-right{
+    left: 43%;
+  }
+
+  section .call-to-action{
+    grid-template-columns: 50% 50%;
+  }
+
+  section article .boundary{
+    grid-template-columns: 40% 20% 40%;
+  }
+
+  section article .boundary hr{
+    margin-top: 10%;
+  }
+
+  #service-dtl-left .inclusion ul li{
+    margin-left: 6%;
+
+  }
+
+
+
+}
+
+/*
+  *** /TABLET SECTION OR IPAD
+*/
+
+/*
+  *** MOBILE SECTION - IPHONE 6/7/8 plus
+*/
+
+@media screen and (max-width: 500px) {
+
+  /* Navbar top */
+  .navbar-top{
+    display: none;
+  }
+  /* /Navbar top */
+
+  /* Navbar Bottom */
+  .show-menu-btn, .hide-menu-btn, .mobile-logo{
+    display: block;
+  }
+
+  .menu{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #FF0062;
+    right: -100%;
+    top: 0;
+    text-align: center;
+    padding: 80px 0;
+    line-height: normal;
+    transition: 0.7s;
+  }
+
+  .menu a{
+    display: block;
+    padding: 20px;
+  }
+
+  .menu a:hover{
+    color: #8BC53D;
+  }
+
+  .hide-menu-btn{
+    position: absolute;
+    top: 40px;
+    right: 40px;
+  }
+  #chk:checked ~ .menu{
+    right: 0;
+  }
+  /* /Navbar Bottom */
+
+  /* Content Section */
+  .content .service-card{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 70% 20% 10%;
+    height: 500px;
+  }
+
+  .content .service-card .service-card-left{
+    margin-bottom: 5px;
+  }
+
+  .content .service-card .service-card-left img {
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    padding: 5px 10px 5px 3px;
+  }
+
+  .content .service-card .service-card-right {
+    margin-top: 5px;
+    margin-left: 5px;
+    padding-left: 5px;
+  }
+
+  .content .service-card .service-card-right .left {
+    display: flex;
+    justify-content: center;
+  }
+
+
+  .content .service-card .service-card-right .btn-srv-itn {
+    border-radius: 6px;
+    border: 1px solid #8BC53D;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 15px;
+    padding-left: 0;
+    padding-right: 0;
+    width: 90%;
+    text-decoration: none;
+  }
+
+  /* Footer Section */
+  footer .bottom > div{
+    display: none;
+  }
+
+  footer .bottom-mobile{
+    display: grid;
+    grid-template-rows: 50% 50%;
+    color: #8BC53D;
+    padding: 5px 5px 5px 10px;
+    margin: 5px;
+  }
+
+  footer .bottom-mobile ul{
+    padding-left: 10px;
+    margin: 5px;
+  }
+
+  /* Service Detail */
+
+  .service-dtl-card .service-dtl-body{
+    display: block;
+  }
+
+  article#main-col{
+    width: auto;
+  }
+
+  section #arrow-right{
+    left: 82%;
+  }
+
+  section .arrow{
+    top: 45%;
+  }
+
+}
+
+/*
+  *** /MOBILE SECTION - IPHONE 6/7/8 plus
+*/
+
+/*
+  *** MOBILE SECTION - IPHONE 6/7/8
+*/
+@media screen and (max-width: 400px) {
+
+  .content .service-card{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 60% 25% 15%;
+    width: 100%;
+    max-width: 330px;
+    height: 500px;
+    margin: 5px 5px 5px 5px;
+  }
+
+  .content .service-card .service-card-left img {
+    width: 100%;
+    height: auto;
+    padding-left: 0px;
+  }
+
+  section .arrow{
+    top: 35%;
+  }
+
+  .content .service-card .service-card-right .btn-srv-itn {
+    height: 20px;
+  }
+
+}
+/*
+  *** /MOBILE SECTION - IPHONE 6/7/8
+*/
+
+/*
+  *** MOBILE SECTION - Galaxi S9/S9+
+*/
+
+@media screen and (max-width: 360px){
+  .content .service-card{
+    width: 320px;
+  }
+
+}
+
+/*
+  *** /MOBILE SECTION - Galaxi S9/S9+
+*/
+
+
+/*
+  *** CONTENT SECTION
+*/
+
+/* left side */
+.content{
+  background-color: #fafafa;
+  padding: 5px;
+}
+
+.service-card {
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  width: 95%;
+  max-width: 1500px;
+  height: 180px;
+  margin: 20px auto;
+  border-radius: 5px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 20% 50% 30%;
+}
+
+.service-card .service-card-left img {
+  width: 100%;
+  max-width: 220px;
+  height: 170px;
+  padding: 5px;
+}
+
+/* /left side */
+
+/* middle side */
+.service-card-desc {
+  margin: unset;
+  padding: 5px 10px 5px 10px;
+}
+/* /middle side */
+
+/* right side */
+.service-card-right{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin-top: 140px;
+  margin-bottom: 5px;
+}
+
+/* /right side */
+
+
+/*
+  *** /CONTENT SECTION
+*/
+
+
+/*
+   *** BUTTON SECTION ***
+*/
+
+/* btn request */
+.btn-srv-req {
+    -moz-box-shadow: inset 0px 1px 0px 0px #d9fbbe;
+    background-color: #fafafa;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #fafafa;
+    display: inline-block;
+    cursor: pointer;
+    color: #8BC53D;
+    font-size: 15px;
+    padding: 7px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.btn-srv-req:hover {
+	background-color:#e4e4e4;
+  color: #8BC53D;
+}
+.btn-srv-req:active {
+	position:relative;
+	top:1px;
+}
+
+/* /btn request */
+
+/* btn call to action */
+
+.btn-cta {
+  -moz-box-shadow: inset 0px 1px 0px 0px #d9fbbe;
+  background-color: #8BC53D;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  border: 1px solid #8BC53D;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 10px;
+  text-decoration: none;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.btn-cta:hover{
+  background-color:#94d53d;
+  color: #fff;
+}
+
+/* /btn call to action */
+
+/* btn itinerary */
+.btn-srv-itn {
+    -moz-box-shadow: inset 0px 1px 0px 0px #d9fbbe;
+    background-color: #8BC53D;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #8BC53D;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 7px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.btn-srv-itn:hover {
+	background-color:#94d53d;
+  color: #fff;
+}
+.btn-srv-itn:active {
+	position:relative;
+	top:1px;
+}
+
+/* /btn itinerary */
+
+/*
+   *** /BUTTON SECTION ***
+*/
+
+
+/*
+   *** FOOTER SECTION ***
+*/
+
+.bottom{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.bottom > div{
+  background-color: #fff;
+  color: #8BC53D;
+  padding: 10px;
+}
+
+.bottom .center img{
+  margin: 5px 160px 5px 160px;
+}
+
+.bottom img{
+  width: 100px;
+  height: auto;
+}
+
+.bottom-mobile{
+  display: none;
+}
+
+/*
+   *** /FOOTER SECTION ***
+*/
+
+/*
+   *** SERVICE DETAIL CARD ***
+*/
+
+.service-dtl-card {
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  width: 90%;
+  max-width: 1500px;
+  height: auto;
+  margin: 20px auto;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.service-dtl-card h1{
+  font-size: 30px;
+}
+
+hr.card-hl{
+  border: 1px solid black;
+  width: auto;
+}
+
+.service-dtl-body{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 0;
+  margin: 0;
+  grid-gap: 0;
+}
+
+#service-dtl-left{
+  margin: 5px;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#service-dtl-right{
+  margin: 5px;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.srv-gallery .slide img{
+  margin: 10px;
+  margin-left: 0;
+  width: 100%;
+  max-width: 800px;
+  padding: 0;
+  height: auto;
+  display: inline-block;
+}
+
+.srv-gallery{
+  width: 96%;
+  max-width: 700px;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.arrow{
+  cursor: pointer;
+  position: absolute;
+  margin-top: 10%;
+  border-style: solid;
+  top: 40%;
+}
+
+#arrow-left{
+  border-width: 30px 40px 30px 0;
+  border-color: transparent #fff transparent transparent;
+}
+
+#arrow-right{
+  border-width: 30px 0 30px 40px;
+  border-color: transparent transparent transparent #fff;
+  left: 45%;
+}
+
+/* Inclusion */
+.inclusion{
+  margin-left: 2%;
+  margin-right: 10%;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.inclusion ul{
+  list-style-type: none;
+}
+
+.inclusion ul li{
+  margin-left: 3%;
+}
+
+.inclusion ul li::before{
+  position: absolute;
+  content: "\2713";
+  color: darkgreen;
+  left: 6%;
+}
+
+
+.inclusion h2{
+  font-size: 20px;
+}
+
+/* Service Detail Card Right */
+.validity{
+  margin: 5px;
+  padding: 0;
+}
+
+.validity h2, .validity p{
+  font-size: 20px;
+}
+
+hr.card-right{
+  border: 1px solid black;
+  width: 98%;
+}
+
+article#main-col{
+  margin: 5px;
+  width: 98%;
+}
+
+article h2{
+  font-size: 20px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+article h3{
+  font-size: 15px;
+  margin-top: 8px;
+  margin-bottom: 2px;
+}
+
+article .boundary{
+  display: grid;
+  grid-template-columns: 43% 14% 43%;
+}
+
+article .boundary .boundary-center .star{
+  margin-left: 25%;
+}
+
+article .boundary i{
+  font-size: 50%;
+}
+
+article .boundary hr{
+  border: 1px solid #8BC53D;
+  width: auto;
+  margin-top: 3.5%;
+}
+
+.call-to-action{
+  margin: 0;
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+.call-to-action .cta-email{
+  margin: 0;
+  padding-bottom: 20px;
+  padding-top: 7px;
+}
+
+.call-to-action .cta-wa{
+  display: flex;
+  justify-content: flex-start;
+  margin: 0;
+  padding-left: 10%;
+}
+
+.call-to-action .cta-wa a i{
+  font-size: 50px;
+}
+
+/*
+   *** /SERVICE DETAIL CARD ***
+*/

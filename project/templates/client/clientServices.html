@@ -1,0 +1,41 @@
+{% extends "layout/client-service-layout-template.html" %}
+{% block title %}{{ super() }} Paket Wisata {{destination}} Jepunku {% endblock %}
+
+{% block description %}
+Temukan paket wisata sesuai dengan jiwamu, berbagaai destinasi di {{destination}} bersama Jepunku. Mencoba pengalaman berwisata ke {{destinasion}} dengan berbagai keindahan desinasinya. | Jepunku | 082144534828
+{% endblock %}
+
+{% block body %}
+
+<main>
+  <div class="content">
+
+    <!-- Service Card -->
+    {% for service_data in service_data %}
+    <div class="service-card">
+      <div class="service-card-left">
+        <img src="{{ url_for('static', filename='images/services/')}}{{ service_data.file_name }}" alt="{{ service_data.file_name }}">
+      </div>
+      <div class="service-card-middle">
+        <article class="service-card-desc">
+          <h1>{{service_data.name_of_service}}</h1>
+          <p>{{service_data.tag_line}}</p>
+        </article>
+      </div>
+      <div class="service-card-right">
+        <div class="left">
+          <a href="/paket-wisata/{{destination }}/{{service_data.name_of_service}}/{{service_data.service_id}}" class="btn-srv-itn">Lihat Program</a>
+        </div>
+        <div class="right">
+          <a href="#" class="btn-srv-req">Permintaan</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <!-- /Service Card -->
+
+
+
+  </div>
+</main>
+{% endblock %}

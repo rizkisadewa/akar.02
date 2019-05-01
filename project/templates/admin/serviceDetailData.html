@@ -1,0 +1,173 @@
+{% extends "layout/admin-layout-template.html" %}
+{% block body %}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Services Details : {{service_data.name_of_service}} or <strong>{{service_trip_data.destination}}</strong> in <strong>{{service_trip_data.country}}</strong>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i>Service Data Center</a></li>
+    <li class="active">Service Details</li>
+  </ol>
+  <h1><small>Validity from : {{service_data.validity_date_start.strftime('%d-%b-%Y')}} to {{service_data.validity_date_finish.strftime('%d-%b-%Y')}}</small></h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+
+    <!-- Service Detail Component Add Form -->
+    <div class="col-md-12">
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">Input Service Component</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        {% from "includes/_formhelpers.html" import render_field %}
+        <form class="form-horizontal" action="{{url_for('serviceDataComponentDetails', service_id=service_data.service_id, destination=service_trip_data.destination)}}" method="POST">
+          <div class="box-body">
+            <div class="row">
+              <div class="col-sm-6">
+                {{render_field(form.day_no, class = "form-control")}}
+              </div>
+              <div class="col-sm-6">
+                <label>Package Excursion Input : </label>
+                <select name="package_title" class="form-control select2" style="width: 100%;">
+                  {% for package_excursion_data in package_excursion_data %}
+                  <option value="{{package_excursion_data.package_title}}">PID {{package_excursion_data.package_excursion_id}} : {{package_excursion_data.package_title}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- /.box-body -->
+          <div class="box-footer">
+            <button type="submit" class="btn btn-info">Add Component</button>
+          </div>
+          <!-- /.box-footer -->
+        </form>
+
+      </div>
+    </div>
+
+    <!-- /Service Detail Component Add Form -->
+
+    <!-- Service Detail Component Data Table -->
+    <div class="col-md-12">
+      <div class="box">
+
+        <!-- .box-header -->
+        <div class="box-header">
+          <h3 class="box-title">Services Component Table</h3>
+        </div>
+        <!-- /.box-header -->
+
+        <!-- .box-body -->
+        <div class="box-body">
+          <table id="example2" class="table table-bordered table-hover">
+            <thead>
+            <tr>
+              <th>Number of Day</th>
+              <th>Package Excursion</th>
+              <th>Activity</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for service_detail_data in service_detail_data %}
+            <tr>
+              <td>{{service_detail_data.day_no}}</td>
+              <td>{{service_detail_data.package_title}}</td>
+              <td>
+                <form class="" action="{{url_for('deleteServiceDetails', service_detail_id=service_detail_data.service_detail_id, service_id=service_data.service_id, destination=service_trip_data.destination)}}" method="post">
+                  <input type="submit" value="Delete" class="btn btn-danger confirmation_delete">
+                </form>
+              </td>
+
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+        <!-- /.box-body -->
+
+      </div>
+    </div>
+    <!-- /Service Detail Component Data Table -->
+
+    <!-- Service Image -->
+    <div class="col-md-12">
+      <div class="box">
+        <!-- .box-header -->
+        <div class="box-header">
+          <h3 class="box-title">Service Image</h3>
+        </div>
+        <!-- /.box-header -->
+
+        <!-- form start -->
+
+        <form class="form-horizontal" action="{{url_for('uploadServiceImage', service_id=service_data.service_id, destination=service_trip_data.destination)}}" method="POST" enctype="multipart/form-data" name="file">
+          <!-- /box-body -->
+          <div class="box-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <label>Service Image</label>
+                <input type="file" name="file" value="" required>
+              </div>
+              <div class="col-sm-6"> </div>
+            </div>
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer">
+            <button type="submit" class="btn btn-info">Add Image</button>
+          </div>
+          <!-- /.box-footer -->
+        </form>
+        <!-- /form start -->
+
+        <!-- Image Gallery Table -->
+        <div class="box-footer">
+          <table id="example2" class="table table-bordered table-hover">
+            <thead>
+            <tr>
+              <th>Service Images Gallery</th>
+              <th colspan="2">Activity</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for service_image_data in service_image_data %}
+            <tr>
+              <td><img class="img-tbl" src="{{url_for('static', filename='images/services/')}}{{ service_image_data.file_name }}" alt=""></td>
+              <td>
+                <form class="" action="{{url_for('deleteServiceImage', service_id=service_data.service_id, service_image_id=service_image_data.service_image_id, file_name=service_image_data.file_name, destination=service_trip_data.destination)}}" method="post">
+                  <input type="submit" value="Delete" class="btn btn-danger confirmation_delete">
+                </form>
+              </td>
+              <td>
+                <form class="" action="{{url_for('setServiceImageProfile', service_id=service_data.service_id, service_image_id=service_image_data.service_image_id, destination=service_trip_data.destination, file_name=service_image_data.file_name)}}" method="post">
+                  <input type="submit" value="Select as Service Image Profile" class="btn btn-primary">
+                </form>
+              </td>
+
+            </tr>
+            {% endfor %}
+            {{ last_srv_img_id }}
+          </table>
+        </div>
+
+      <!-- Service Image Profile -->
+      <div class="box-footer">
+        <h1>Image Service Profile</h1>
+        <img class="img-tbl" src="{{url_for('static', filename='images/services/')}}{{service_data.file_name}}" alt="">
+      </div>
+
+      </div>
+    </div>
+    <!-- /Service Image -->
+
+  </div>
+</section>
+
+
+{% endblock %}

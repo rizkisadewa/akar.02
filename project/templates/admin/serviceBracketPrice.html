@@ -1,0 +1,110 @@
+{% extends "layout/admin-layout-template.html" %}
+{% block body %}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Service Bracket Price : {{service_data.name_of_service}}
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i>Service Data Center</a></li>
+    <li class="active">Service Details</li>
+  </ol>
+  <h1><small>Validity from : {{service_data.validity_date_start.strftime('%d-%b-%Y')}} to {{service_data.validity_date_finish.strftime('%d-%b-%Y')}}</small></h1>
+</section>
+<!-- /Content Header (Page header) -->
+
+<!-- Main Content -->
+<section class="content">
+  <div class="row">
+    <!-- Service Bracket Price -->
+    <div class="col-md-12">
+      <div class="box box-info">
+        <!-- box header -->
+        <div class="box-header with-border">
+          <h3>Add Price and Pax brak</h3>
+        </div>
+        <!-- /box header -->
+
+        <!-- form start -->
+        <!-- box-body -->
+        {% from "includes/_formhelpers.html" import render_field %}
+        <form class="form-horizontal" action="" method="POST">
+          <div class="box-body">
+            <div class="row">
+              <div class="col-sm-2">
+                {{render_field(form.min_pax, class="form-control")}}
+              </div>
+              <div class="col-sm-2">
+                {{render_field(form.max_pax, class="form-control")}}
+              </div>
+              <div class="col-sm-2">
+                {{render_field(form.price_per_person, class="form-control")}}
+              </div>
+              <div class="col-sm-3">
+                <label>Price Segment Type : </label>
+                <select name="segment_type" class="form-control select2" style="width: 100%;">
+                  {% for price_segment_data in price_segment_data %}
+                  <option value="{{price_segment_data.segment_type}}">{{price_segment_data.segment_type}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-sm-2">
+                <dt><label></label></dt>
+                <dd><button type="submit" class="btn btn-info">Add Package Price</button></dd>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- /box-body -->
+        <!-- /form start -->
+      </div>
+    </div>
+    <!-- /Service Bracket Price -->
+
+    <div class="col-md-12">
+      <div class="box">
+        <!-- .box-header -->
+        <div class="box-header">
+          <h3 class="box-title">Service Bracket Price Table</h3>
+        </div>
+        <!-- /.box-header -->
+
+        <!-- .box-body -->
+        <div class="box-body">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <th>Pax Bracket</th>
+              <th>Package Price</th>
+              <th>Price Segment</th>
+              <th>Validity From</th>
+              <th>Validity Until</th>
+              <th>Activity</th>
+            </thead>
+            <tbody>
+              {% for service_bracket_price_data in service_bracket_price_data %}
+              <tr>
+                <td>{{service_bracket_price_data.min_pax}} - {{service_bracket_price_data.max_pax}}</td>
+                <td>{{ "Rp {:,.2f}".format(service_bracket_price_data.price_per_person) }}</td>
+                <td>{{service_bracket_price_data.segment_type}}</td>
+                <td>{{service_bracket_price_data.validity_date_start}}</td>
+                <td>{{service_bracket_price_data.validity_date_finish}}</td>
+                <td>
+                  <form class="" action="{{ url_for('deleteServiceBracketPrice', service_id=service_data.service_id, service_bracket_price_id=service_bracket_price_data.service_bracket_price_id) }}" method="post">
+                    <input type="submit" value="Delete" class="btn btn-danger confirmation_delete">
+                  </form>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+{% endblock %}
