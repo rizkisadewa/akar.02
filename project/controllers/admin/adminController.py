@@ -13,7 +13,7 @@ adminModel = adminModel()
 
 
 #import from Admin Validation
-from project.controllers.admin.adminValidations import adminValidation
+from project.controllers.admin.adminValidationsController import adminValidation
 adminValidation = adminValidation()
 
 # Register Class

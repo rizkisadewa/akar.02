@@ -13,7 +13,7 @@ class adminValidation(object):
         cur = mysql.connection.cursor()
 
         #Get user by Username
-        result = cur.execute("SELECT * FROM admins WHERE username = %s", [username])
+        result = cur.execute("SELECT * FROM admin WHERE username = %s", [username])
 
         if result > 0:
             # Get stored hash

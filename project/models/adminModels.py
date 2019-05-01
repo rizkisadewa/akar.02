@@ -12,7 +12,7 @@ class adminModel(object):
         cur = mysql.connection.cursor()
 
         # Execute query
-        cur.execute("INSERT INTO admins(name, email, username, password) VALUES(%s,%s,%s,%s)", (admin_name, email, username, password))
+        cur.execute("INSERT INTO admin(name, email, username, password) VALUES(%s,%s,%s,%s)", (admin_name, email, username, password))
 
         # Commit to DB
         mysql.connection.commit()
