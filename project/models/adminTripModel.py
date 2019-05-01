@@ -119,7 +119,7 @@ class adminTripModel(object):
 
         # Execute
         cur.execute('''
-            SELECT destination FROM trip
+            SELECT destination, trip_id FROM trip
             WHERE country = %s
         ''', [country])
 
