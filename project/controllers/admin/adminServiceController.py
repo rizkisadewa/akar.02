@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
 from project import app
 from flask import render_template, flash, redirect, url_for, session, request, logging #stuff from Flask
-from wtforms import Form, StringField, TextAreaField, PasswordField, validators, DateField
+from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from functools import wraps
 
 # Import from Model
 from project.models.adminServiceModel import adminServiceModel
-from project.models.adminTripModel import adminTripModel
 
 # an object form Admin Model
-adminModel = adminServiceModel()
+adminServiceModel = adminServiceModel()
+
+#import from Model
+from project.models.adminTripModel import adminTripModel
+
+# an object from Admin Models
 adminTripModel = adminTripModel()
 
 
@@ -26,97 +30,83 @@ def is_logged_in(f):
 
 # Add Services Data Form Class
 class AddServiceData(Form):
-    name_of_service = StringField('Name of Services', [validators.Length(min=1, max=200)])
-    validity_date_start = DateField('Validity Date Start', format='%Y-%m-%d')
-    validity_date_finish = DateField('Validity Date Finish', format='%Y-%m-%d')
-    tag_line = StringField('Tag Line', [validators.Length(min=1, max=200)])
-    inclusions = TextAreaField('Inclusions', [validators.Length(min=1, max=500)])
+    name_of_service = StringField('Name of Service', [validators.Length(min=1, max=200)])
 
-# Service Data Center And Adding Data
-@app.route('/admin/services-data-center/<string:destination>', methods=['GET', 'POST'])
+
+# Choose the Country
+@app.route('/admin/service-setting')
 @is_logged_in
-def servicesDataCenter(destination):
+def serviceChooseCountry():
 
-    # Fetch Data of Service Data
-    service_trip_data = adminModel.serviceTripFetchData(destination)
-    trip_data = adminTripModel.tripFetchData()
-    services_data = adminModel.serviceFetchData(service_trip_data['trip_id'])
+    # Fetch the Country Data
+    country_data = adminTripModel.countryFetchData()
+
+    return render_template('admin/adminServiceSelectCountry.html', country_data=country_data)
+
+# Choose the Destination
+@app.route('/admin/service-setting/<string:country>')
+@is_logged_in
+def serviceChooseDestination(country):
+
+    # Fetch One Country Data
+    country_data_fetch_one = adminTripModel.countryFetchOneData(country)
+
+    # Fetch Destination Data
+    destination_data = adminTripModel.destinationFetchOne(country)
+
+    return render_template(
+    'admin/adminServiceSelectDestination.html',
+    destination_data=destination_data,
+    country_data_fetch_one=country_data_fetch_one)
+
+# Service Setting
+@app.route('/admin/service-setting/<string:country>/<string:destination>/<string:trip_id>', methods=['GET', 'POST'])
+@is_logged_in
+def serviceDataCenter(country, destination, trip_id):
 
     # Fit the Services Form Class
     form = AddServiceData(request.form)
 
+    # Fetch Trip Data
+    trip_data = adminTripModel.tripDataFetchOne(trip_id)
+
+    # Fetch Services
+    service_data = adminServiceModel.serviceFetchData()
+
+    # Fetch Trip DAta
     # Add the Data
     if request.method == 'POST' and form.validate():
         name_of_service = form.name_of_service.data
-        trip_id = service_trip_data['trip_id']
-        validity_date_start = form.validity_date_start.data
-        validity_date_finish = form.validity_date_finish.data
-        tag_line = form.tag_line.data
-        inclusions = form.inclusions.data
+        trip_id = trip_data['trip_id']
 
-        adminModel.addServiceData(name_of_service, trip_id, validity_date_start, validity_date_finish, tag_line, inclusions)
+        adminServiceModel.addServiceData(name_of_service, trip_id)
 
         flash('Service Added', 'success')
 
-        return redirect(url_for('servicesDataCenter', destination=service_trip_data['destination']))
+        return redirect(url_for('serviceDataCenter', country=trip_data['country'], destination=trip_data['destination'], trip_id=trip_data['trip_id']))
 
-    return render_template('admin/servicesData.html',
-    form=form,
-    services_data=services_data,
-    trip_data=trip_data,
-    service_trip_data=service_trip_data)
+    return render_template(
+        'admin/adminServiceDataCenter.html',
+        trip_data=trip_data,
+        service_data=service_data,
+        destination=destination,
+        country=country,
+        form=form)
 
-# Delete Service Data
-@app.route('/admin/services-data-center/<string:destination>/delete/<string:service_id>', methods=['POST'])
+
+# Delete Service
+
+@app.route('/admin/service-setting/<string:country>/<string:destination>/<string:trip_id>/<string:service_id>/delete', methods=['GET', 'POST'])
 @is_logged_in
-def deleteServiceData(destination, service_id):
+def serviceDataDelete(country, destination, trip_id, service_id):
 
-    service_trip_data = adminModel.serviceTripFetchData(destination)
+    # Execute Query in Model
+    adminServiceModel.serviceDataDelete(service_id)
 
-    adminModel.deleteServiceData(service_id)
-    flash('Service ID '+service_id+' Deleted', 'danger')
+    # Fetch Trip Data
+    trip_data = adminTripModel.tripDataFetchOne(trip_id)
 
-    return redirect(url_for('servicesDataCenter', destination=service_trip_data['destination']))
+    # show notification
+    flash('Service Data Deleted', 'danger')
 
-# Update Service Data
-@app.route('/admin/services-data-center/<string:destination>/edit/<string:service_id>', methods=['GET','POST'])
-@is_logged_in
-def serviceDataEdit(destination, service_id):
-
-    #Fetch One Service Data
-    service_data = adminModel.serviceDataFetchOne(service_id)
-    # Fetch Data of Service Data
-    service_trip_data = adminModel.serviceTripFetchData(destination)
-
-    # Fetch All Trip Data
-    trip_data = adminTripModel.tripFetchData()
-
-    # Fit the Service Data Form Class
-    form = AddServiceData(request.form)
-
-    # Populate Service Data from fields
-    form.name_of_service.data = service_data['name_of_service']
-    form.validity_date_start.data = service_data['validity_date_start']
-    form.validity_date_finish.data = service_data['validity_date_finish']
-    form.tag_line.data = service_data['tag_line']
-    form.inclusions.data = service_data['inclusions']
-
-    # Update Service Data
-    if request.method == 'POST' and form.validate():
-
-        # asign the variable value from request form value
-        name_of_service = request.form['name_of_service']
-        trip_id = service_trip_data['trip_id']
-        validity_date_start = request.form['validity_date_start']
-        validity_date_finish = request.form['validity_date_finish']
-        tag_line = request.form['tag_line']
-        inclusions = request.form['inclusions']
-
-        # Execute the query
-        adminModel.updateServiceData(name_of_service, trip_id, validity_date_start, validity_date_finish, tag_line, inclusions, service_id)
-
-        flash('Service ID '+service_id+' Updated', 'success')
-
-        return redirect(url_for('servicesDataCenter', destination=service_trip_data['destination']))
-
-    return render_template('admin/serviceDataEdit.html', form=form, trip_data=trip_data, service_data=service_data)
+    return redirect(url_for('serviceDataCenter', country=trip_data['country'], destination=trip_data['destination'], trip_id=trip_data['trip_id']))
