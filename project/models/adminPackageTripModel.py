@@ -90,3 +90,18 @@ class adminPackageTripModel(object):
 
         # Close connection
         cur.close()
+
+    # Delete the Package Trip Data
+    def deletePackageTripData(self, package_trip_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute
+        cur.execute("DELETE FROM package_trip WHERE package_trip_id = %s", [package_trip_id])
+
+        # Commit to DB
+        mysql.connection.commit()
+
+        # Close
+        cur.close()

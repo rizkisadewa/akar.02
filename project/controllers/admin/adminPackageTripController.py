@@ -152,4 +152,18 @@ def packageTripDataEdit(country, destination, trip_id, package_trip_id):
     form=form,
     trip_data=trip_data,
     country=country,
-    destination=destination)
+    destination=destination,
+    package_trip_data=package_trip_data)
+
+# Package Trip Data
+@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/delete/<string:package_trip_id>', methods=['GET', 'POST'])
+@is_logged_in
+def deletePackageTripData(country, destination, trip_id, package_trip_id):
+
+    # Execute query from the model
+    adminPackageTripModel.deletePackageTripData(package_trip_id)
+
+    # Send Notification to the dashboard
+    flash('Package Trip has been deleted', 'danger')
+
+    return redirect(url_for('packageTripDataCenter', country=country, destination=destination, trip_id=trip_id))

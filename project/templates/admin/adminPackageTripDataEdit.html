@@ -7,10 +7,11 @@
     Package Trip Center: {{destination}} in <strong>{{country}}</strong>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+
     <li><a href="/admin/package-trip-setting">Select Country : {{country}}</a></li>
     <li><a href="/admin/package-trip-setting/{{country}}">Select Destination : {{destination}}</a></li>
-    <li class="active">Package Trip Center</li>
+    <li><a href="/admin/package-trip-setting/{{country}}/{{destination}}/{{trip_data.trip_id}}">Select Package Trip</a></li>
+    <li class="active">Package Trip : {{package_trip_data.package_trip_name}}</li>
   </ol>
 </section>
 
@@ -24,7 +25,7 @@
 
           <!-- .box-header -->
           <div class="box-header with-border">
-            <h3 class="box-title">Input Package Trip Data</h3>
+            <h3 class="box-title">Update Package Trip Data</h3>
           </div>
           <!-- /.box-header -->
           <!-- form start -->
@@ -68,7 +69,7 @@
 
             <!-- /.box-body -->
             <div class="box-footer">
-              <button type="submit" class="btn btn-info">Add Package Trip</button>
+              <button type="submit" class="btn btn-info">Update Package Trip</button>
             </div>
             <!-- /.box-footer -->
 
@@ -78,7 +79,7 @@
       </div>
     <!-- /Package Trip Add Form -->
 
-    
+
   </div>
 </section>
 

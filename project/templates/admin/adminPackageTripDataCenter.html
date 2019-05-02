@@ -110,9 +110,9 @@
                 <td>{{ package_trip_data.name }}</td>
                 <td><a class="btn btn-primary" href="/admin/package-trip-setting/{{country}}/{{destination}}/{{trip_data.trip_id}}/edit/{{ package_trip_data.package_trip_id }}">Edit</a></td>
                 <td>
-                  <!-- <form class="" action="" method="post">
-                    <input type="submit" name="" value="">
-                  </form> -->
+                  <form action="{{url_for('deletePackageTripData', country=trip_data.country, destination=trip_data.destination, trip_id=trip_data.trip_id, package_trip_id=package_trip_data.package_trip_id)}}" method="post">
+                    <input class="btn btn-danger confirmation_delete" type="submit" name="" value="Delete">
+                  </form>
                 </td>
               </tr>
               {% endfor %}
