@@ -43,5 +43,50 @@ class adminPackageTripModel(object):
         # Asign to the variable
         package_trip_data = cur.fetchall()
 
+        # Close the connection
+        cur.close()
+
         # return the variable
         return package_trip_data
+
+    # Fetch One Package Trip Data
+    def packageTripDataFetchOne(self, package_trip_id):
+
+        # fill the form from database
+        # Create a Cursor
+        cur = mysql.connection.cursor()
+
+        # Get Package Trip Data from query
+        cur.execute("SELECT * FROM package_trip WHERE package_trip_id = %s", [package_trip_id])
+
+        # Asign to the Variable
+        package_trip_fetch_one_data = cur.fetchone()
+
+        # Close the connection
+        cur.close()
+
+        return package_trip_fetch_one_data
+
+    # Update the Package Trip Data
+    def updatePackageTripData(self, package_trip_name, tag_line, validity_date_start, validity_date_finish, inclusions, package_trip_id):
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute Query
+        cur.execute('''
+            UPDATE package_trip
+            SET
+            package_trip_name = %s,
+            tag_line = %s,
+            validity_date_start = %s,
+            validity_date_finish = %s,
+            inclusions = %s
+            WHERE
+            package_trip_id = %s
+        ''', (package_trip_name, tag_line, validity_date_start, validity_date_finish, inclusions, package_trip_id))
+
+        # Commit to DB
+        mysql.connection.commit()
+
+        # Close connection
+        cur.close()

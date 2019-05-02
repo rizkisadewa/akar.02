@@ -108,3 +108,48 @@ def packageTripDataCenter(country, destination, trip_id):
         package_trip_data=package_trip_data,
         form=form
     )
+
+# Package Trip Data Update
+@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/edit/<string:package_trip_id>', methods=['GET', 'POST'])
+@is_logged_in
+def packageTripDataEdit(country, destination, trip_id, package_trip_id):
+
+    # Fetch One Package Trip Data
+    package_trip_data = adminPackageTripModel.packageTripDataFetchOne(package_trip_id)
+
+    # Fetch Trip Data
+    trip_data = adminTripModel.tripDataFetchOne(trip_id)
+
+    # Fit the Package Trip Form Class
+    form = AddPackageTripData(request.form)
+
+    # Populate Package Trip from fields
+    form.package_trip_name.data = package_trip_data['package_trip_name']
+    form.tag_line.data = package_trip_data['tag_line']
+    form.validity_date_start.data = package_trip_data['validity_date_start']
+    form.validity_date_finish.data = package_trip_data['validity_date_finish']
+    form.inclusions.data = package_trip_data['inclusions']
+
+    # Update Package Trip Data
+    if request.method == 'POST' and form.validate():
+
+        # asign the variable value from request form value
+        package_trip_name = request.form['package_trip_name']
+        tag_line = request.form['tag_line']
+        validity_date_start = request.form['validity_date_start']
+        validity_date_finish = request.form['validity_date_finish']
+        inclusions = request.form['inclusions']
+
+        # Execute the query
+        adminPackageTripModel.updatePackageTripData(package_trip_name, tag_line, validity_date_start, validity_date_finish, inclusions, package_trip_id)
+
+        # Send notification to the dashboard
+        flash('Package Trip has been updated', 'success')
+
+        return redirect(url_for('packageTripDataCenter', country=country, destination=destination, trip_id=trip_id))
+
+    return render_template('admin/adminPackageTripDataEdit.html',
+    form=form,
+    trip_data=trip_data,
+    country=country,
+    destination=destination)

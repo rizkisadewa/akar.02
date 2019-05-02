@@ -53,13 +53,13 @@ def tripDataCenter():
 @is_logged_in
 def tripDataEdit(trip_id):
 
-    #Fetch One Vendor Data
+    #Fetch One Trip Data
     trip_data = adminModel.tripDataFetchOne(trip_id)
 
-    #Add The Vendor Data
+    # Fit the Trip Form Class
     form = AddTripData(request.form)
 
-    # Populate article from fields
+    # Populate Trip from fields
     form.destination.data = trip_data['destination']
     form.country.data = trip_data['country']
 

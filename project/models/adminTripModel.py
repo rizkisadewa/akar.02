@@ -29,6 +29,9 @@ class adminTripModel(object):
 
         vendor_data = cur.fetchall()
 
+        # Close the connection
+        cur.close()
+
         return vendor_data
 
     # Fetch One Trip Data
@@ -38,7 +41,7 @@ class adminTripModel(object):
         # Create a Cursor
         cur = mysql.connection.cursor()
 
-        # Get article id
+        # Get Trip Data from query
         cur.execute("SELECT * FROM trip WHERE trip_id = %s", [id])
 
         trip_data = cur.fetchone()
