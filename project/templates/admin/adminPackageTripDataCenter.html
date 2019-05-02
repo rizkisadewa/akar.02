@@ -78,6 +78,52 @@
       </div>
     <!-- /Package Trip Add Form -->
 
+    <!-- Package Trip Table -->
+    <div class="col-md-12">
+      <div class="box">
+        <!-- .box-header -->
+        <div class="box-header">
+          <h3 class="box-title">Package Trip Data</h3>
+        </div>
+        <!-- /.box-header -->
+
+        <!-- .box-body -->
+        <div class="box-body">
+          <table id="example2" class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Package Trip ID</th>
+                <th>Package Trip Name</th>
+                <th>Destination</th>
+                <th>Country</th>
+                <th>Created by</th>
+                <th colspan="3">Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for package_trip_data in package_trip_data %}
+              <tr>
+                <td>{{ package_trip_data.package_trip_id }}</td>
+                <td>{{ package_trip_data.package_trip_name }}</td>
+                <td>{{ package_trip_data.destination }}</td>
+                <td>{{ package_trip_data.country }}</td>
+                <td>{{ package_trip_data.name }}</td>
+                <td><a href="/admin/package-trip-setting/Indonesia/Bali/{{trip_data.trip_id}}/edit/{{ package_trip_data.package_trip_id }}">Edit</a></td>
+                <td>
+                  <!-- <form class="" action="" method="post">
+                    <input type="submit" name="" value="">
+                  </form> -->
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </div>
+    <!-- /Package Trip Table -->
+
   </div>
 </section>
 

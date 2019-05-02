@@ -19,3 +19,29 @@ class adminPackageTripModel(object):
 
         # Close connection
         cur.close()
+
+
+    # Fetch The Package Trip Data
+    def packageTripFetchData(self):
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            SELECT
+            `package_trip`.`package_trip_id`,
+            `package_trip`.`package_trip_name`,
+            `service`.`service_id`,
+            `trip`.`destination`,
+            `trip`.`country`,
+            `admin`.`name`
+            FROM `package_trip`, `trip`, `admin`, `service`
+            WHERE `package_trip`.`service_id` = `service`.`service_id` AND
+            `service`.`trip_id` = `trip`.`trip_id` AND `admin`.`admin_id` = `package_trip`.`admin_id`
+        ''')
+
+        # Asign to the variable
+        package_trip_data = cur.fetchall()
+
+        # return the variable
+        return package_trip_data

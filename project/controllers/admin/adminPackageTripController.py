@@ -11,7 +11,7 @@ from project.models.adminServiceModel import adminServiceModel
 from project.models.adminModels import adminModel
 
 # an object from admin model
-adminPackageExcrusionModel = adminPackageTripModel()
+adminPackageTripModel = adminPackageTripModel()
 adminTripModel = adminTripModel()
 adminServiceModel = adminServiceModel()
 adminModel = adminModel()
@@ -76,12 +76,15 @@ def packageTripDataCenter(country, destination, trip_id):
     # Fetch Service Data
     service_data = adminServiceModel.serviceDataFetchOne(trip_id)
 
+    # Fetch Package Trip Data
+    package_trip_data = adminPackageTripModel.packageTripFetchData()
+
     # Fetch admin_id
     admin_data = adminModel.adminIdFetchOne(session['username'])
 
     # Add the Data
     if request.method == 'POST' and form.validate():
-        service_id = service_data['trip_id']
+        service_id = service_data['service_id']
         admin_id = admin_data['admin_id']
         package_trip_name = form.package_trip_name.data
         validity_date_start = form.validity_date_start.data
@@ -89,6 +92,7 @@ def packageTripDataCenter(country, destination, trip_id):
         tag_line = form.tag_line.data
         inclusions = form.inclusions.data
 
+        # Execute Query
         adminPackageTripModel.addPackageTrip(service_id, admin_id, package_trip_name, validity_date_start, validity_date_finish, tag_line, inclusions)
 
         flash('Package Added', 'success')
@@ -101,5 +105,6 @@ def packageTripDataCenter(country, destination, trip_id):
         destination=destination,
         country=country,
         service_data=service_data,
+        package_trip_data=package_trip_data,
         form=form
     )
