@@ -22,10 +22,11 @@
       <div class="box box-info">
         <!-- .box-header -->
         <div class="box-header with-border">
-          <h3 class="box-title">Input Day Excursion Data</h3>
+          <h3 class="box-title">Edit Day Excursion Data</h3>
         </div>
 
         <!-- /.box-header -->
+
         <!-- form start -->
         {% from "includes/_formhelpers.html" import render_field %}
 
@@ -65,53 +66,19 @@
 
           <!-- /.box-body -->
           <div class="box-footer">
-            <button type="submit" class="btn btn-info">Add Day Excursion</button>
+            <button type="submit" class="btn btn-info">Update Day Excursion</button>
           </div>
           <!-- /.box-footer -->
         </form>
         <!-- /form start -->
+
       </div>
 
     </div>
     <!-- /Day Excurion Add Form -->
   </div>
 
-  <!-- Day Excursion Data Table -->
-  <div class="col-md-12">
-    <div class="box">
-      <!-- .box-header -->
-      <div class="box-header">
-        <h3 class="box-title">Day Excursion Data Tabel </h3>
-      </div>
-      <!-- /.box-header -->
 
-      <!-- .box-body -->
-      <div class="box-body">
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th>Day Excursion ID</th>
-              <th>Day Excursion Title</th>
-              <th>Created by</th>
-              <th colspan="2">Activity</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for day_excursion_data in day_excursion_data %}
-            <tr>
-              <td>{{ day_excursion_data.day_excursion_id }}</td>
-              <td>{{ day_excursion_data.day_excursion_title }}</td>
-              <td>{{ day_excursion_data.name }}</td>
-              <td><a class="btn btn-primary" href="/admin/day-excursion-setting/{{country}}/{{destination}}/{{trip_data.trip_id}}/edit/{{day_excursion_data.day_excursion_id}}">Edit</a></td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-      <!-- /.box-body -->
-    </div>
-  </div>
-  <!-- /Day Excursion Data Table -->
 </section>
 
 <!-- /Main content -->

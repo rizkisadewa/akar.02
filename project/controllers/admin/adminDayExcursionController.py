@@ -88,7 +88,7 @@ def dayExcursionDataCenter(country, destination, trip_id):
         day_excursions_description = form.day_excursions_description.data
         inclusions = form.inclusions.data
         estimation_time_start = form.estimation_time_start.data
-        estimation_time_finish = form.estimation_time_finish
+        estimation_time_finish = form.estimation_time_finish.data
 
         # Execute Query
         adminDayExcursionModel.addDayExcursionData(service_id, admin_id, day_excursion_title, day_excursions_description, inclusions, estimation_time_start, estimation_time_finish)
@@ -109,9 +109,9 @@ def dayExcursionDataCenter(country, destination, trip_id):
     )
 
 # Day Excursion Update Data
-@app.route('/admin/day-excursion-setting/<string:country>/<string:destination>/<string:trip_id>/edit/<string:day_excursion_id>')
+@app.route('/admin/day-excursion-setting/<string:country>/<string:destination>/<string:trip_id>/edit/<string:day_excursion_id>', methods=['GET','POST'])
 @is_logged_in
-def dayExcursionDataEdit(country, destination, trip_id, day_excursion_id):
+def dayExcursionDataUpdate(country, destination, trip_id, day_excursion_id):
 
     # Fetch One Day Excursion Data
     day_excursion_data = adminDayExcursionModel.dayExcursionDataFetchOne(day_excursion_id)
@@ -140,11 +140,17 @@ def dayExcursionDataEdit(country, destination, trip_id, day_excursion_id):
         day_excursions_description = request.form['day_excursions_description']
 
         # Execute the query
-        adminDayExcursionModel.updateDayExcursionData(day_excursion_title, inclusions, estimation_time_start, estimation_time_finish, day_excursions_description)
+        adminDayExcursionModel.updateDayExcursionData(day_excursion_title, inclusions, estimation_time_start, estimation_time_finish, day_excursions_description, day_excursion_id)
 
         # send notification to the dashboard
         flash('Day Excursion has been updated', 'success')
 
         return redirect(url_for('dayExcursionDataCenter', country=country, destination=destination, trip_id=trip_id))
 
-    return render_template('admin/adminDayExcursionEdit.html')
+    return render_template(
+        'admin/adminDayExcursionEdit.html',
+        form=form,
+        destination=destination,
+        country=country,
+        trip_data=trip_data
+    )

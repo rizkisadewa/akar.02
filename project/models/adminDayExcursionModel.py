@@ -64,3 +64,29 @@ class adminDayExcursionModel(object):
         cur.close()
 
         return day_excursion_data
+
+
+    # Update the Day Excursions Data
+    def updateDayExcursionData(self, day_excursion_title, inclusions, estimation_time_start, estimation_time_finish, day_excursions_description, day_excursion_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute Query
+        cur.execute('''
+            UPDATE day_excursion
+            SET
+            day_excursion_title = %s,
+            inclusions = %s,
+            estimation_time_start = %s,
+            estimation_time_finish = %s,
+            day_excursions_description = %s
+            WHERE
+            day_excursion_id = %s
+        ''', (day_excursion_title, inclusions, estimation_time_start, estimation_time_finish, day_excursions_description, day_excursion_id))
+
+        # Commit to DB
+        mysql.connection.commit()
+
+        # Close the connection
+        cur.close()
