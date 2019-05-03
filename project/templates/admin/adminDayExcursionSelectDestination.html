@@ -1,0 +1,56 @@
+{% extends "layout/admin-layout-template.html" %}
+{% block body %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Day Excursion Setting
+    <small>Select Destination</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+    <li><a href="/admin/day-excursion-setting">Select Country : {{country_data_fetch_one.country}}</a></li>
+    <li class="active">Select destination</li>
+  </ol>
+</section>
+
+<!-- /Content Header (Page header) -->
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+
+      <!-- Destination Data -->
+
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Destination Selection in <strong>{{country_data_fetch_one.country}}</strong></h3>
+        </div>
+
+        <div class="box-body">
+          <table id="example2" class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Destination</th>
+                <th>Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in range(0, destination_data|length) %}
+              <tr>
+                <td>{{i+1}}</td>
+                <td>{{destination_data[i].destination}}</td>
+                <td><a href="/admin/day-excursion-setting/{{country_data_fetch_one.country}}/{{destination_data[i].destination}}/{{destination_data[i].trip_id}}" class="btn btn-primary">Select</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Destination Data -->
+
+    </div>
+</section>
+
+{% endblock %}
