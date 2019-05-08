@@ -151,6 +151,21 @@ def dayExcursionDataUpdate(country, destination, trip_id, day_excursion_id):
         'admin/adminDayExcursionEdit.html',
         form=form,
         destination=destination,
+        day_excursion_data=day_excursion_data,
         country=country,
         trip_data=trip_data
     )
+
+# Day Excursion Delete
+@app.route('/admin/day-excursion-setting/<string:country>/<string:destination>/<string:trip_id>/delete/<string:day_excursion_id>', methods=['GET', 'POST'])
+@is_logged_in
+def deleteDayExcursion(country, destination, trip_id, day_excursion_id):
+
+    # Execute the query of delete from the model
+    adminDayExcursionModel.deleteDayExcursionData(day_excursion_id)
+
+    # send the notification to the Dashboard
+    flash('Day Excursion has been deleted', 'danger')
+
+    # return to the day excursion data center
+    return redirect(url_for('dayExcursionDataCenter', country=country, destination=destination, trip_id=trip_id))

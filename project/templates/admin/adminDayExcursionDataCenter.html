@@ -74,45 +74,55 @@
 
     </div>
     <!-- /Day Excurion Add Form -->
-  </div>
 
-  <!-- Day Excursion Data Table -->
-  <div class="col-md-12">
-    <div class="box">
-      <!-- .box-header -->
-      <div class="box-header">
-        <h3 class="box-title">Day Excursion Data Tabel </h3>
-      </div>
-      <!-- /.box-header -->
 
-      <!-- .box-body -->
-      <div class="box-body">
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th>Day Excursion ID</th>
-              <th>Day Excursion Title</th>
-              <th>Created by</th>
-              <th colspan="2">Activity</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for day_excursion_data in day_excursion_data %}
-            <tr>
-              <td>{{ day_excursion_data.day_excursion_id }}</td>
-              <td>{{ day_excursion_data.day_excursion_title }}</td>
-              <td>{{ day_excursion_data.name }}</td>
-              <td><a class="btn btn-primary" href="/admin/day-excursion-setting/{{country}}/{{destination}}/{{trip_data.trip_id}}/edit/{{day_excursion_data.day_excursion_id}}">Edit</a></td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+    <!-- Day Excursion Data Table -->
+    <div class="col-md-12">
+      <div class="box">
+        <!-- .box-header -->
+        <div class="box-header">
+          <h3 class="box-title">Day Excursion Data Tabel </h3>
+        </div>
+        <!-- /.box-header -->
+
+        <!-- .box-body -->
+        <div class="box-body">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Day Excursion ID</th>
+                <th>Day Excursion Title</th>
+                <th>Created by</th>
+                <th colspan="2">Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for day_excursion_data in day_excursion_data %}
+              <tr>
+                <td>{{ day_excursion_data.day_excursion_id }}</td>
+                <td>{{ day_excursion_data.day_excursion_title }}</td>
+                <td>{{ day_excursion_data.name }}</td>
+                <td><a class="btn btn-primary" href="/admin/day-excursion-setting/{{country}}/{{destination}}/{{trip_data.trip_id}}/edit/{{day_excursion_data.day_excursion_id}}">Edit</a></td>
+                <td>
+                  <form action="{{url_for('deleteDayExcursion', country=country, destination=destination, trip_id=trip_data.trip_id, day_excursion_id=day_excursion_data.day_excursion_id)}}" method="post">
+                    <input class="btn btn-danger confirmation_delete" type="submit" name="" value="Delete">
+                  </form>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.box-body -->
       </div>
-      <!-- /.box-body -->
     </div>
+    <!-- /Day Excursion Data Table -->
   </div>
-  <!-- /Day Excursion Data Table -->
+
+
 </section>
+
+
 
 <!-- /Main content -->
 

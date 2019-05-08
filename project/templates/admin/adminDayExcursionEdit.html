@@ -42,7 +42,7 @@
             <div class="col-sm-6">
               {{ form.estimation_time_start.label}}
               <div class="input-group bottstrap-timepicker timepicker">
-                {{ form.estimation_time_start(class="form-control input-small", id="timepicker1") }}
+                {{ form.estimation_time_start(class="form-control input-small", id="timepicker1", value=day_excursion_data.estimation_time_start) }}
                 <div class="input-group-addon">
                   <i class="fa fa-clock-o"></i>
                 </div>
@@ -52,7 +52,7 @@
             <div class="col-sm-6">
               {{ form.estimation_time_finish.label}}
               <div class="input-group bottstrap-timepicker timepicker">
-                {{form.estimation_time_finish(class="form-control input-small", id="timepicker2")}}
+                {{form.estimation_time_finish(class="form-control input-small", id="timepicker2", value=day_excursion_data.estimation_time_finish)}}
                 <div class="input-group-addon">
                   <i class="fa fa-clock-o"></i>
                 </div>

@@ -90,3 +90,20 @@ class adminDayExcursionModel(object):
 
         # Close the connection
         cur.close()
+
+    # Delete the Day Excusion Data
+    def deleteDayExcursionData(self, day_excursion_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute Query
+        cur.execute('''
+            DELETE FROM day_excursion WHERE day_excursion_id = %s
+        ''', [day_excursion_id])
+
+        # Commit to DB
+        mysql.connection.commit()
+
+        # close the DB
+        cur.close()
