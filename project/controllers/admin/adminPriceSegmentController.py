@@ -6,9 +6,11 @@ from functools import wraps
 
 # Import from Model
 from project.models.adminPriceSegmentModel import adminPriceSegmentModel
+from project.models.adminTripModel import adminTripModel
 
 # an object form Admin Model
 adminPriceSegmentModel = adminPriceSegmentModel()
+adminTripModel = adminTripModel()
 
 # Check if logged in
 def is_logged_in(f):
@@ -34,6 +36,9 @@ def priceSegmentDataCenter():
     # Fetch Data of Price Segment
     price_segment_data = adminPriceSegmentModel.priceSegmentFetchData()
 
+    # Fetch the Trip Data
+    trip_data = adminTripModel.tripFetchData()
+
     # Fit the Price Segment Form Class
     form = AddPriceSegmentData(request.form)
 
@@ -50,7 +55,11 @@ def priceSegmentDataCenter():
 
         return redirect(url_for('priceSegmentDataCenter'))
 
-    return render_template('/admin/priceSegment.html', form=form, price_segment_data=price_segment_data)
+    return render_template(
+        '/admin/priceSegment.html',
+        form=form,
+        price_segment_data=price_segment_data,
+        trip_data=trip_data)
 
 # Deleting the Price Segment Data
 @app.route('/admin/price-segment/delete/<string:price_segment_id>', methods=['POST'])
@@ -73,6 +82,9 @@ def priceSegmentDataEdit(price_segment_id):
 
     # Fetch One Price Segment
     price_segment_data = adminPriceSegmentModel.priceSegmentFetchOne(price_segment_id)
+
+    # Fetch The Trip Data
+    trip_data = adminTripModel.tripFetchData()
 
     # Fit the Price Segment Form Class
     form = AddPriceSegmentData(request.form)
@@ -99,4 +111,8 @@ def priceSegmentDataEdit(price_segment_id):
         # Return the page of Price Segment Data Center
         return redirect(url_for('priceSegmentDataCenter'))
 
-    return render_template('admin/priceSegmentEdit.html', form=form, price_segment_data=price_segment_data)
+    return render_template(
+        'admin/priceSegmentEdit.html',
+        form=form,
+        price_segment_data=price_segment_data,
+        trip_data=trip_data)

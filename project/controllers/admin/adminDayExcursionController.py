@@ -40,10 +40,14 @@ class AddDayExcursionData(Form):
 @is_logged_in
 def dayExcursionChooseCountry():
 
-    # Fetch the Country Data
+    # Fetch Data
     country_data = adminTripModel.countryFetchData()
+    trip_data = adminTripModel.tripFetchData()
 
-    return render_template('admin/adminDayExcursionSelectCountry.html', country_data=country_data)
+    return render_template(
+        'admin/adminDayExcursionSelectCountry.html',
+        country_data=country_data,
+        trip_data=trip_data)
 
 # Choose the Destination
 @app.route('/admin/day-excursion-setting/<string:country>')
@@ -56,10 +60,14 @@ def dayExcursionChooseDestination(country):
     # Fetch Destination Data
     destination_data = adminTripModel.destinationFetchOne(country)
 
+    # Fetch the Trip Data
+    trip_data = adminTripModel.tripFetchData()
+
     return render_template(
     'admin/adminDayExcursionSelectDestination.html',
     destination_data=destination_data,
-    country_data_fetch_one=country_data_fetch_one)
+    country_data_fetch_one=country_data_fetch_one,
+    trip_data=trip_data)
 
 # Day Excursion Setting
 @app.route('/admin/day-excursion-setting/<string:country>/<string:destination>/<string:trip_id>', methods=['GET','POST'])

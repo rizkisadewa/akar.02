@@ -7,13 +7,13 @@ from functools import wraps
 
 #import from Model
 from project.models.adminModels import adminModel
-
-# an object from Admin Models
-adminModel = adminModel()
-
-
-#import from Admin Validation
+from project.models.adminTripModel import adminTripModel
 from project.controllers.admin.adminValidationsController import adminValidation
+
+
+# an object from Models
+adminModel = adminModel()
+adminTripModel = adminTripModel()
 adminValidation = adminValidation()
 
 # Register Class
@@ -84,8 +84,11 @@ def adminLogout():
 @is_logged_in
 def adminDashboard():
     # Fetch Data
+    trip_data = adminTripModel.tripFetchData()
 
-    return render_template('/admin/adminIndex.html')
+    return render_template(
+        '/admin/adminIndex.html',
+        trip_data=trip_data)
 
 # Add Vendor Data Form Class
 class AddVendorData(Form):

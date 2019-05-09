@@ -14,13 +14,13 @@ APP_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),"../.."))
 
 # Import from Model
 from project.models.adminServiceModel import adminServiceModel
-from project.models.adminPackageExcursionModel import adminPackageExcursionModel
+# from project.models.adminPackageExcursionModel import adminPackageExcursionModel
 from project.models.adminServiceDetailModel import adminServiceDetailModel
 from project.models.adminTripModel import adminTripModel
 
 # an object form Admin Model
 adminServiceModel = adminServiceModel()
-adminPackageExcrusionModel = adminPackageExcursionModel()
+# adminPackageExcrusionModel = adminPackageExcursionModel()
 adminServiceDetailModel = adminServiceDetailModel()
 adminTripModel = adminTripModel()
 
@@ -54,7 +54,7 @@ def serviceDataComponentDetails(destination, service_id):
     #Fetch Data Trip id refer to Destination
     trip_id = adminTripModel.tripIdFetchOneFromDestination(destination)
     # Fetch Data of Package Excursion Data
-    package_excursion_data = adminPackageExcrusionModel.packageExcrusionDataFetchFromTripId(trip_id['trip_id'])
+    # package_excursion_data = adminPackageExcrusionModel.packageExcrusionDataFetchFromTripId(trip_id['trip_id'])
     # Fetch Data of Service Detail Data
     service_detail_data = adminServiceDetailModel.serviceDetailFetchData(service_id)
     # Fetch Data of Service Image Data

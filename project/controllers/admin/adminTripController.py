@@ -35,6 +35,7 @@ def tripDataCenter():
 
     #Fetch Data of Vendor Data
     trip_datas = adminModel.tripFetchData()
+    trip_data = adminModel.tripFetchData()
 
     form = AddTripData(request.form)
     if request.method == 'POST' and form.validate():
@@ -46,7 +47,11 @@ def tripDataCenter():
         flash('Trip Added', 'success')
 
         return redirect(url_for('tripDataCenter'))
-    return render_template('admin/tripData.html', form=form, trip_datas=trip_datas)
+    return render_template(
+        'admin/tripData.html',
+        form=form,
+        trip_datas=trip_datas,
+        trip_data=trip_data)
 
 # Trip Data Update
 @app.route('/admin/trip-data-center/edit/<string:trip_id>', methods=['GET', 'POST'])
@@ -97,6 +102,9 @@ def selectCountry():
     # Fetch the Country Data
     country_data = adminModel.countryFetchData()
 
+    # Fetch the Trip Data
+    trip_data = adminModel.tripFetchData()
+
     return render_template('admin/selectCountry.html', country_data=country_data)
 
 @app.route('/admin/select-country/select-destination/<string:country>')
@@ -112,4 +120,5 @@ def selectDestination(country):
     return render_template(
     'admin/selectDestination.html',
     destination_data=destination_data,
-    country_data_fetch_one=country_data_fetch_one)
+    country_data_fetch_one=country_data_fetch_one,
+    trip_data=trip_data)

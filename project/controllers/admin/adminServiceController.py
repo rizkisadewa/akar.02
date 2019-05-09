@@ -34,19 +34,26 @@ class AddServiceData(Form):
 
 
 # Choose the Country
-@app.route('/admin/service-setting')
+@app.route('/admin/service-data-center')
 @is_logged_in
 def serviceChooseCountry():
 
     # Fetch the Country Data
     country_data = adminTripModel.countryFetchData()
+    trip_data = adminTripModel.tripFetchData()
 
-    return render_template('admin/adminServiceSelectCountry.html', country_data=country_data)
+    return render_template(
+        'admin/adminServiceSelectCountry.html',
+        country_data=country_data,
+        trip_data=trip_data)
 
 # Choose the Destination
-@app.route('/admin/service-setting/<string:country>')
+@app.route('/admin/service-data-center/<string:country>')
 @is_logged_in
 def serviceChooseDestination(country):
+
+    # Fetch Trip Data
+    trip_data = adminTripModel.tripFetchData()
 
     # Fetch One Country Data
     country_data_fetch_one = adminTripModel.countryFetchOneData(country)
@@ -57,10 +64,11 @@ def serviceChooseDestination(country):
     return render_template(
     'admin/adminServiceSelectDestination.html',
     destination_data=destination_data,
-    country_data_fetch_one=country_data_fetch_one)
+    country_data_fetch_one=country_data_fetch_one,
+    trip_data=trip_data)
 
 # Service Setting
-@app.route('/admin/service-setting/<string:country>/<string:destination>/<string:trip_id>', methods=['GET', 'POST'])
+@app.route('/admin/service-data-center/<string:country>/<string:destination>/<string:trip_id>', methods=['GET', 'POST'])
 @is_logged_in
 def serviceDataCenter(country, destination, trip_id):
 
@@ -68,10 +76,11 @@ def serviceDataCenter(country, destination, trip_id):
     form = AddServiceData(request.form)
 
     # Fetch Trip Data
-    trip_data = adminTripModel.tripDataFetchOne(trip_id)
+    trip_data_one = adminTripModel.tripDataFetchOne(trip_id)
+    trip_data = adminTripModel.tripFetchData()
 
     # Fetch Services
-    service_data = adminServiceModel.serviceFetchData()
+    service_data = adminServiceModel.serviceFetchData(trip_id)
 
     # Fetch Trip DAta
     # Add the Data
@@ -87,16 +96,17 @@ def serviceDataCenter(country, destination, trip_id):
 
     return render_template(
         'admin/adminServiceDataCenter.html',
-        trip_data=trip_data,
+        trip_data_one=trip_data_one,
         service_data=service_data,
         destination=destination,
         country=country,
-        form=form)
+        form=form,
+        trip_data=trip_data)
 
 
 # Delete Service
 
-@app.route('/admin/service-setting/<string:country>/<string:destination>/<string:trip_id>/<string:service_id>/delete', methods=['GET', 'POST'])
+@app.route('/admin/service-data-center/<string:country>/<string:destination>/<string:trip_id>/<string:service_id>/delete', methods=['GET', 'POST'])
 @is_logged_in
 def serviceDataDelete(country, destination, trip_id, service_id):
 

@@ -176,3 +176,24 @@ class adminTripModel(object):
 
         # return the data
         return trip_id
+
+    # FOR ADMIN LAYOUT
+    # Fetch Contry without duplication
+    def countryFetchData(self):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute the query
+        cur.execute('''
+            SELECT DISTINCT country FROM trip
+        ''')
+
+        # Asign the the variable
+        country_data = cur.fetchall()
+
+        # close the connection
+        cur.close()
+
+        # return the data
+        return country_data

@@ -5,12 +5,12 @@ from wtforms import Form, StringField, TextAreaField, PasswordField, validators,
 from functools import wraps
 
 # Import from Model
-from project.models.adminPackageExcursionModel import adminPackageExcursionModel
+# from project.models.adminPackageExcursionModel import adminPackageExcursionModel
 from project.models.adminPaxBracketPriceModel import adminPaxBracketPriceModel
 from project.models.adminPriceSegmentModel import adminPriceSegmentModel
 
 # an object from Admin Model
-adminPackageExcrusionModel = adminPackageExcursionModel()
+# adminPackageExcrusionModel = adminPackageExcursionModel()
 adminPaxBracketPriceModel = adminPaxBracketPriceModel()
 adminPriceSegmentModel = adminPriceSegmentModel()
 
@@ -41,7 +41,7 @@ def paxBracketPriceDataCenter(package_excursion_id):
     form = AddPaxBracketPrice(request.form)
 
     # Fetch One Package Excrusion Data
-    package_excursion_data = adminPackageExcrusionModel.packageExcursionDataFetchOne(package_excursion_id)
+    # package_excursion_data = adminPackageExcrusionModel.packageExcursionDataFetchOne(package_excursion_id)
 
     # Fetch Price Segment Data
     price_segment_data = adminPriceSegmentModel.priceSegmentFetchData()

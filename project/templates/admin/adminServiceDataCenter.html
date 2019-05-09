@@ -3,7 +3,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Services Center: {{destination}} in <strong>{{country}}</strong>
+    Services Data Center: {{destination}} in <strong>{{country}}</strong>
   </h1>
   <ol class="breadcrumb">
     <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
@@ -21,12 +21,12 @@
     <div class="col-md-12">
       <div class="box box-info">
         <div class="box-header with-border">
-          <h3 class="box-title">Input Service - Trip ID {{trip_data.trip_id}}</h3>
+          <h3 class="box-title">Input Service - Trip ID {{trip_data_one.trip_id}}</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
         {% from "includes/_formhelpers.html" import render_field %}
-        <form class="form-horizontal" action="{{url_for('serviceDataCenter', country=trip_data.country, destination=trip_data.destination, trip_id=trip_data.trip_id)}}" method="POST">
+        <form class="form-horizontal" action="{{url_for('serviceDataCenter', country=trip_data_one.country, destination=trip_data_one.destination, trip_id=trip_data_one.trip_id)}}" method="POST">
           <div class="box-body">
             <div class="row">
               <div class="col-sm-6">
@@ -77,7 +77,7 @@
               <td>{{service_data.destination}}</td>
               <td>{{service_data.country}}</td>
               <td>
-                <form class="" action="{{url_for('serviceDataDelete', country=trip_data.country, destination=trip_data.destination, trip_id=trip_data.trip_id, service_id=service_data.service_id)}}" method="post">
+                <form class="" action="{{url_for('serviceDataDelete', country=trip_data_one.country, destination=trip_data_one.destination, trip_id=trip_data_one.trip_id, service_id=service_data.service_id)}}" method="post">
                   <input type="submit" value="Delete" class="btn btn-danger confirmation_delete">
                 </form>
               </td>

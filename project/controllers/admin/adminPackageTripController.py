@@ -40,10 +40,14 @@ class AddPackageTripData(Form):
 @is_logged_in
 def packageTripChooseCountry():
 
-    # Fetch the Country Data
+    # Fetch Data
     country_data = adminTripModel.countryFetchData()
+    trip_data = adminTripModel.tripFetchData()
 
-    return render_template('admin/adminPackageTripSelectCountry.html', country_data=country_data)
+    return render_template(
+        'admin/adminPackageTripSelectCountry.html',
+        country_data=country_data,
+        trip_data=trip_data)
 
 # Choose the Destination
 @app.route('/admin/package-trip-setting/<string:country>')
@@ -56,10 +60,14 @@ def packageTripChooseDestination(country):
     # Fetch Destination Data
     destination_data = adminTripModel.destinationFetchOne(country)
 
+    # Fetch Trip Data
+    trip_data = adminTripModel.tripFetchData()
+
     return render_template(
         'admin/adminPackageTripSelectDestination.html',
         destination_data=destination_data,
         country_data_fetch_one=country_data_fetch_one,
+        trip_data=trip_data
     )
 
 # Package Trip Data Center

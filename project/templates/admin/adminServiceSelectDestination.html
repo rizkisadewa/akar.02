@@ -3,7 +3,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Service Setting
+    Service Data Center:
     <small>Select Destination</small>
   </h1>
   <ol class="breadcrumb">
@@ -41,7 +41,7 @@
               <tr>
                 <td>{{i+1}}</td>
                 <td>{{destination_data[i].destination}}</td>
-                <td><a href="/admin/service-setting/{{country_data_fetch_one.country}}/{{destination_data[i].destination}}/{{destination_data[i].trip_id}}" class="btn btn-primary">Select</a></td>
+                <td><a href="/admin/service-data-center/{{country_data_fetch_one.country}}/{{destination_data[i].destination}}/{{destination_data[i].trip_id}}" class="btn btn-primary">Select</a></td>
               </tr>
               {% endfor %}
             </tbody>
