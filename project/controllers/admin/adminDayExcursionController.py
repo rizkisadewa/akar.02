@@ -78,7 +78,7 @@ def dayExcursionDataCenter(country, destination, trip_id):
     admin_data = adminModel.adminIdFetchOne(session['username'])
 
     # Fetch Day Excrusion Data
-    day_excursion_data = adminDayExcursionModel.dayExcursionFetchData()
+    day_excursion_data = adminDayExcursionModel.dayExcursionFetchData(trip_id)
 
     # Add the Data
     if request.method == 'POST' and form.validate():

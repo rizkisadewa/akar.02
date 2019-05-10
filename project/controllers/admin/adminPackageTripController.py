@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from project import app
 from flask import render_template, flash, redirect, url_for, session, request, logging #stuff from Flask
-from wtforms import Form, StringField, TextAreaField, PasswordField, validators, DateField
+from wtforms import Form, StringField, TextAreaField, PasswordField, validators, DateField, IntegerField
 from functools import wraps
 
 # Import from Model
@@ -9,12 +9,14 @@ from project.models.adminPackageTripModel import adminPackageTripModel
 from project.models.adminTripModel import adminTripModel
 from project.models.adminServiceModel import adminServiceModel
 from project.models.adminModels import adminModel
+from project.models.adminDayExcursionModel import adminDayExcursionModel
 
 # an object from admin model
 adminPackageTripModel = adminPackageTripModel()
 adminTripModel = adminTripModel()
 adminServiceModel = adminServiceModel()
 adminModel = adminModel()
+adminDayExcursionModel = adminDayExcursionModel()
 
 # Check if logged in
 def is_logged_in(f):
@@ -34,6 +36,10 @@ class AddPackageTripData(Form):
     validity_date_finish = DateField('Validity Date Finish', format='%Y-%m-%d')
     tag_line = StringField('Tag Line', [validators.Length(min=1, max=200)])
     inclusions = TextAreaField('Inclusions', [validators.Length(min=1, max=500)])
+
+# Add Component of Package Trip Form Class
+class AddComponentPackageTripData(Form):
+    day_no = IntegerField(u'Day No :')
 
 # Choose the Country
 @app.route('/admin/package-trip-setting')
@@ -77,7 +83,7 @@ def packageTripDataCenter(country, destination, trip_id):
     service_data = adminServiceModel.serviceDataFetchOne(trip_id)
 
     # Fetch Package Trip Data
-    package_trip_data = adminPackageTripModel.packageTripFetchData()
+    package_trip_data = adminPackageTripModel.packageTripFetchData(trip_id, destination)
 
     # Fetch admin_id
     admin_data = adminModel.adminIdFetchOne(session['username'])
@@ -155,7 +161,7 @@ def packageTripDataEdit(country, destination, trip_id, package_trip_id):
     destination=destination,
     package_trip_data=package_trip_data)
 
-# Package Trip Data
+# Delete Package Trip Data
 @app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/delete/<string:package_trip_id>', methods=['GET', 'POST'])
 @is_logged_in
 def deletePackageTripData(country, destination, trip_id, package_trip_id):
@@ -167,3 +173,28 @@ def deletePackageTripData(country, destination, trip_id, package_trip_id):
     flash('Package Trip has been deleted', 'danger')
 
     return redirect(url_for('packageTripDataCenter', country=country, destination=destination, trip_id=trip_id))
+
+# Add Component of Package Trip Data
+@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>', methods=['GET','POST'])
+@is_logged_in
+def addComponentPackageTripData(country, destination, trip_id, package_trip_id):
+
+    # Fetch One Package Trip Data from package_trip_id
+    package_trip_data = adminPackageTripModel.packageTripDataFetchOne(package_trip_id)
+
+    # Fit the Add Component of Package Trip Form Class
+    form = AddComponentPackageTripData(request.form)
+
+    # Fetch the Day Excursion Data
+    day_excursion_data = adminDayExcursionModel.dayExcursionDataFetchOneServiceId(package_trip_data['service_id'])
+
+    return render_template(
+        'admin/adminPackageTripComponent.html',
+        country=country,
+        destination=destination,
+        trip_id=trip_id,
+        package_trip_id=package_trip_id,
+        package_trip_data=package_trip_data,
+        form=form,
+        day_excursion_data=day_excursion_data
+        )

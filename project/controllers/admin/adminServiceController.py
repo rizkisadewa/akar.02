@@ -71,7 +71,7 @@ def serviceDataCenter(country, destination, trip_id):
     trip_data = adminTripModel.tripDataFetchOne(trip_id)
 
     # Fetch Services
-    service_data = adminServiceModel.serviceFetchData()
+    service_data = adminServiceModel.serviceFetchData(destination)
 
     # Fetch Trip DAta
     # Add the Data

@@ -22,7 +22,7 @@ class adminServiceModel(object):
         cur.close()
 
     # Fetch Data
-    def serviceFetchData(self):
+    def serviceFetchData(self, destination):
         # Create a cursor
         cur = mysql.connection.cursor()
 
@@ -30,8 +30,9 @@ class adminServiceModel(object):
         cur.execute('''
             SELECT `service`.`name_of_service`, `service`.`service_id`, `trip`.`country`, `trip`.`destination`
             FROM `service`, `trip`
-            WHERE `service`.`trip_id` = `trip`.`trip_id`
-        ''')
+            WHERE `service`.`trip_id` = `trip`.`trip_id` AND
+            `trip`.`destination` = %s
+        ''', [destination])
 
         service_data = cur.fetchall()
 

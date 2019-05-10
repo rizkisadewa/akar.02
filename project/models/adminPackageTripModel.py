@@ -22,7 +22,7 @@ class adminPackageTripModel(object):
 
 
     # Fetch The Package Trip Data
-    def packageTripFetchData(self):
+    def packageTripFetchData(self, trip_id, destination):
         # Create a cursor
         cur = mysql.connection.cursor()
 
@@ -37,8 +37,9 @@ class adminPackageTripModel(object):
             `admin`.`name`
             FROM `package_trip`, `trip`, `admin`, `service`
             WHERE `package_trip`.`service_id` = `service`.`service_id` AND
-            `service`.`trip_id` = `trip`.`trip_id` AND `admin`.`admin_id` = `package_trip`.`admin_id`
-        ''')
+            `service`.`trip_id` = %s AND `admin`.`admin_id` = `package_trip`.`admin_id`
+            AND `trip`.`destination` = %s
+        ''', (trip_id, destination))
 
         # Asign to the variable
         package_trip_data = cur.fetchall()
