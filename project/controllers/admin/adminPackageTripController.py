@@ -187,6 +187,19 @@ def addComponentPackageTripData(country, destination, trip_id, package_trip_id):
 
     # Fetch the Day Excursion Data
     day_excursion_data = adminDayExcursionModel.dayExcursionDataFetchOneServiceId(package_trip_data['service_id'])
+    day_excursion_id = adminDayExcursionModel.dayExcursionIdFetchOneServiceId(package_trip_data['service_id'])
+
+    # Add the Data
+    if request.method == 'POST' and form.validate():
+        day_no = form.day_no.data
+
+        # Execute Query : add the data
+        adminPackageTripModel.addPackageTripComponent(day_excursion_id, package_trip_id, day_no)
+
+        # send notification
+        flash('Package Trip Component Added', 'success')
+
+        return redirect(url_for('addComponentPackageTripData', country=country, destination=destination, trip_id=trip_id))
 
     return render_template(
         'admin/adminPackageTripComponent.html',

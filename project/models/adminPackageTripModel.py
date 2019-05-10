@@ -106,3 +106,19 @@ class adminPackageTripModel(object):
 
         # Close
         cur.close()
+
+    # Add the Package Trip Component
+    def addPackageTripComponent(self, day_excursion_id, package_trip_id, day_no):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute("INSERT INTO tr_package_trip_day_excursion(day_excursion_id, package_trip_id, day_no) VALUES(%s, %s, %s)",
+        (day_excursion_id, package_trip_id, day_no))
+
+        # Commit to DB
+        mysql.connection.commit()
+
+        # Close connection
+        cur.close()

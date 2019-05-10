@@ -39,12 +39,18 @@
                 <label for="day_excursion_title">Day Excursion Input : </label>
                 <select class="form-control select2" name="day_excursion_title">
                   {% for day_excursion_data in day_excursion_data %}
-                  <option value="{{day_excursion_data.day_excursion_title}}">{{day_excursion_data.day_excursion_title}}</option>
+                  <option value="{{day_excursion_data.day_excursion_title}}">ID : {{day_excursion_data.day_excursion_id}} - {{day_excursion_data.day_excursion_title}}</option>
                   {% endfor %}
                 </select>
               </div>
             </div>
           </div>
+
+          <!-- /.box-body -->
+          <div class="box-footer">
+            <button type="submit" class="btn btn-info">Add Component</button>
+          </div>
+          <!-- /.box-footer -->
         </form>
         <!-- /form start -->
 

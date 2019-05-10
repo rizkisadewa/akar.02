@@ -117,7 +117,7 @@ class adminDayExcursionModel(object):
         # Execute query
         cur.execute('''
             SELECT
-            day_excursion_title, day_excursion_id
+            day_excursion_id, day_excursion_title
             FROM day_excursion
             WHERE service_id = %s
         ''', [service_id])
@@ -130,3 +130,26 @@ class adminDayExcursionModel(object):
 
         # return the variable
         return day_excursion_data
+
+
+    # Fetch the Day Excursion refer to service id
+    def dayExcursionIdFetchOneServiceId(self, service_id):
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            SELECT
+            day_excursion_id
+            FROM day_excursion
+            WHERE service_id = %s
+        ''', [service_id])
+
+        # Asign to the variable
+        day_excursion_id = cur.fetchall()
+
+        # Close the connection
+        cur.close()
+
+        # return the variable
+        return day_excursion_id
