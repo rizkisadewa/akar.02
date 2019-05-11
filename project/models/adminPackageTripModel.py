@@ -122,3 +122,76 @@ class adminPackageTripModel(object):
 
         # Close connection
         cur.close()
+
+    # Package Trip Component Data
+    def packageTripComponentData(self, package_trip_id, package_trip_id_2):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            SELECT
+            `tr_package_trip_day_excursion`.`day_no`,
+            `tr_package_trip_day_excursion`.`tr_package_trip_day_excursion_id`,
+            `package_trip`.`package_trip_name`
+            FROM `tr_package_trip_day_excursion`, `package_trip`
+            WHERE `package_trip`.`package_trip_id` = %s
+            AND `tr_package_trip_day_excursion`.`package_trip_id` = %s
+        ''', (package_trip_id, package_trip_id_2))
+
+        # Asign to the variable
+        component_data = cur.fetchall()
+
+        # Close the connection
+        cur.close()
+
+        # return the variable
+        return component_data
+
+    # Package Trip Component Data Fetch One
+    def packageTripComponentDataFetchOne(self, package_trip_id, tr_package_trip_day_excursion_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            SELECT
+            `tr_package_trip_day_excursion`.`day_no`,
+            `tr_package_trip_day_excursion`.`tr_package_trip_day_excursion_id`,
+            `package_trip`.`package_trip_name`
+            FROM `tr_package_trip_day_excursion`, `package_trip`
+            WHERE `package_trip`.`package_trip_id` = %s
+            AND `tr_package_trip_day_excursion`.`tr_package_trip_day_excursion_id` = %s
+        ''', (package_trip_id, tr_package_trip_day_excursion_id))
+
+        # Asign to the variable
+        component_data = cur.fetchone()
+
+        # Close the connection
+        cur.close()
+
+        # return the variable
+        return component_data
+
+    # Package Trip component Update Day No
+    def packageTripComponentUpdateData(self, day_no, tr_package_trip_day_excursion_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute Query
+        cur.execute('''
+            UPDATE tr_package_trip_day_excursion
+            SET
+            day_no = %s
+            WHERE
+            tr_package_trip_day_excursion_id = %s
+        ''', (day_no, tr_package_trip_day_excursion_id))
+
+        # Commit to DB
+        mysql.connection.commit()
+
+        # Close connection
+        cur.close()

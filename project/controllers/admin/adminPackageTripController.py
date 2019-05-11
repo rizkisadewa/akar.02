@@ -179,7 +179,32 @@ def deletePackageTripData(country, destination, trip_id, package_trip_id):
 # Package Trip Data Component Detail
 @app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>', methods=['GET','POST'])
 @is_logged_in
-def componentPackageTripData(country, destination, trip_id, package_trip_id):
+def componentPackageTrip(country, destination, trip_id, package_trip_id):
+
+    # Fetch One Package Trip Data from package_trip_id
+    package_trip_data = adminPackageTripModel.packageTripDataFetchOne(package_trip_id)
+
+    # Fetch the Day Excursion Data
+    day_excursion_data = adminDayExcursionModel.dayExcursionDataFetchOneServiceId(package_trip_data['service_id'])
+
+    # Component Data
+    component_data = adminPackageTripModel.packageTripComponentData(package_trip_id, package_trip_id)
+
+    return render_template(
+        'admin/adminPackageTripComponent.html',
+        country=country,
+        destination=destination,
+        trip_id=trip_id,
+        package_trip_id=package_trip_id,
+        package_trip_data=package_trip_data,
+        day_excursion_data=day_excursion_data,
+        component_data=component_data
+        )
+
+# Add Day Excursion to Package Trip Data
+@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>/day-excursion', methods=['GET','POST'])
+@is_logged_in
+def componentPackageTripAddDayExcursion(country, destination, trip_id, package_trip_id):
 
     # Fetch One Package Trip Data from package_trip_id
     package_trip_data = adminPackageTripModel.packageTripDataFetchOne(package_trip_id)
@@ -201,18 +226,59 @@ def componentPackageTripData(country, destination, trip_id, package_trip_id):
         # send notification
         flash('Package Trip Component Added', 'success')
 
-        return redirect(url_for('addComponentPackageTripData', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
+        return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
 
     return render_template(
-        'admin/adminPackageTripComponent.html',
+        'admin/adminPackageTripAddDayExcursion.html',
         country=country,
         destination=destination,
         trip_id=trip_id,
         package_trip_id=package_trip_id,
         package_trip_data=package_trip_data,
         form=form,
-        day_excursion_data=day_excursion_data
-        )
+        day_excursion_data=day_excursion_data)
 
-# Add Day Excursion to Package Trip Data
-# @app.route('')
+# Edit Day Excursion Day No
+@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>/day-excursion/edit/<string:tr_package_trip_day_excursion_id>', methods=['POST', 'GET'])
+@is_logged_in
+def componentPackageTripEditDayExcursion(country, destination, trip_id, package_trip_id, tr_package_trip_day_excursion_id):
+
+    # Fetch One Package Trip Data from package_trip_id
+    package_trip_data = adminPackageTripModel.packageTripDataFetchOne(package_trip_id)
+
+    # Fit the Add Component of Package Trip Form Class
+    form = AddComponentPackageTripData(request.form)
+
+    # Fetch the Day Excursion Data
+    day_excursion_data = adminDayExcursionModel.dayExcursionDataFetchOneServiceId(package_trip_data['service_id'])
+
+    # Fetch Package Trip Component
+    component_data = adminPackageTripModel.packageTripComponentDataFetchOne(package_trip_id, tr_package_trip_day_excursion_id)
+
+    # Populate Package Trip Component from fields
+    form.day_no.data = component_data['day_no']
+
+    # Update Package Trip Data
+    if request.method == 'POST' and form.validate():
+
+        # asign the variable value from request form value
+        day_no = request.form['day_no']
+
+        # Execute the query
+        adminPackageTripModel.packageTripComponentUpdateData(day_no, tr_package_trip_day_excursion_id)
+
+        # Send notification to the dashboard
+        flash('Package Trip Compnent has been updated', 'success')
+
+        return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
+
+    return render_template(
+        'admin/adminPackageTripEditDayExcursion.html',
+        country=country,
+        destination=destination,
+        trip_id=trip_id,
+        package_trip_id=package_trip_id,
+        package_trip_data=package_trip_data,
+        form=form,
+        day_excursion_data=day_excursion_data,
+        component_data=component_data)
