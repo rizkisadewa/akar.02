@@ -174,10 +174,12 @@ def deletePackageTripData(country, destination, trip_id, package_trip_id):
 
     return redirect(url_for('packageTripDataCenter', country=country, destination=destination, trip_id=trip_id))
 
-# Add Component of Package Trip Data
+# TRANSACTION
+
+# Package Trip Data Component Detail
 @app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>', methods=['GET','POST'])
 @is_logged_in
-def addComponentPackageTripData(country, destination, trip_id, package_trip_id):
+def componentPackageTripData(country, destination, trip_id, package_trip_id):
 
     # Fetch One Package Trip Data from package_trip_id
     package_trip_data = adminPackageTripModel.packageTripDataFetchOne(package_trip_id)
@@ -187,11 +189,11 @@ def addComponentPackageTripData(country, destination, trip_id, package_trip_id):
 
     # Fetch the Day Excursion Data
     day_excursion_data = adminDayExcursionModel.dayExcursionDataFetchOneServiceId(package_trip_data['service_id'])
-    day_excursion_id = adminDayExcursionModel.dayExcursionIdFetchOneServiceId(package_trip_data['service_id'])
 
     # Add the Data
     if request.method == 'POST' and form.validate():
         day_no = form.day_no.data
+        day_excursion_id = day_excursion_data[0]['day_excursion_id']
 
         # Execute Query : add the data
         adminPackageTripModel.addPackageTripComponent(day_excursion_id, package_trip_id, day_no)
@@ -199,7 +201,7 @@ def addComponentPackageTripData(country, destination, trip_id, package_trip_id):
         # send notification
         flash('Package Trip Component Added', 'success')
 
-        return redirect(url_for('addComponentPackageTripData', country=country, destination=destination, trip_id=trip_id))
+        return redirect(url_for('addComponentPackageTripData', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
 
     return render_template(
         'admin/adminPackageTripComponent.html',
@@ -211,3 +213,6 @@ def addComponentPackageTripData(country, destination, trip_id, package_trip_id):
         form=form,
         day_excursion_data=day_excursion_data
         )
+
+# Add Day Excursion to Package Trip Data
+# @app.route('')
