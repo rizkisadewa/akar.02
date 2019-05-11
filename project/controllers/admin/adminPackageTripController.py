@@ -282,3 +282,17 @@ def componentPackageTripEditDayExcursion(country, destination, trip_id, package_
         form=form,
         day_excursion_data=day_excursion_data,
         component_data=component_data)
+
+# Delete the Day Excursion from Package Trip
+@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>/day-excursion/delete/<string:tr_package_trip_day_excursion_id>',methods=['GET','POST'])
+@is_logged_in
+def componentPackageTripDeleteDayExcursion(country, destination, trip_id, package_trip_id, tr_package_trip_day_excursion_id):
+
+    # Execute query from the model
+    adminPackageTripModel.deletePackageTripComponentData(tr_package_trip_day_excursion_id)
+
+
+    # Send notification to the dashboard
+    flash('Package Trip Compnent has been deleted', 'danger')
+
+    return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))

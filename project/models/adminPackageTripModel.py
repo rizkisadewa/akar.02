@@ -201,3 +201,18 @@ class adminPackageTripModel(object):
 
         # Close connection
         cur.close()
+
+    # Package Trip component Delete Data
+    def deletePackageTripComponentData(self, tr_package_trip_day_excursion_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute
+        cur.execute("DELETE FROM tr_package_trip_day_excursion WHERE tr_package_trip_day_excursion_id = %s", [tr_package_trip_day_excursion_id])
+
+        # Commit to DB
+        mysql.connection.commit()
+
+        # Close
+        cur.close()
