@@ -134,10 +134,14 @@ class adminPackageTripModel(object):
             SELECT
             `tr_package_trip_day_excursion`.`day_no`,
             `tr_package_trip_day_excursion`.`tr_package_trip_day_excursion_id`,
+            `day_excursion`.`day_excursion_title`,
             `package_trip`.`package_trip_name`
-            FROM `tr_package_trip_day_excursion`, `package_trip`
-            WHERE `package_trip`.`package_trip_id` = %s
+            FROM `tr_package_trip_day_excursion`, `package_trip`, `day_excursion`
+            WHERE
+            `package_trip`.`package_trip_id` = %s
             AND `tr_package_trip_day_excursion`.`package_trip_id` = %s
+            AND `tr_package_trip_day_excursion`.`day_excursion_id` = `day_excursion`.`day_excursion_id`
+            ORDER BY day_no
         ''', (package_trip_id, package_trip_id_2))
 
         # Asign to the variable
@@ -160,10 +164,12 @@ class adminPackageTripModel(object):
             SELECT
             `tr_package_trip_day_excursion`.`day_no`,
             `tr_package_trip_day_excursion`.`tr_package_trip_day_excursion_id`,
-            `package_trip`.`package_trip_name`
-            FROM `tr_package_trip_day_excursion`, `package_trip`
-            WHERE `package_trip`.`package_trip_id` = %s
+            `day_excursion`.`day_excursion_title`
+            FROM `tr_package_trip_day_excursion`, `package_trip`, `day_excursion`
+            WHERE
+            `package_trip`.`package_trip_id` = %s
             AND `tr_package_trip_day_excursion`.`tr_package_trip_day_excursion_id` = %s
+            AND `tr_package_trip_day_excursion`.`day_excursion_id` = `day_excursion`.`day_excursion_id`
         ''', (package_trip_id, tr_package_trip_day_excursion_id))
 
         # Asign to the variable
