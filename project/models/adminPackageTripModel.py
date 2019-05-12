@@ -216,3 +216,51 @@ class adminPackageTripModel(object):
 
         # Close
         cur.close()
+
+    # Package Trip Image
+    def addPackageTripImageData(self, path):
+
+        # Create cursor
+        cur = mysql.connection.cursor()
+
+        # Execute Query
+        cur.execute("INSERT INTO package_trip_image(path) VALUES (%s)",
+        [path])
+
+        # commit to DB
+        mysql.connection.commit()
+
+        # Close the connection
+        cur.close()
+
+    # Last Package Trip Image Id trigerred
+    def lastPackageTripImageId(self):
+
+        # Create cursor
+        cur = mysql.connection.cursor()
+
+        # Execute Query
+        cur.execute('''
+            SELECT MAX(package_trip_image_id) FROM package_trip_image
+        ''')
+
+        # Asign to the variable
+        last_srv_img_id = cur.fetchone()
+
+        return last_srv_img_id
+
+    # Updating the Package Trip Image Data
+    def editPackageTripImageData(self, package_trip_id, file_name, db_path, last_srv_img_id):
+
+
+        # Create cursor
+        cur = mysql.connection.cursor()
+
+        # Execute Query
+        cur.execute("UPDATE package_trip_image SET package_trip_id=%s, file_name=%s, path=%s WHERE package_trip_image_id=%s ",(package_trip_id, file_name, db_path, last_srv_img_id))
+
+        # commit to DB
+        mysql.connection.commit()
+
+        # Close the connection
+        cur.close()

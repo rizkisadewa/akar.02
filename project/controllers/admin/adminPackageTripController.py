@@ -3,6 +3,8 @@ from project import app
 from flask import render_template, flash, redirect, url_for, session, request, logging #stuff from Flask
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators, DateField, IntegerField
 from functools import wraps
+import sys
+import os
 
 # Import from Model
 from project.models.adminPackageTripModel import adminPackageTripModel
@@ -294,5 +296,51 @@ def componentPackageTripDeleteDayExcursion(country, destination, trip_id, packag
 
     # Send notification to the dashboard
     flash('Package Trip Compnent has been deleted', 'danger')
+
+    return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
+
+
+# Declaring the APP_ROOT
+APP_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),"../.."))
+
+
+# Uploading the service images
+@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>/add-image', methods=['GET','POST'])
+@is_logged_in
+def uploadPackageTripImage(country, destination, trip_id, package_trip_id):
+
+    # make the target to folder
+    target = os.path.join(APP_ROOT, 'static/images/services')
+
+    # Checking the directory, if there is no directory, then we make it.
+    if not os.path.isdir(target):
+        os.mkdir(target)
+    else:
+        print("Couldn't create upload directory: {}".format(target))
+
+    # Service Image Id Triger
+    adminPackageTripModel.addPackageTripImageData(target)
+    last_srv_img_id = adminPackageTripModel.lastPackageTripImageId()
+
+    # uploading the file
+    for file in request.files.getlist("file"):
+
+        # manipulate the file name
+        file_name = "-".join([destination, file.filename])
+        file_name = "-".join([str(last_srv_img_id['MAX(package_trip_image_id)']), file_name])
+        path = "/".join([target, file_name])
+
+        # save the image to the folder
+        file.save(path)
+
+    # make the target and path special for DB
+    db_target = 'static/images/services'
+    db_path = "/".join([db_target, file_name])
+
+    # Updating the Package Trip Image Data
+    adminPackageTripModel.editPackageTripImageData(package_trip_id, file_name, db_path, last_srv_img_id['MAX(package_trip_image_id)'])
+
+    # Send notification to the dashboard
+    flash("Image has been added", 'success')
 
     return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
