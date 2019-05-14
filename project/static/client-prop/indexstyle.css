@@ -15,6 +15,10 @@ p{
   text-align: justify;
 }
 
+main{
+  padding: 0;
+}
+
 /*
    *** NAVBAR TOP ***
 */
@@ -212,6 +216,34 @@ nav{
 
 /*
    *** /NAVBAR BOTTOM SECTION ***
+*/
+
+
+/*
+   *** COURSEL NEWS ***
+*/
+
+.carousel{
+  margin: 0;
+}
+
+.jumbotron-img{
+  width: 100%;
+  max-width: 2560px;
+  height: auto;
+}
+
+.carousel-caption h2{
+  color: #FF0062;
+  font-size: 5vh;
+}
+
+.carousel-caption p{
+  font-size: 2.5vh;
+}
+
+/*
+   *** COURSEL NEWS ***
 */
 
 
@@ -1094,6 +1126,24 @@ footer{
     margin-top: 80px;
   }
 
+  #myCarousel
+  .carousel-inner
+  .carousel-item
+  .container
+  .carousel-caption
+  p{
+    font-size: 2vw;
+  }
+
+  #myCarousel
+  .carousel-inner
+  .carousel-item
+  .container
+  .carousel-caption
+  h2{
+    font-size: 4vw;
+  }
+
 }
 
 /*
@@ -1173,6 +1223,18 @@ footer{
   }
 
 
+  #myCarousel
+  .carousel-inner
+  .carousel-item
+  .container
+  .carousel-caption
+  .btn-desktop{
+    display: none;
+  }
+
+  #myCarousel{
+    display: none;
+  }
 
 }
 /*
