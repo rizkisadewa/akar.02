@@ -123,6 +123,11 @@
                     <input type="submit" name="" value="Delete" class="btn btn-danger confirmation_delete">
                   </form>
                 </td>
+                <td>
+                  <form class="" action="{{url_for('setPackageTripImageProfile', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id, package_trip_image_id=package_trip_image_data.package_trip_image_id, file_name=package_trip_image_data.file_name)}}" method="post">
+                    <input type="submit" value="Set as Package Trip Profile Image" class="btn btn-primary">
+                  </form>
+                </td>
               </tr>
               {% endfor %}
             </tbody>

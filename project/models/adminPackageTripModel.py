@@ -308,3 +308,18 @@ class adminPackageTripModel(object):
 
         # Close the connection
         cur.close()
+
+    # Setting Package Trip Image Profile
+    def setPackageTripImageProfile(self, package_trip_image_id, package_trip_id):
+
+        # Create Cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute("UPDATE package_trip SET package_trip_image_profile =%s WHERE package_trip_id = %s", (package_trip_image_id, package_trip_id))
+
+        # Commit to DB
+        mysql.connection.commit()
+
+        # Close connection
+        cur.close()

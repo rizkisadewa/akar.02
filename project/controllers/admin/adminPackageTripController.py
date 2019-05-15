@@ -375,3 +375,16 @@ def deletePackageTripImage(country, destination, trip_id, package_trip_id, packa
     flash('Package Trip Image has been deleted', 'danger')
 
     return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
+
+# Setting the Package Trip Image Profile Data
+@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>/set-profile/<string:package_trip_image_id>?<string:file_name>', methods=['GET', 'POST'])
+@is_logged_in
+def setPackageTripImageProfile(country, destination, trip_id, package_trip_id, package_trip_image_id, file_name):
+
+    # Exe Cute query for setting Package Trip Image Profile
+    adminPackageTripModel.setPackageTripImageProfile(package_trip_image_id, package_trip_id)
+
+    # showing the notification to the dashboard
+    flash('Package Image Profile has been set up', 'success')
+
+    return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
