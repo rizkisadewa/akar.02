@@ -323,3 +323,21 @@ class adminPackageTripModel(object):
 
         # Close connection
         cur.close()
+
+    # Fetch the Package Trip Image Profile
+    def packageTripImageProfile(self, package_trip_image_profile):
+
+        # fill the form from database
+        # Create a Cursor
+        cur = mysql.connection.cursor()
+
+        # Get Package Trip Data from query
+        cur.execute("SELECT file_name FROM package_trip_image WHERE package_trip_image_id = %s", [package_trip_image_profile])
+
+        # Asign to the Variable
+        package_trip_image_profile = cur.fetchone()
+
+        # Close the connection
+        cur.close()
+
+        return package_trip_image_profile

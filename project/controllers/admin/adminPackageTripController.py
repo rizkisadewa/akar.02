@@ -197,6 +197,9 @@ def componentPackageTrip(country, destination, trip_id, package_trip_id):
     # Fetch Image Data - Package Trip
     package_trip_image_data = adminPackageTripModel.packageTripImageDataFetch(package_trip_id)
 
+    # Feth Package Trip Image Profie
+    package_trip_image_profile = adminPackageTripModel.packageTripImageProfile(package_trip_data['package_trip_image_profile'])
+
     return render_template(
         'admin/adminPackageTripComponent.html',
         country=country,
@@ -206,7 +209,8 @@ def componentPackageTrip(country, destination, trip_id, package_trip_id):
         package_trip_data=package_trip_data,
         day_excursion_data=day_excursion_data,
         component_data=component_data,
-        package_trip_image_data=package_trip_image_data
+        package_trip_image_data=package_trip_image_data,
+        package_trip_image_profile=package_trip_image_profile
         )
 
 # Add Day Excursion to Package Trip Data
