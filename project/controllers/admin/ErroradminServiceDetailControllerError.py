@@ -126,7 +126,7 @@ def uploadServiceImage(destination, service_id):
 
     # uploading the file
     for file in request.files.getlist("file"):
-
+        
         file_name = "-".join([destination, file.filename])
         file_name = "-".join([str(last_srv_img_id['MAX(service_image_id)']), file_name])
         path = "/".join([target, file_name])

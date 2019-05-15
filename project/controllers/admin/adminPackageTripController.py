@@ -6,6 +6,10 @@ from functools import wraps
 import sys
 import os
 
+
+# Declaring the APP_ROOT
+APP_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),"../.."))
+
 # Import from Model
 from project.models.adminPackageTripModel import adminPackageTripModel
 from project.models.adminTripModel import adminTripModel
@@ -298,10 +302,6 @@ def componentPackageTripDeleteDayExcursion(country, destination, trip_id, packag
     flash('Package Trip Compnent has been deleted', 'danger')
 
     return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
-
-
-# Declaring the APP_ROOT
-APP_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),"../.."))
 
 
 # Uploading the service images
