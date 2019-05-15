@@ -264,3 +264,47 @@ class adminPackageTripModel(object):
 
         # Close the connection
         cur.close()
+
+    # Fetch the Package Trip Image Data
+    def packageTripImageDataFetch(self, package_trip_id):
+
+        # Create Crsor
+        cur = mysql.connection.cursor()
+
+        # Execute Query
+        cur.execute("SELECT * FROM package_trip_image WHERE package_trip_id=%s", [package_trip_id])
+
+        # asigning to the variable
+        package_trip_image_data = cur.fetchall()
+
+        return package_trip_image_data
+
+    # set the Package Trip Image id to null
+    def setPackageTripImageProfileNull(self, package_trip_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('UPDATE package_trip SET package_trip_image_profile = NULL, file_name = NULL WHERE package_trip_id=%s', [package_trip_id])
+
+        # commit to the DB
+        mysql.connection.commit()
+
+        # Close the connection
+        cur.close()
+
+    # Delete Package Trip Image Data
+    def deletePackageTripImage(self, package_trip_image_id):
+
+        # Create Cursor
+        cur = mysql.connection.cursor()
+
+        # Execute Query
+        cur.execute("DELETE FROM package_trip_image WHERE package_trip_image_id = %s", [package_trip_image_id])
+
+        # commit to DB
+        mysql.connection.commit()
+
+        # Close the connection
+        cur.close()

@@ -114,12 +114,18 @@
                 <th colspan="2" style="text-align: justify;">Activity</th>
               </tr>
             </thead>
-            <td>
-              <img src="" alt="">
-            </td>
-            <td>
-
-            </td>
+            <tbody>
+              {% for package_trip_image_data in package_trip_image_data %}
+              <tr>
+                <td><img class="img-tbl" src="{{url_for('static', filename='images/package_trip/')}}{{ package_trip_image_data.file_name }}" alt="{{ package_trip_image_data.file_name }}"></td>
+                <td>
+                  <form class="" action="{{url_for('deletePackageTripImage', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id, package_trip_image_id=package_trip_image_data.package_trip_image_id, file_name=package_trip_image_data.file_name)}}" method="post">
+                    <input type="submit" name="" value="Delete" class="btn btn-danger confirmation_delete">
+                  </form>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
           </table>
         </div>
         <!-- /box-footer -->

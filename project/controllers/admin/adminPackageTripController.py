@@ -180,8 +180,6 @@ def deletePackageTripData(country, destination, trip_id, package_trip_id):
 
     return redirect(url_for('packageTripDataCenter', country=country, destination=destination, trip_id=trip_id))
 
-# TRANSACTION
-
 # Package Trip Data Component Detail
 @app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>', methods=['GET','POST'])
 @is_logged_in
@@ -196,6 +194,9 @@ def componentPackageTrip(country, destination, trip_id, package_trip_id):
     # Component Data
     component_data = adminPackageTripModel.packageTripComponentData(package_trip_id, package_trip_id)
 
+    # Fetch Image Data - Package Trip
+    package_trip_image_data = adminPackageTripModel.packageTripImageDataFetch(package_trip_id)
+
     return render_template(
         'admin/adminPackageTripComponent.html',
         country=country,
@@ -204,7 +205,8 @@ def componentPackageTrip(country, destination, trip_id, package_trip_id):
         package_trip_id=package_trip_id,
         package_trip_data=package_trip_data,
         day_excursion_data=day_excursion_data,
-        component_data=component_data
+        component_data=component_data,
+        package_trip_image_data=package_trip_image_data
         )
 
 # Add Day Excursion to Package Trip Data
@@ -310,7 +312,7 @@ def componentPackageTripDeleteDayExcursion(country, destination, trip_id, packag
 def uploadPackageTripImage(country, destination, trip_id, package_trip_id):
 
     # make the target to folder
-    target = os.path.join(APP_ROOT, 'static/images/services')
+    target = os.path.join(APP_ROOT, 'static/images/package_trip')
 
     # Checking the directory, if there is no directory, then we make it.
     if not os.path.isdir(target):
@@ -334,7 +336,7 @@ def uploadPackageTripImage(country, destination, trip_id, package_trip_id):
         file.save(path)
 
     # make the target and path special for DB
-    db_target = 'static/images/services'
+    db_target = 'static/images/package_trip'
     db_path = "/".join([db_target, file_name])
 
     # Updating the Package Trip Image Data
@@ -342,5 +344,34 @@ def uploadPackageTripImage(country, destination, trip_id, package_trip_id):
 
     # Send notification to the dashboard
     flash("Image has been added", 'success')
+
+    return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
+
+# Deleting the Package Trip Image Data
+@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>/delete-image/<string:package_trip_image_id>?<string:file_name>', methods=['GET','POST'])
+@is_logged_in
+def deletePackageTripImage(country, destination, trip_id, package_trip_id, package_trip_image_id, file_name):
+    # -- DELETING THE FILE ---
+    # make the target to folder
+    target = os.path.join(APP_ROOT, 'static/images/package_trip')
+
+    # Fetch One Package Trip
+    package_trip_data = adminPackageTripModel.packageTripDataFetchOne(package_trip_id)
+
+    # Checking the Package Trip Image Profile
+    if package_trip_data['package_trip_image_profile'] == package_trip_image_id:
+        # Set package trip image profile to null
+        adminPackageTripModel.setPackageTripImageProfileNull(package_trip_id)
+
+    # deleting the file
+    path = "/".join([target, file_name])
+    os.remove(path)
+
+    # -- DELETING THE DATABASE ---
+    # Execute the query from the model
+    adminPackageTripModel.deletePackageTripImage(package_trip_image_id)
+
+    # showing the notification on the dashboard
+    flash('Package Trip Image has been deleted', 'danger')
 
     return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
