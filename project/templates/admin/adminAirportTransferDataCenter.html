@@ -97,6 +97,11 @@
                 <td>
                   <a href="/admin/aiport-transfer/{{country}}/{{destination}}/{{trip_data.trip_id}}/edit/{{airport_transfer_data.airport_transfer_id}}" class="btn btn-primary">Update</a>
                 </td>
+                <td>
+                  <form action="{{url_for('deleteAirportTransfer',country=country, destination=destination, trip_id=trip_data.trip_id, airport_transfer_id=airport_transfer_data.airport_transfer_id)}}" method="post">
+                    <input type="submit" class="btn btn-danger confirmation_delete" value="Delete">
+                  </form>
+                </td>
               </tr>
               {% endfor %}
             </tbody>

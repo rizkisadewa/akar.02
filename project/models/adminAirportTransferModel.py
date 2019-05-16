@@ -91,3 +91,20 @@ class adminAirportTransferModel(object):
 
         # Close the connection
         cur.close()
+
+    # Deleting the Airport Transfer Data
+    def deleteAirportTransfer(self, airport_transfer_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute Query
+        cur.execute('''
+            DELETE FROM airport_transfer WHERE airport_transfer_id = %s
+        ''', [airport_transfer_id])
+
+        # Commit to DB
+        mysql.connection.commit()
+
+        # close the DB
+        cur.close()

@@ -160,3 +160,17 @@ def airportTransferDataUpdate(country, destination, trip_id, airport_transfer_id
         country=country,
         trip_data=trip_data
     )
+
+# Airport Transfer Delete Data
+@app.route('/admin/aiport-transfer/<string:country>/<string:destination>/<string:trip_id>/delete/<string:airport_transfer_id>', methods=['GET','POST'])
+@is_logged_in
+def deleteAirportTransfer(country, destination, trip_id, airport_transfer_id):
+
+    # Execute the query of delte from the model
+    adminAirportTransferModel.deleteAirportTransfer(airport_transfer_id)
+
+    # Send the notification to the Dashboard
+    flash('Airport Transfer has been deleted', 'danger')
+
+    # Return the the Airport Transfer Center page
+    return redirect(url_for('airportTransferDataCenter', country=country, destination=destination, trip_id=trip_id))
