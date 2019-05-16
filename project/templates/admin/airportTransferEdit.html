@@ -23,7 +23,7 @@
       <div class="box box-info">
         <!-- .box-header -->
         <div class="box-header with-border">
-          <h3 class="box-title">Input Airport Transfer Data</h3>
+          <h3 class="box-title">Update Airport Transfer Data</h3>
         </div>
         <!-- /.box-header -->
 
@@ -57,7 +57,7 @@
 
           <!-- /.box-body -->
           <div class="box-footer">
-            <button type="submit" class="btn btn-info">Add Airport Transfer</button>
+            <button type="submit" class="btn btn-info">Update Airport Transfer</button>
           </div>
           <!-- /.box-footer -->
 
@@ -67,45 +67,6 @@
 
     </div>
     <!-- /Airport Transfer Add Form -->
-
-    <!-- Airport Transfer Data Table -->
-    <div class="col-md-12">
-      <div class="box">
-        <!-- .box-header -->
-        <div class="box-header">
-          <h3 class="box-title">Airport Transfer Data Tabel </h3>
-        </div>
-        <!-- /.box-header -->
-
-        <!-- .box-body -->
-        <div class="box-body">
-          <table class="table table-bordered table-hover">
-            <thead>
-              <tr>
-                <th>Airport Transfer ID</th>
-                <th>Airport Transfer Title</th>
-                <th>Created By</th>
-                <th colspan="2">Activity</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for airport_transfer_data in airport_transfer_data %}
-              <tr>
-                <td>{{airport_transfer_data.airport_transfer_id}}</td>
-                <td>{{airport_transfer_data.airport_transfer_title}}</td>
-                <td>{{airport_transfer_data.name}}</td>
-                <td>
-                  <a href="/admin/aiport-transfer/{{country}}/{{destination}}/{{trip_data.trip_id}}/edit/{{airport_transfer_data.airport_transfer_id}}" class="btn btn-primary">Update</a>
-                </td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-        <!-- /.box-body -->
-      </div>
-    </div>
-    <!-- /Airport Transfer Data Table -->
 
   </div>
 </section>

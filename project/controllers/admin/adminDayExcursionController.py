@@ -119,10 +119,10 @@ def dayExcursionDataUpdate(country, destination, trip_id, day_excursion_id):
     # Fetch Trip Data
     trip_data = adminTripModel.tripDataFetchOne(trip_id)
 
-    # Fit the Package Trip Form Class
+    # Fit the Day Excursion Form Class
     form = AddDayExcursionData(request.form)
 
-    # Populate Package Trip from fields
+    # Populate Day Excursions form fields
     form.day_excursion_title.data = day_excursion_data['day_excursion_title']
     form.inclusions.data = day_excursion_data['inclusions']
     form.estimation_time_start.data = day_excursion_data['estimation_time_start']

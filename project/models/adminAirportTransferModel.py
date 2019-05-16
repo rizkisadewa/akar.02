@@ -48,3 +48,46 @@ class adminAirportTransferModel(object):
 
         # return the variable
         return airport_transfer_data
+
+    # Fetch One the Data of Airport Transfer
+    def airportTransferDataFetchOne(self, airport_transfer_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute the query
+        cur.execute("SELECT * FROM airport_transfer WHERE airport_transfer_id = %s", [airport_transfer_id])
+
+        # Asign to the Variable
+        airport_transfer_data = cur.fetchone()
+
+        # Close the connection
+        cur.close()
+
+        return airport_transfer_data
+
+    # Updating the Airport Transfer Data
+    def updateAirportTransferData(self, airport_transfer_title, inclusions, pickup_point, drop_off_point, duration, airport_transfer_description, airport_transfer_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute Query
+        cur.execute('''
+            UPDATE airport_transfer
+            SET
+            airport_transfer_title = %s,
+            inclusions = %s,
+            pickup_point = %s,
+            drop_off_point = %s,
+            duration = %s,
+            airport_transfer_description = %s
+            WHERE
+            airport_transfer_id = %s
+        ''', (airport_transfer_title, inclusions, pickup_point, drop_off_point, duration, airport_transfer_description, airport_transfer_id))
+
+        # Commit to DB
+        mysql.connection.commit()
+
+        # Close the connection
+        cur.close()

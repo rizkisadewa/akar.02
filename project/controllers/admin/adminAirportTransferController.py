@@ -107,5 +107,56 @@ def airportTransferDataCenter(country, destination, trip_id):
         destination=destination,
         trip_id=trip_id,
         form=form,
-        airport_transfer_data=airport_transfer_data
+        airport_transfer_data=airport_transfer_data,
+        trip_data=trip_data
+    )
+
+# Airport Transfer Update Data
+@app.route('/admin/aiport-transfer/<string:country>/<string:destination>/<string:trip_id>/edit/<string:airport_transfer_id>', methods=['GET','POST'])
+@is_logged_in
+def airportTransferDataUpdate(country, destination, trip_id, airport_transfer_id):
+
+    # Fetch One Airport Transfer
+    airport_transfer_data = adminAirportTransferModel.airportTransferDataFetchOne(airport_transfer_id)
+
+    # Fetch Trip Data
+    trip_data = adminTripModel.tripDataFetchOne(trip_id)
+
+    # fit the Airport Transfer Form Class
+    form = AddAirportTransferData(request.form)
+
+    # Populate Airport Transfer form fields
+    form.airport_transfer_title.data = airport_transfer_data['airport_transfer_title']
+    form.inclusions.data = airport_transfer_data['inclusions']
+    form.pickup_point.data = airport_transfer_data['pickup_point']
+    form.drop_off_point.data = airport_transfer_data['drop_off_point']
+    form.duration.data = airport_transfer_data['duration']
+    form.airport_transfer_description.data = airport_transfer_data['airport_transfer_description']
+
+    # Update Airport Transfer Data
+    if request.method == 'POST' and form.validate():
+
+        # Asign the variable value from request form value
+        airport_transfer_title = request.form['airport_transfer_title']
+        inclusions = request.form['inclusions']
+        pickup_point = request.form['pickup_point']
+        drop_off_point = request.form['drop_off_point']
+        duration = request.form['duration']
+        airport_transfer_description = request.form['airport_transfer_description']
+
+        # Execute the query
+        adminAirportTransferModel.updateAirportTransferData(airport_transfer_title, inclusions, pickup_point, drop_off_point, duration, airport_transfer_description, airport_transfer_id)
+
+        # Send the notification to the dashboard
+        flash('Airport Transfer has been updated', 'success')
+
+        return redirect(url_for('airportTransferDataCenter', country=trip_data['country'], destination=trip_data['destination'], trip_id=trip_data['trip_id']))
+
+    return render_template(
+        'admin/airportTransferEdit.html',
+        form=form,
+        destination=destination,
+        airport_transfer_data=airport_transfer_data,
+        country=country,
+        trip_data=trip_data
     )
