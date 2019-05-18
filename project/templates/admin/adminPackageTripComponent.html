@@ -33,10 +33,10 @@
           <br>
           <div class="row">
             <div class="col-sm-3">
-              <a class="btn btn-info" href="/admin/package-trip-setting/{{country}}/{{destination}}/{{trip_id}}/component/{{package_trip_id}}/day-excursion">+ Day Excursion</a>
+              <a class="btn btn-info" href="{{url_for('componentPackageTripAddDayExcursion', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_data.package_trip_id)}}">+ Day Excursion</a>
             </div>
             <div class="col-sm-3">
-              <a class="btn btn-info" href="#">+ Airport Transfer</a>
+              <a class="btn btn-info" href="{{url_for('componentPackageTripAddAirportTransfer', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_data.package_trip_id)}}">+ Airport Transfer</a>
             </div>
             <div class="col-sm-3">
               <a class="btn btn-info" href="#">+ Sightseeing Transfer</a>
