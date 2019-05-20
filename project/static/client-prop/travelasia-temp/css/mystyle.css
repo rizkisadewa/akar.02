@@ -1,0 +1,13 @@
+.logo a img{
+  width: 100%;
+  max-width: 105px;
+  height: auto;
+}
+
+.main-menubar nav a{
+  color: #8BC53D;
+}
+
+.main-menubar nav a:hover{
+  color: #FF0062;
+}

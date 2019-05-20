@@ -7,33 +7,36 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin-prop/css/bootstrap.min.css') }}">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='admin-prop/css/font-awesome.min.css') }}"> -->
+  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/Ionicons/css/ionicons.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin-prop/css/Ionicons/css/ionicons.min.css') }}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/dist/css/AdminLTE.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin-prop/css/dist/css/AdminLTE.css') }}">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/dist/css/skins/_all-skins.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin-prop/css/dist/css/skins/_all-skins.css') }}">
   <!-- Morris chart -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/morris.js/morris.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin-prop/css/morris.js/morris.css') }}">
   <!-- jvectormap -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/jvectormap/jquery-jvectormap.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin-prop/css/jvectormap/jquery-jvectormap.css') }}">
   <!-- Date Picker -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin-prop/css/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-daterangepicker/daterangepicker.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin-prop/css/bootstrap-daterangepicker/daterangepicker.css') }}">
   <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin-prop/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 
   <!-- Bootstrap time Picker -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-timepicker.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin-prop/css/bootstrap-timepicker.min.css') }}">
 
   <!-- Own Style -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin-ownstyle.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin-prop/css/admin-ownstyle.css') }}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -117,7 +120,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="{{ url_for('static', filename='css/dist/img/Jepunku Logo Fixed.png') }}" class="img-circle" alt="User Image">
+          <img src="{{ url_for('static', filename='admin-prop/css/dist/img/Jepunku Logo Fixed.png') }}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>{{session['username']}}</p>
@@ -484,52 +487,52 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='admin-prop/js/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='admin-prop/js/jquery-ui.min.js') }}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button);
 </script>
 <!-- Bootstrap 3.3.7 -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='admin-prop/js/bootstrap.min.js') }}"></script>
 <!-- Morris.js charts -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/raphael.min.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/morris.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='admin-prop/js/raphael.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='admin-prop/js/morris.min.js') }}"></script>
 <!-- Sparkline -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.sparkline.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='admin-prop/js/jquery.sparkline.min.js') }}"></script>
 <!-- jvectormap -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-jvectormap-1.2.2.min.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-jvectormap-world-mill-en.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='admin-prop/js/jquery-jvectormap-1.2.2.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='admin-prop/js/jquery-jvectormap-world-mill-en.js') }}"></script>
 <!-- jQuery Knob Chart -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.knob.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='admin-prop/js/jquery.knob.min.js') }}"></script>
 <!-- daterangepicker -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/moment.min.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/daterangepicker.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='admin-prop/js/moment.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='admin-prop/js/daterangepicker.js') }}"></script>
 <!-- datepicker -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap-datepicker.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='admin-prop/js/bootstrap-datepicker.min.js') }}"></script>
 <!-- Bootstrap WYSIHTML5 -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap3-wysihtml5.all.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='admin-prop/js/bootstrap3-wysihtml5.all.min.js') }}"></script>
 <!-- Slimscroll -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.slimscroll.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='admin-prop/js/jquery.slimscroll.min.js') }}"></script>
 <!-- FastClick -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/fastclick.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='admin-prop/js/fastclick.js') }}"></script>
 <!-- AdminLTE App -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/adminlte.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='admin-prop/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='admin-prop/js/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/demo.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='admin-prop/js/demo.js') }}"></script>
 <!-- My Script -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/myscript.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='admin-prop/js/myscript.js') }}"></script>
 
 <!-- Select2 -->
-<script src="{{ url_for('static', filename='js/select2.full.min.js') }}"></script>
+<script src="{{ url_for('static', filename='admin-prop/js/select2.full.min.js') }}"></script>
 <!-- bootstrap time picker -->
-<script src="{{ url_for('static', filename='js/bootstrap-timepicker.min.js') }}"></script>
+<script src="{{ url_for('static', filename='admin-prop/js/bootstrap-timepicker.min.js') }}"></script>
 
 <!-- cusmtom jquery -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/myjquery.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='admin-prop/js/myjquery.js') }}"></script>
 
 <!-- CK Editor -->
 <script src="//cdn.ckeditor.com/4.11.4/basic/ckeditor.js"></script>

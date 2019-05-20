@@ -16,6 +16,7 @@ from project.models.adminTripModel import adminTripModel
 from project.models.adminServiceModel import adminServiceModel
 from project.models.adminModels import adminModel
 from project.models.adminDayExcursionModel import adminDayExcursionModel
+from project.models.adminItineraryModel import adminItineraryModel
 
 # an object from admin model
 adminPackageTripModel = adminPackageTripModel()
@@ -23,6 +24,7 @@ adminTripModel = adminTripModel()
 adminServiceModel = adminServiceModel()
 adminModel = adminModel()
 adminDayExcursionModel = adminDayExcursionModel()
+adminItineraryModel = adminItineraryModel()
 
 # Check if logged in
 def is_logged_in(f):
@@ -188,7 +190,7 @@ def componentPackageTrip(country, destination, trip_id, package_trip_id):
     day_excursion_data = adminDayExcursionModel.dayExcursionDataFetchOneServiceId(package_trip_data['service_id'])
 
     # Component Data
-    component_data = adminPackageTripModel.packageTripComponentData(package_trip_id, package_trip_id)
+    component_data = adminPackageTripModel.packageTripComponentData(package_trip_id, package_trip_id, package_trip_id, package_trip_id)
 
     # Fetch Image Data - Package Trip
     package_trip_image_data = adminPackageTripModel.packageTripImageDataFetch(package_trip_id)

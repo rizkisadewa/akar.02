@@ -8,11 +8,13 @@ from functools import wraps
 from project.models.adminPackageTripModel import adminPackageTripModel
 from project.models.adminAirportTransferModel import adminAirportTransferModel
 from project.models.adminPackageTripTRAirportTransferModel import adminPackageTripTRAirportTransferModel
+from project.models.adminItineraryModel import adminItineraryModel
 
 # an object from admin model
 adminPackageTripModel = adminPackageTripModel()
 adminAirportTransferModel = adminAirportTransferModel()
 adminPackageTripTRAirportTransferModel = adminPackageTripTRAirportTransferModel()
+adminItineraryModel = adminItineraryModel()
 
 # Check if logged in
 def is_logged_in(f):
@@ -28,6 +30,7 @@ def is_logged_in(f):
 # Add Component of Package Trip Form Class
 class AddComponentPackageTripData(Form):
     day_no = IntegerField(u'Day No :')
+    airport_transfer_id = IntegerField()
 
 # Add Airport Transfer to Package Trip Data
 @app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>/airport-transfer', methods=['GET','POST'])
@@ -46,10 +49,19 @@ def componentPackageTripAddAirportTransfer(country, destination, trip_id, packag
     # Add the Data
     if request.method == 'POST' and form.validate():
         day_no = form.day_no.data
-        airport_transfer_id = airport_transfer_data[0]['airport_transfer_id']
+        airport_transfer_id = form.airport_transfer_id.data
+
+        # Fetch One the airport_transfer_data
+        airport_transfer_fetch_one = adminAirportTransferModel.airportTransferDataFetchOne(airport_transfer_id)
+
+        # Execute Query : add the itinerary
+        adminItineraryModel.addItinerary(day_no, package_trip_id, airport_transfer_fetch_one['airpor_transfer_title'], airport_transfer_fetch_one['airpor_transfer_description'])
+
+        # Fetch the Itinerary data
+        itinerary_data = adminItineraryModel.lastUpdateItinerary()
 
         # Execute Query : add the data
-        adminPackageTripTRAirportTransferModel.addPackageTripAirportTransferData(airport_transfer_id, package_trip_id, day_no)
+        adminPackageTripTRAirportTransferModel.addPackageTripAirportTransferData(airport_transfer_id, package_trip_id, day_no, itinerary_data['itinerary_id'])
 
         # Send notification
         flash('Airport Transfer has been added as component', 'success')

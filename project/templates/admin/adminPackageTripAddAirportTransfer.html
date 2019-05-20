@@ -38,7 +38,7 @@
                 <label for="airport_transfer_title"></label>
                 <select class="form-control select2" name="airport_transfer_title">
                   {% for airport_transfer_data in airport_transfer_data %}
-                    <option value="{{airport_transfer_data.airport_transfer_title}}">{{airport_transfer_data.airport_transfer_title}}</option>
+                    <option value="{{airport_transfer_data.airport_transfer_id}}">{{airport_transfer_data.airport_transfer_title}}</option>
                   {% endfor %}
                 </select>
               </div>

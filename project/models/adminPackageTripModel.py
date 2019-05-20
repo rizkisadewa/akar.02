@@ -124,7 +124,7 @@ class adminPackageTripModel(object):
         cur.close()
 
     # Package Trip Component Data
-    def packageTripComponentData(self, package_trip_id, package_trip_id_2):
+    def packageTripComponentData(self, package_trip_id, package_trip_id_2, package_trip_id_3, package_trip_id_4):
 
         # Create a cursor
         cur = mysql.connection.cursor()
@@ -135,14 +135,26 @@ class adminPackageTripModel(object):
             `tr_package_trip_day_excursion`.`day_no`,
             `tr_package_trip_day_excursion`.`tr_package_trip_day_excursion_id`,
             `day_excursion`.`day_excursion_title`,
-            `package_trip`.`package_trip_name`
-            FROM `tr_package_trip_day_excursion`, `package_trip`, `day_excursion`
+            `package_trip`.`package_trip_name`,
+            `tr_package_trip_airport_transfer`.`day_no`
+
+            FROM
+            `tr_package_trip_day_excursion`,
+            `package_trip`,
+            `day_excursion`,
+            `tr_package_trip_airport_transfer`
+
             WHERE
             `package_trip`.`package_trip_id` = %s
             AND `tr_package_trip_day_excursion`.`package_trip_id` = %s
             AND `tr_package_trip_day_excursion`.`day_excursion_id` = `day_excursion`.`day_excursion_id`
-            ORDER BY day_no
-        ''', (package_trip_id, package_trip_id_2))
+            AND `tr_package_trip_airport_transfer`.`package_trip_id` = %s
+            AND `tr_package_trip_airport_transfer`.`airport_transfer_id` = %s
+
+            ORDER BY
+            `tr_package_trip_day_excursion`.`day_no`
+            AND `tr_package_trip_airport_transfer`.`day_no`
+        ''', (package_trip_id, package_trip_id_2, package_trip_id_3, package_trip_id_4))
 
         # Asign to the variable
         component_data = cur.fetchall()
@@ -164,8 +176,13 @@ class adminPackageTripModel(object):
             SELECT
             `tr_package_trip_day_excursion`.`day_no`,
             `tr_package_trip_day_excursion`.`tr_package_trip_day_excursion_id`,
-            `day_excursion`.`day_excursion_title`
-            FROM `tr_package_trip_day_excursion`, `package_trip`, `day_excursion`
+            `day_excursion`.`day_excursion_title`,
+            `tr_package_trip_airport_transfer`.`day_no`
+            FROM
+            `tr_package_trip_day_excursion`,
+            `package_trip`,
+            `day_excursion`,
+            `airport_transfer`
             WHERE
             `package_trip`.`package_trip_id` = %s
             AND `tr_package_trip_day_excursion`.`tr_package_trip_day_excursion_id` = %s
