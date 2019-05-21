@@ -109,3 +109,20 @@ class adminItineraryModel(object):
 
         # Close the connection
         cur.close()
+
+    # Delete the Itinerary Data
+    def deleteItineraryData(self, itinerary_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            DELETE FROM  itinerary WHERE itinerary_id = %s
+        ''', [itinerary_id])
+
+        # Commite to DB
+        mysql.connection.commit()
+
+        # Close the DB connection
+        cur.close()

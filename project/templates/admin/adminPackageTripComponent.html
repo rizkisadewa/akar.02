@@ -69,7 +69,7 @@
                     <a class="btn btn-primary" href="{{url_for('componentPackageTripEditAirportTransfer', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_data.package_trip_id, itinerary_id=component_data.itinerary_id)}}">Edit Day No</a>
                   </td>
                   <td>
-                    <form class="" action="{{url_for('componentPackageTripDeleteDayExcursion', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id, tr_package_trip_day_excursion_id=component_data.itinerary_id)}}" method="post">
+                    <form class="" action="{{url_for('componentPackageTripDeleteAirportTransfer', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_data.package_trip_id, itinerary_id=component_data.itinerary_id)}}" method="post">
                       <input type="submit" class="btn btn-danger confirmation_delete" value="Delete">
                     </form>
                   </td>

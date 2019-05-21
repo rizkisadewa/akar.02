@@ -108,7 +108,7 @@ def componentPackageTripEditAirportTransfer(country, destination, trip_id, packa
         adminPackageTripTRAirportTransferModel.updatePackageTripAirportTransferData(day_no, itinerary_id)
 
         # Send notification to the dashboard
-        flash('Airport Transfer in Itinerary has been update','success')
+        flash('Airport Transfer in Itinerary has been updated','success')
 
         return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
 
@@ -122,3 +122,19 @@ def componentPackageTripEditAirportTransfer(country, destination, trip_id, packa
         form=form,
         itinerary_data=itinerary_data
     )
+
+# Delete Airport Transfer to Package Trip Data
+@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>/airport-transfer/delete/<string:itinerary_id>', methods=['GET','POST'])
+@is_logged_in
+def componentPackageTripDeleteAirportTransfer(country, destination, trip_id, package_trip_id, itinerary_id):
+
+    # Execute query for update Day No of Itinerary Table
+    adminItineraryModel.deleteItineraryData(itinerary_id)
+
+    # Execute query for update Day No of Airport Transfer Transaction Table
+    adminPackageTripTRAirportTransferModel.deletePackageTripAirportTransferData(itinerary_id)
+
+    # Send notification to the dashboard
+    flash('Airport Transfer in Itinerary has been deleted','danger')
+
+    return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))

@@ -5,6 +5,7 @@ from project import mysql
 
 class adminPackageTripTRAirportTransferModel(object):
 
+    # Adding the Transaction for Airport Transfer to Itinerary
     def addPackageTripAirportTransferData(self, airport_transfer_id, package_trip_id, day_no, itinerary_id):
 
         # Create a cursor
@@ -23,6 +24,7 @@ class adminPackageTripTRAirportTransferModel(object):
         # Close connection
         cur.close()
 
+    # Updateing the Transaction for Airport Transfer to Itinerary
     def updatePackageTripAirportTransferData(self, day_no, itinerary_id):
 
         # Create a cursor
@@ -39,4 +41,21 @@ class adminPackageTripTRAirportTransferModel(object):
         mysql.connection.commit()
 
         # Close the connection
+        cur.close()
+
+    # Deleting the Transaction for Airport Transfer to Itinerary
+    def deletePackageTripAirportTransferData(self, itinerary_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            DELETE FROM  tr_package_trip_airport_transfer WHERE itinerary_id = %s
+        ''', [itinerary_id])
+
+        # Commite to DB
+        mysql.connection.commit()
+
+        # Close the DB connection
         cur.close()
