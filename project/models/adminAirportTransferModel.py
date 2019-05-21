@@ -56,7 +56,9 @@ class adminAirportTransferModel(object):
         cur = mysql.connection.cursor()
 
         # Execute the query
-        cur.execute("SELECT * FROM airport_transfer WHERE airport_transfer_id = %s", [airport_transfer_id])
+        cur.execute('''
+            SELECT * FROM airport_transfer WHERE airport_transfer_id = %s
+        ''', [airport_transfer_id])
 
         # Asign to the Variable
         airport_transfer_data = cur.fetchone()

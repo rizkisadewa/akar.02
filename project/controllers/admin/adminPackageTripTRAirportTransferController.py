@@ -55,7 +55,7 @@ def componentPackageTripAddAirportTransfer(country, destination, trip_id, packag
         airport_transfer_fetch_one = adminAirportTransferModel.airportTransferDataFetchOne(airport_transfer_id)
 
         # Execute Query : add the itinerary
-        adminItineraryModel.addItinerary(day_no, package_trip_id, airport_transfer_fetch_one['airpor_transfer_title'], airport_transfer_fetch_one['airpor_transfer_description'])
+        adminItineraryModel.addItinerary(day_no, package_trip_id, airport_transfer_fetch_one['airport_transfer_title'], airport_transfer_fetch_one['airport_transfer_description'], "Airport Transfer")
 
         # Fetch the Itinerary data
         itinerary_data = adminItineraryModel.lastUpdateItinerary()
@@ -69,7 +69,7 @@ def componentPackageTripAddAirportTransfer(country, destination, trip_id, packag
         return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
 
     return render_template(
-        'admin/adminPackageTripAddAirportTransfer.html',
+        'admin/adminPackageTripTRAddAirportTransfer.html',
         country=country,
         destination=destination,
         trip_id=trip_id,
@@ -77,4 +77,27 @@ def componentPackageTripAddAirportTransfer(country, destination, trip_id, packag
         package_trip_data=package_trip_data,
         form=form,
         airport_transfer_data=airport_transfer_data
+    )
+
+# Edit Airport Transfer to Package Trip Data
+@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>/airport-transfer/edit<string:itinerary_id>', methods=['GET','POST'])
+@is_logged_in
+def componentPackageTripEditAirportTransfer(country, destination, trip_id, package_trip_id, itinerary_id):
+    # Fetch One Package Trip Data from package_trip_id
+    package_trip_data = adminPackageTripModel.packageTripDataFetchOne(package_trip_id)
+
+    # Fit the Add Component of Package Trip Form Class
+    form = AddComponentPackageTripData(request.form)
+
+    # Fetch the Airport Transfer Data
+
+
+    return render_template(
+        'admin/adminPackageTripTREditAirportTransfer.html',
+        country=country,
+        destination=destination,
+        trip_id=trip_id,
+        package_trip_id=package_trip_id,
+        package_trip_data=package_trip_data,
+        form=form
     )

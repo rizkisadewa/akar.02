@@ -53,7 +53,8 @@
             <thead>
               <tr>
                 <th>Day No</th>
-                <th>Name of Service</th>
+                <th>Name of Itinerary</th>
+                <th>Itinerary Type</th>
                 <th colspan="2" style="text-align: center;">Activity</th>
               </tr>
             </thead>
@@ -61,15 +62,27 @@
               {% for component_data in component_data %}
               <tr>
                 <td>{{component_data.day_no}}</td>
-                <td>{{component_data.day_excursion_title}}</td>
+                <td>{{component_data.itinerary_title}}</td>
+                <td>{{component_data.type}}</td>
+                {% if component_data.type == "Airport Transfer" %}
+                  <td>
+                    <a class="btn btn-primary" href="{{url_for('componentPackageTripEditAirportTransfer', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_data.package_trip_id, itinerary_id=component_data.itinerary_id)}}">Edit Day No</a>
+                  </td>
+                  <td>
+                    <form class="" action="{{url_for('componentPackageTripDeleteDayExcursion', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id, tr_package_trip_day_excursion_id=component_data.itinerary_id)}}" method="post">
+                      <input type="submit" class="btn btn-danger confirmation_delete" value="Delete">
+                    </form>
+                  </td>
+                {% else %}
                 <td>
-                  <a class="btn btn-primary" href="/admin/package-trip-setting/{{country}}/{{destination}}/{{trip_id}}/component/{{package_trip_id}}/day-excursion/edit/{{component_data.tr_package_trip_day_excursion_id}}">Edit Day No</a>
+                  <a class="btn btn-primary" href="/admin/package-trip-setting/{{country}}/{{destination}}/{{trip_id}}/component/{{package_trip_id}}/day-excursion/edit/{{component_data.itinerary_id}}">Edit Day No</a>
                 </td>
                 <td>
-                  <form class="" action="{{url_for('componentPackageTripDeleteDayExcursion', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id, tr_package_trip_day_excursion_id=component_data.tr_package_trip_day_excursion_id)}}" method="post">
+                  <form class="" action="{{url_for('componentPackageTripDeleteDayExcursion', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id, tr_package_trip_day_excursion_id=component_data.itinerary_id)}}" method="post">
                     <input type="submit" class="btn btn-danger confirmation_delete" value="Delete">
                   </form>
                 </td>
+                {% endif %}
               </tr>
               {% endfor %}
 

@@ -1,0 +1,63 @@
+{% extends "layout/admin-layout-template.html" %}
+{% block body %}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Package Trip Center: {{destination}} in <strong>{{country}}</strong>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin/package-trip-setting/{{country}}/{{destination}}/{{trip_id}}">Select Package: {{package_trip_data.package_trip_name}}</a></li>
+    <li><a href="/admin/package-trip-setting/{{country}}/{{destination}}/{{trip_id}}/component/{{package_trip_id}}">Component Details</a></li>
+    <li class="active">Add Airport Transfer</li>
+  </ol>
+</section>
+<!-- /Content Header (Page header) -->
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <!-- Package Trip Component Add Form -->
+    <div class="col-md-12">
+      <div class="box box-info">
+        <!-- .box-header -->
+        <div class="box-header with-border">
+          <h3 class="box-title">Input Package Trip Component : {{package_trip_data.package_trip_name}}</h3>
+        </div>
+        <!-- /.box-header -->
+
+        <!-- form start -->
+        {% from "includes/_formhelpers.html" import render_field %}
+        <form action="" class="form-horizontal" method="post">
+          <div class="box-body">
+            <div class="row">
+              <div class="col-sm-3">
+                {{render_field(form.day_no, class="form-control")}}
+              </div>
+              <div class="col-sm-9">
+                <label for="airport_transfer_id"></label>
+                <select class="form-control select2" name="airport_transfer_id">
+                  {% for airport_transfer_data in airport_transfer_data %}
+                    <option value="{{airport_transfer_data.airport_transfer_id}}">{{airport_transfer_data.airport_transfer_title}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- /form start -->
+
+          <!-- .box-footer -->
+          <div class="box-footer">
+            <button type="submit" class="btn btn-info">Add Airport Transfer</button>
+          </div>
+          <!-- /.box-footer -->
+        </form>
+        <!-- /form start -->
+      </div>
+    </div>
+    <!-- /Package Trip Component Add Form -->
+  </div>
+</section>
+<!-- /Main content -->
+
+{% endblock %}

@@ -190,7 +190,7 @@ def componentPackageTrip(country, destination, trip_id, package_trip_id):
     day_excursion_data = adminDayExcursionModel.dayExcursionDataFetchOneServiceId(package_trip_data['service_id'])
 
     # Component Data
-    component_data = adminPackageTripModel.packageTripComponentData(package_trip_id, package_trip_id, package_trip_id, package_trip_id)
+    component_data = adminItineraryModel.itineraryFetchData(package_trip_id)
 
     # Fetch Image Data - Package Trip
     package_trip_image_data = adminPackageTripModel.packageTripImageDataFetch(package_trip_id)

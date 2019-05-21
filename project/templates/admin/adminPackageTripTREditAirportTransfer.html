@@ -9,7 +9,7 @@
   <ol class="breadcrumb">
     <li><a href="/admin/package-trip-setting/{{country}}/{{destination}}/{{trip_id}}">Select Package: {{package_trip_data.package_trip_name}}</a></li>
     <li><a href="/admin/package-trip-setting/{{country}}/{{destination}}/{{trip_id}}/component/{{package_trip_id}}">Component Details</a></li>
-    <li class="active">Add Airport Transfer</li>
+    <li class="active">Edit Airport Transfer</li>
   </ol>
 </section>
 <!-- /Content Header (Page header) -->
@@ -35,8 +35,8 @@
                 {{render_field(form.day_no, class="form-control")}}
               </div>
               <div class="col-sm-9">
-                <label for="airport_transfer_title"></label>
-                <select class="form-control select2" name="airport_transfer_title">
+                <label for="airport_transfer_id"></label>
+                <select class="form-control select2" name="airport_transfer_id">
                   {% for airport_transfer_data in airport_transfer_data %}
                     <option value="{{airport_transfer_data.airport_transfer_id}}">{{airport_transfer_data.airport_transfer_title}}</option>
                   {% endfor %}

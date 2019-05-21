@@ -132,7 +132,7 @@ class adminPackageTripModel(object):
         # Execute query
         cur.execute('''
             SELECT
-            `tr_package_trip_day_excursion`.`day_no`,
+            `itinerary`.`day_no`,
             `tr_package_trip_day_excursion`.`tr_package_trip_day_excursion_id`,
             `day_excursion`.`day_excursion_title`,
             `package_trip`.`package_trip_name`,

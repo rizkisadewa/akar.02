@@ -6,7 +6,7 @@ from project import mysql
 class adminItineraryModel(object):
 
     # Add the Itinerary Data to the Database
-    def addItinerary(self, day_no, package_trip_id, airpor_transfer_title, airpor_transfer_description):
+    def addItinerary(self, day_no, package_trip_id, itinerary_title, itinerary_detail, type):
 
         # create a cursor
         cur = mysql.connection.cursor()
@@ -14,9 +14,9 @@ class adminItineraryModel(object):
         # Execute query
         cur.execute('''
             INSERT INTO itinerary
-            (day_no, package_trip_id, itinerary_title, itinerary_detail)
-            VALUES (%s, %s, %s, %s)
-        ''', (day_no, package_trip_id, airpor_transfer_title, airpor_transfer_description))
+            (day_no, package_trip_id, itinerary_title, itinerary_detail, type)
+            VALUES (%s, %s, %s, %s, %s)
+        ''', (day_no, package_trip_id, itinerary_title, itinerary_detail, type))
 
         # Commit to DB
         mysql.connection.commit()
@@ -54,5 +54,16 @@ class adminItineraryModel(object):
         # Execute query
         cur.execute('''
             SELECT
-            `itinerary`.`day_no`
-        ''')
+            *
+            FROM `itinerary`
+            WHERE `itinerary`.`package_trip_id` = %s
+        ''', [package_trip_id])
+
+        # Asign to the variable
+        itinerary_data = cur.fetchall()
+
+        # Close the connection
+        cur.close()
+
+        # return the variable
+        return itinerary_data
