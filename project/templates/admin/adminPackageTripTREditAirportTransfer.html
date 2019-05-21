@@ -36,11 +36,7 @@
               </div>
               <div class="col-sm-9">
                 <label for="airport_transfer_id"></label>
-                <select class="form-control select2" name="airport_transfer_id">
-                  {% for airport_transfer_data in airport_transfer_data %}
-                    <option value="{{airport_transfer_data.airport_transfer_id}}">{{airport_transfer_data.airport_transfer_title}}</option>
-                  {% endfor %}
-                </select>
+                <p>{{itinerary_data.itinerary_title}}</p>
               </div>
             </div>
           </div>
@@ -48,7 +44,7 @@
 
           <!-- .box-footer -->
           <div class="box-footer">
-            <button type="submit" class="btn btn-info">Add Airport Transfer</button>
+            <button type="submit" class="btn btn-info">Update Airport Transfer</button>
           </div>
           <!-- /.box-footer -->
         </form>

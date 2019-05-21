@@ -67,3 +67,45 @@ class adminItineraryModel(object):
 
         # return the variable
         return itinerary_data
+
+    # Fetch the itinerary refer to itinerary ID
+    def itineraryFetchDataFromId(self, itinerary_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            SELECT
+            *
+            FROM itinerary
+            WHERE itinerary_id = %s
+        ''', [itinerary_id])
+
+        # Asign to the variable
+        itinerary_data = cur.fetchone()
+
+        # Close the connection
+        cur.close()
+
+        # return the variable
+        return itinerary_data
+
+    # Update the day no in Itinerary
+    def updateDayNo(self, day_no, itinerary_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            UPDATE itinerary
+            SET day_no = %s
+            WHERE itinerary_id = %s
+        ''', (day_no, itinerary_id))
+
+        # Commite to the DB
+        mysql.connection.commit()
+
+        # Close the connection
+        cur.close()

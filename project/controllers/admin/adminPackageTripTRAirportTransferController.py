@@ -89,8 +89,28 @@ def componentPackageTripEditAirportTransfer(country, destination, trip_id, packa
     # Fit the Add Component of Package Trip Form Class
     form = AddComponentPackageTripData(request.form)
 
-    # Fetch the Airport Transfer Data
+    # Fetch the Itinerary Data
+    itinerary_data = adminItineraryModel.itineraryFetchDataFromId(itinerary_id)
 
+    # Populate Itinerary Data from fields
+    form.day_no.data = itinerary_data['day_no']
+
+    # Update Day No
+    if request.method == 'POST' and form.validate():
+
+        # asign the variable value from request form value
+        day_no = request.form['day_no']
+
+        # Execute query for update Day No of Itinerary Table
+        adminItineraryModel.updateDayNo(day_no, itinerary_id)
+
+        # Execute query for update Day No of Airport Transfer Transaction Table
+        adminPackageTripTRAirportTransferModel.updatePackageTripAirportTransferData(day_no, itinerary_id)
+
+        # Send notification to the dashboard
+        flash('Airport Transfer in Itinerary has been update','success')
+
+        return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
 
     return render_template(
         'admin/adminPackageTripTREditAirportTransfer.html',
@@ -99,5 +119,6 @@ def componentPackageTripEditAirportTransfer(country, destination, trip_id, packa
         trip_id=trip_id,
         package_trip_id=package_trip_id,
         package_trip_data=package_trip_data,
-        form=form
+        form=form,
+        itinerary_data=itinerary_data
     )

@@ -22,3 +22,21 @@ class adminPackageTripTRAirportTransferModel(object):
 
         # Close connection
         cur.close()
+
+    def updatePackageTripAirportTransferData(self, day_no, itinerary_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            UPDATE tr_package_trip_airport_transfer
+            SET day_no = %s
+            WHERE itinerary_id = %s
+        ''', (day_no, itinerary_id))
+
+        # Commite to the DB
+        mysql.connection.commit()
+
+        # Close the connection
+        cur.close()
