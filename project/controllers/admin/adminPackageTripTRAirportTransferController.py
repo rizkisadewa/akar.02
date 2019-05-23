@@ -128,10 +128,10 @@ def componentPackageTripEditAirportTransfer(country, destination, trip_id, packa
 @is_logged_in
 def componentPackageTripDeleteAirportTransfer(country, destination, trip_id, package_trip_id, itinerary_id):
 
-    # Execute query for update Day No of Itinerary Table
+    # Execute query for delete Itinerary Table
     adminItineraryModel.deleteItineraryData(itinerary_id)
 
-    # Execute query for update Day No of Airport Transfer Transaction Table
+    # Execute query for delete Airport Transfer Transaction Table
     adminPackageTripTRAirportTransferModel.deletePackageTripAirportTransferData(itinerary_id)
 
     # Send notification to the dashboard

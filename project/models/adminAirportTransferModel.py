@@ -36,7 +36,8 @@ class adminAirportTransferModel(object):
             `airport_transfer`.`airport_transfer_title`,
             `admin`.`name`
             FROM `airport_transfer`, `admin`, `service`
-            WHERE `airport_transfer`.`admin_id` = `admin`.`admin_id` AND `airport_transfer`.`service_id` = `service`.`service_id`
+            WHERE `airport_transfer`.`admin_id` = `admin`.`admin_id`
+            AND `airport_transfer`.`service_id` = `service`.`service_id`
             AND `service`.`trip_id` = %s
         ''', [trip_id])
 

@@ -107,21 +107,6 @@ class adminPackageTripModel(object):
         # Close
         cur.close()
 
-    # Add the Package Trip Component
-    def addPackageTripComponent(self, day_excursion_id, package_trip_id, day_no):
-
-        # Create a cursor
-        cur = mysql.connection.cursor()
-
-        # Execute query
-        cur.execute("INSERT INTO tr_package_trip_day_excursion(day_excursion_id, package_trip_id, day_no) VALUES(%s, %s, %s)",
-        (day_excursion_id, package_trip_id, day_no))
-
-        # Commit to DB
-        mysql.connection.commit()
-
-        # Close connection
-        cur.close()
 
     # Package Trip Component Data
     def packageTripComponentData(self, package_trip_id, package_trip_id_2, package_trip_id_3, package_trip_id_4):
@@ -197,42 +182,6 @@ class adminPackageTripModel(object):
 
         # return the variable
         return component_data
-
-    # Package Trip component Update Day No
-    def packageTripComponentUpdateData(self, day_no, tr_package_trip_day_excursion_id):
-
-        # Create a cursor
-        cur = mysql.connection.cursor()
-
-        # Execute Query
-        cur.execute('''
-            UPDATE tr_package_trip_day_excursion
-            SET
-            day_no = %s
-            WHERE
-            tr_package_trip_day_excursion_id = %s
-        ''', (day_no, tr_package_trip_day_excursion_id))
-
-        # Commit to DB
-        mysql.connection.commit()
-
-        # Close connection
-        cur.close()
-
-    # Package Trip component Delete Data
-    def deletePackageTripComponentData(self, tr_package_trip_day_excursion_id):
-
-        # Create a cursor
-        cur = mysql.connection.cursor()
-
-        # Execute
-        cur.execute("DELETE FROM tr_package_trip_day_excursion WHERE tr_package_trip_day_excursion_id = %s", [tr_package_trip_day_excursion_id])
-
-        # Commit to DB
-        mysql.connection.commit()
-
-        # Close
-        cur.close()
 
     # Package Trip Image
     def addPackageTripImageData(self, path):

@@ -36,10 +36,10 @@
                 {{render_field(form.day_no, class="form-control")}}
               </div>
               <div class="col-sm-9">
-                <label for="day_excursion_title">Day Excursion Input : </label>
-                <select class="form-control select2" name="day_excursion_title">
+                <label for="day_excursion_id">Day Excursion Input : </label>
+                <select class="form-control select2" name="day_excursion_id">
                   {% for day_excursion_data in day_excursion_data %}
-                  <option value="{{day_excursion_data.day_excursion_title}}">ID : {{day_excursion_data.day_excursion_id}} - {{day_excursion_data.day_excursion_title}}</option>
+                  <option value="{{day_excursion_data.day_excursion_id}}">{{day_excursion_data.day_excursion_title}}</option>
                   {% endfor %}
                 </select>
               </div>
@@ -47,10 +47,10 @@
           </div>
 
           <!-- /.box-body -->
-          
+
           <!-- .box-footer -->
           <div class="box-footer">
-            <button type="submit" class="btn btn-info">Add Component</button>
+            <button type="submit" class="btn btn-info">Add Day Excursion</button>
           </div>
           <!-- /.box-footer -->
         </form>

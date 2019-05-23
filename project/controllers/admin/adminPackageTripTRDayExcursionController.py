@@ -10,6 +10,8 @@ from project.models.adminTripModel import adminTripModel
 from project.models.adminServiceModel import adminServiceModel
 from project.models.adminModels import adminModel
 from project.models.adminDayExcursionModel import adminDayExcursionModel
+from project.models.adminItineraryModel import adminItineraryModel
+from project.models.adminPackageTripTRDayExcursionModel import adminPackageTripTRDayExcursionModel
 
 # an object from admin model
 adminPackageTripModel = adminPackageTripModel()
@@ -17,6 +19,8 @@ adminTripModel = adminTripModel()
 adminServiceModel = adminServiceModel()
 adminModel = adminModel()
 adminDayExcursionModel = adminDayExcursionModel()
+adminItineraryModel = adminItineraryModel()
+adminPackageTripTRDayExcursionModel = adminPackageTripTRDayExcursionModel()
 
 
 # Check if logged in
@@ -34,6 +38,7 @@ def is_logged_in(f):
 # Add Component of Package Trip Form Class
 class AddComponentPackageTripData(Form):
     day_no = IntegerField(u'Day No :')
+    day_excursion_id = IntegerField()
 
 
 # Add Day Excursion to Package Trip Data
@@ -48,15 +53,24 @@ def componentPackageTripAddDayExcursion(country, destination, trip_id, package_t
     form = AddComponentPackageTripData(request.form)
 
     # Fetch the Day Excursion Data
-    day_excursion_data = adminDayExcursionModel.dayExcursionDataFetchOneServiceId(package_trip_data['service_id'])
+    day_excursion_data = adminDayExcursionModel.dayExcursionDataFetchOneServiceId(trip_id)
 
     # Add the Data
     if request.method == 'POST' and form.validate():
         day_no = form.day_no.data
-        day_excursion_id = day_excursion_data[0]['day_excursion_id']
+        day_excursion_id = form.day_excursion_id.data
+
+        # Fetch One the Day Excursion Data
+        day_excursion_fetch_one = adminDayExcursionModel.dayExcursionDataFetchOne(day_excursion_id)
+
+        # Execute query : ad the Itinerary
+        adminItineraryModel.addItinerary(day_no, package_trip_id, day_excursion_fetch_one['day_excursion_title'], day_excursion_fetch_one['day_excursions_description'], "Day Excursion")
+
+        # Fetch the Itinerary Data
+        itinerary_data = adminItineraryModel.lastUpdateItinerary()
 
         # Execute Query : add the data
-        adminPackageTripModel.addPackageTripComponent(day_excursion_id, package_trip_id, day_no)
+        adminPackageTripTRDayExcursionModel.addPackageTripDayExcursionData(day_excursion_id, package_trip_id, day_no, itinerary_data['itinerary_id'])
 
         # send notification
         flash('Package Trip Component Added', 'success')
@@ -64,7 +78,7 @@ def componentPackageTripAddDayExcursion(country, destination, trip_id, package_t
         return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
 
     return render_template(
-        'admin/adminPackageTripAddDayExcursion.html',
+        'admin/adminPackageTripTRAddDayExcursion.html',
         country=country,
         destination=destination,
         trip_id=trip_id,
@@ -74,9 +88,9 @@ def componentPackageTripAddDayExcursion(country, destination, trip_id, package_t
         day_excursion_data=day_excursion_data)
 
 # Edit Day Excursion Day No
-@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>/day-excursion/edit/<string:tr_package_trip_day_excursion_id>', methods=['POST', 'GET'])
+@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>/day-excursion/edit/<string:itinerary_id>', methods=['POST', 'GET'])
 @is_logged_in
-def componentPackageTripEditDayExcursion(country, destination, trip_id, package_trip_id, tr_package_trip_day_excursion_id):
+def componentPackageTripEditDayExcursion(country, destination, trip_id, package_trip_id, itinerary_id):
 
     # Fetch One Package Trip Data from package_trip_id
     package_trip_data = adminPackageTripModel.packageTripDataFetchOne(package_trip_id)
@@ -84,14 +98,11 @@ def componentPackageTripEditDayExcursion(country, destination, trip_id, package_
     # Fit the Add Component of Package Trip Form Class
     form = AddComponentPackageTripData(request.form)
 
-    # Fetch the Day Excursion Data
-    day_excursion_data = adminDayExcursionModel.dayExcursionDataFetchOneServiceId(package_trip_data['service_id'])
-
-    # Fetch Package Trip Component
-    component_data = adminPackageTripModel.packageTripComponentDataFetchOne(package_trip_id, tr_package_trip_day_excursion_id)
+    # Fetch the Itinerary Data
+    itinerary_data = adminItineraryModel.itineraryFetchDataFromId(itinerary_id)
 
     # Populate Package Trip Component from fields
-    form.day_no.data = component_data['day_no']
+    form.day_no.data = itinerary_data['day_no']
 
     # Update Package Trip Data
     if request.method == 'POST' and form.validate():
@@ -99,8 +110,11 @@ def componentPackageTripEditDayExcursion(country, destination, trip_id, package_
         # asign the variable value from request form value
         day_no = request.form['day_no']
 
-        # Execute the query
-        adminPackageTripModel.packageTripComponentUpdateData(day_no, tr_package_trip_day_excursion_id)
+        # Execute query for update Day No of Itinerary Table
+        adminItineraryModel.updateDayNo(day_no, itinerary_id)
+
+        # Execute query for update Day No of Day Excursion Transaction
+        adminPackageTripTRDayExcursionModel.updatePackageTripDayExcursionData(day_no, itinerary_id)
 
         # Send notification to the dashboard
         flash('Package Trip Compnent has been updated', 'success')
@@ -108,24 +122,26 @@ def componentPackageTripEditDayExcursion(country, destination, trip_id, package_
         return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
 
     return render_template(
-        'admin/adminPackageTripEditDayExcursion.html',
+        'admin/adminPackageTripTREditDayExcursion.html',
         country=country,
         destination=destination,
         trip_id=trip_id,
         package_trip_id=package_trip_id,
         package_trip_data=package_trip_data,
         form=form,
-        day_excursion_data=day_excursion_data,
-        component_data=component_data)
+        itinerary_data=itinerary_data
+    )
 
 # Delete the Day Excursion from Package Trip
-@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>/day-excursion/delete/<string:tr_package_trip_day_excursion_id>',methods=['GET','POST'])
+@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>/day-excursion/delete/<string:itinerary_id>',methods=['GET','POST'])
 @is_logged_in
-def componentPackageTripDeleteDayExcursion(country, destination, trip_id, package_trip_id, tr_package_trip_day_excursion_id):
+def componentPackageTripDeleteDayExcursion(country, destination, trip_id, package_trip_id, itinerary_id):
 
-    # Execute query from the model
-    adminPackageTripModel.deletePackageTripComponentData(tr_package_trip_day_excursion_id)
+    # Execute query for deleting Itinerary Table
+    adminItineraryModel.deleteItineraryData(itinerary_id)
 
+    # Execute query for deleting Day Excursion Transaction Table
+    adminPackageTripTRDayExcursionModel.deletePackageTripDayExcursionData(itinerary_id)
 
     # Send notification to the dashboard
     flash('Package Trip Compnent has been deleted', 'danger')
