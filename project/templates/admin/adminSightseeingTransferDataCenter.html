@@ -96,6 +96,11 @@
                 <td>
                   <a href="{{url_for('sightseeingTransferDataUpdate', country=country, destination=destination, trip_id=trip_id, sightseeing_transfer_id=sightseeing_transfer_data.sightseeing_transfer_id)}}" class="btn btn-primary">Edit</a>
                 </td>
+                <td>
+                  <form class="" action="{{url_for('deleteSightseeingTransfer', country=country, destination=destination, trip_id=trip_id, sightseeing_transfer_id=sightseeing_transfer_data.sightseeing_transfer_id)}}" method="post">
+                    <input type="submit" name="" value="Delete" class="btn btn-danger confirmation_delete">
+                  </form>
+                </td>
               </tr>
               {% endfor %}
             </tbody>

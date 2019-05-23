@@ -172,5 +172,5 @@ def deleteAirportTransfer(country, destination, trip_id, airport_transfer_id):
     # Send the notification to the Dashboard
     flash('Airport Transfer has been deleted', 'danger')
 
-    # Return the the Airport Transfer Center page
+    # Return to the Airport Transfer Center page
     return redirect(url_for('airportTransferDataCenter', country=country, destination=destination, trip_id=trip_id))

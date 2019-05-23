@@ -112,7 +112,7 @@ def sightseeingTransferDataCenter(country, destination, trip_id):
         sightseeing_transfer_data=sightseeing_transfer_data
     )
 
-# Sightseeing Transfer Update Data
+# Updating Sightseeing Transfer Data
 @app.route('/admin/sightseeing-transfer-setting/<string:country>/<string:destination>/<string:trip_id>/edit/<string:sightseeing_transfer_id>', methods=['GET','POST'])
 @is_logged_in
 def sightseeingTransferDataUpdate(country, destination, trip_id, sightseeing_transfer_id):
@@ -161,3 +161,17 @@ def sightseeingTransferDataUpdate(country, destination, trip_id, sightseeing_tra
         form=form,
         trip_data=trip_data
     )
+
+# Deleting Sightseeing Transfer Data
+@app.route('/admin/sightseeing-transfer-setting/<string:country>/<string:destination>/<string:trip_id>/delete/<string:sightseeing_transfer_id>', methods=['GET','POST'])
+@is_logged_in
+def deleteSightseeingTransfer(country, destination, trip_id, sightseeing_transfer_id):
+
+    # Execute the query of delete from the model
+    adminSightseeingTransferModel.deleteSightseeingTransfer(sightseeing_transfer_id)
+
+    # Send the notification to the Dashboard
+    flash('Sightseeing Transfer has been deleted', 'danger')
+
+    # Return to the Sightseeing Transfer Data Center  
+    return redirect(url_for('sightseeingTransferDataCenter', country=country, destination=destination, trip_id=trip_id))

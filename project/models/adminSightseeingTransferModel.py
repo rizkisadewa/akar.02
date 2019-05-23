@@ -94,3 +94,20 @@ class adminSightseeingTransferModel(object):
 
         # Close the connection
         cur.close()
+
+    # Deleting the Data for Sightseeing Transfer
+    def deleteSightseeingTransfer(self, sightseeing_transfer_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute Query
+        cur.execute('''
+            DELETE FROM sightseeing_transfer WHERE sightseeing_transfer_id = %s
+        ''', [sightseeing_transfer_id])
+
+        # Commit to DB
+        mysql.connection.commit()
+
+        # close the DB
+        cur.close()
