@@ -111,3 +111,53 @@ def sightseeingTransferDataCenter(country, destination, trip_id):
         form=form,
         sightseeing_transfer_data=sightseeing_transfer_data
     )
+
+# Sightseeing Transfer Update Data
+@app.route('/admin/sightseeing-transfer-setting/<string:country>/<string:destination>/<string:trip_id>/edit/<string:sightseeing_transfer_id>', methods=['GET','POST'])
+@is_logged_in
+def sightseeingTransferDataUpdate(country, destination, trip_id, sightseeing_transfer_id):
+
+    # Fetch One Sightseeing Transfer
+    sightseeing_transfer_data = adminSightseeingTransferModel.sightseeingTransferDataFetchOne(sightseeing_transfer_id)
+
+    # Fetch Trip Data
+    trip_data = adminTripModel.tripDataFetchOne(trip_id)
+
+    # fit the Sightseeing Transfer Form class
+    form = AddSightSeeingTransferData(request.form)
+
+    # Populate Sightseeing Transfer form fields
+    form.sightseeing_transfer_title.data = sightseeing_transfer_data['sightseeing_transfer_title']
+    form.inclusions.data = sightseeing_transfer_data['inclusions']
+    form.pickup_point.data = sightseeing_transfer_data['pickup_point']
+    form.drop_off_point.data = sightseeing_transfer_data['drop_off_point']
+    form.duration.data = sightseeing_transfer_data['duration']
+    form.sightseeing_transfer_description.data = sightseeing_transfer_data['sightseeing_transfer_description']
+
+    # Update Sightseeing Transfer Data
+    if request.method == 'POST' and form.validate():
+
+        # Asign the variable value from request form value
+        sightseeing_transfer_title = request.form['sightseeing_transfer_title']
+        inclusions = request.form['inclusions']
+        pickup_point = request.form['pickup_point']
+        drop_off_point = request.form['drop_off_point']
+        duration = request.form['duration']
+        sightseeing_transfer_description = request.form['sightseeing_transfer_description']
+
+        # Execute the query
+        adminSightseeingTransferModel.updateSightseeingTransferData(sightseeing_transfer_title, inclusions , pickup_point , drop_off_point, duration, sightseeing_transfer_description, sightseeing_transfer_id)
+
+        # Send the notification to the dashboard
+        flash('Sightseeing Transfer has been updated', 'success')
+
+        return redirect(url_for('sightseeingTransferDataCenter', country=country, destination=destination, trip_id=trip_id))
+
+    return render_template(
+        'admin/adminSightseeingTransferEdit.html',
+        country=country,
+        destination=destination,
+        trip_id=trip_id,
+        form=form,
+        trip_data=trip_data
+    )

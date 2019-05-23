@@ -49,3 +49,48 @@ class adminSightseeingTransferModel(object):
 
         # return the variable
         return sightseeing_transfer_data
+
+    # Fetch One the Data Refer to sightseeing_transfer_id
+    def sightseeingTransferDataFetchOne(self, sightseeing_transfer_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute the query
+        cur.execute('''
+            SELECT * FROM sightseeing_transfer WHERE sightseeing_transfer_id = %s
+        ''', [sightseeing_transfer_id])
+
+        # Asign to the Variable
+        sightseeing_transfer_data = cur.fetchone()
+
+        # Close the connection
+        cur.close()
+
+        return sightseeing_transfer_data
+
+    # Updating the Data for Sightseeing Transfer
+    def updateSightseeingTransferData(self, sightseeing_transfer_title, inclusions , pickup_point , drop_off_point, duration, sightseeing_transfer_description, sightseeing_transfer_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute Query
+        cur.execute('''
+            UPDATE sightseeing_transfer
+            SET
+            sightseeing_transfer_title = %s,
+            inclusions = %s,
+            pickup_point = %s,
+            drop_off_point = %s,
+            duration = %s,
+            sightseeing_transfer_description = %s
+            WHERE
+            sightseeing_transfer_id = %s
+        ''', (sightseeing_transfer_title, inclusions , pickup_point , drop_off_point, duration, sightseeing_transfer_description, sightseeing_transfer_id))
+
+        # Commit to DB
+        mysql.connection.commit()
+
+        # Close the connection
+        cur.close()

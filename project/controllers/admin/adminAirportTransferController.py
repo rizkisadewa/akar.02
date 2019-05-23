@@ -153,7 +153,7 @@ def airportTransferDataUpdate(country, destination, trip_id, airport_transfer_id
         return redirect(url_for('airportTransferDataCenter', country=trip_data['country'], destination=trip_data['destination'], trip_id=trip_data['trip_id']))
 
     return render_template(
-        'admin/airportTransferEdit.html',
+        'admin/adminAirportTransferEdit.html',
         form=form,
         destination=destination,
         airport_transfer_data=airport_transfer_data,
