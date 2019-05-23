@@ -1,0 +1,54 @@
+{% extends "layout/admin-layout-template.html" %}
+{% block body %}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Sightseeing Transfer Setting
+    <small>Select Country</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+    <li class="active">Select Country</li>
+  </ol>
+</section>
+
+<!-- /Content Header (Page header) -->
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Country Selection</h3>
+        </div>
+        <div class="box-body">
+          <table id="example2" class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Country</th>
+                <th>Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in range(0, country_data|length)%}
+              <tr>
+                <td>{{i+1}}</td>
+                <td>{{country_data[i].country}}</td>
+                <td><a href="/admin/sightseeing-transfer-setting/{{country_data[i].country}}" class="btn btn-primary">Select</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main content -->
+
+
+{% endblock %}

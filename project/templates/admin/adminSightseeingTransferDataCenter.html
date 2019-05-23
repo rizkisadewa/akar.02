@@ -1,0 +1,115 @@
+{% extends "layout/admin-layout-template.html" %}
+{% block body %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Sightseeing Transfer Center: {{destination}} in <strong>{{country}}</strong>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+    <li><a href="/admin/sightseeing-transfer-setting">Select Country : {{country}}</a></li>
+    <li><a href="/admin/sightseeing-transfer-setting{{country}}">Select Destination : {{destination}}</a></li>
+    <li class="active">Sightseeing Transfer Center</li>
+  </ol>
+</section>
+
+<!-- Content Header (Page header) -->
+<section class="content">
+  <div class="row">
+
+    <!-- Sightseeing Transfer Add Form -->
+    <div class="col-md-12">
+      <div class="box box-info">
+
+        <!-- .box-header -->
+        <div class="box-header with-border">
+          <h3 class="box-title">Input Sightseeing Transfer Data</h3>
+        </div>
+        <!-- /.box-header -->
+
+        <!-- form start -->
+        {% from "includes/_formhelpers.html" import render_field %}
+        <form class="form-horizontal" action="" method="post">
+          <!-- .box-body -->
+          <div class="box-body">
+            <div class="col-sm-6">
+              {{render_field(form.sightseeing_transfer_title, class="form-control")}}
+            </div>
+            <div class="col-sm-6">
+              {{render_field(form.inclusions, class="form-control")}}
+            </div>
+            <div class="col-sm-6">
+              {{render_field(form.pickup_point, class="form-control")}}
+            </div>
+            <div class="col-sm-6">
+              {{render_field(form.drop_off_point, class="form-control")}}
+            </div>
+            <div class="col-sm-6">
+              {{render_field(form.duration, class="form-control")}}
+            </div>
+
+            <div class="col-sm-12">
+              {{render_field(form.sightseeing_transfer_description, class="form-control", id="editor")}}
+            </div>
+          </div>
+
+          <!-- /.box-body -->
+
+          <!-- .box-footer -->
+          <div class="box-footer">
+            <button type="submit" class="btn btn-info" name="button">Add Sightseeing Transfer</button>
+          </div>
+          <!-- /.box-footer -->
+        </form>
+        <!-- form finish -->
+      </div>
+    </div>
+    <!-- /Sightseeing Transfer Add Form -->
+
+    <!-- Sightseeing Transfer Table -->
+    <div class="col-md-12">
+      <div class="box">
+
+        <!-- .box-header -->
+        <div class="box-header">
+          <h3 class="box-title">Sightseeing Transfer</h3>
+        </div>
+        <!-- /.box-header -->
+
+        <!-- .box-body -->
+        <div class="box-body">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Sightseeing Transfer ID</th>
+                <th>Sightseeing Transfer Title</th>
+                <th>Created By</th>
+                <th colspan="2" style="text-align: center;">Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for sightseeing_transfer_data in sightseeing_transfer_data %}
+              <tr>
+                <td>{{sightseeing_transfer_data.sightseeing_transfer_id}}</td>
+                <td>{{sightseeing_transfer_data.sightseeing_transfer_title}}</td>
+                <td>{{sightseeing_transfer_data.name}}</td>
+                <td>
+                  <a href="#" class="btn btn-primary">Edit</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </div>
+    <!-- /Sightseeing Transfer Table -->
+
+
+
+  </div>
+</section>
+
+
+{% endblock %}

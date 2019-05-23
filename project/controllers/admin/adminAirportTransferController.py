@@ -62,7 +62,7 @@ def airportTransferChooseDestination(country):
         destination_data=destination_data,
         country_data_fetch_one=country_data_fetch_one)
 
-# Airport Transfer Excursions Setting
+# Airport Transfer Setting
 @app.route('/admin/airport-transfer-setting/<string:country>/<string:destination>/<string:trip_id>', methods=['GET','POST'])
 @is_logged_in
 def airportTransferDataCenter(country, destination, trip_id):
