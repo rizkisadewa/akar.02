@@ -1,0 +1,25 @@
+# -*- coding: utf-8 -*-
+from flask import Flask
+from flask import render_template, flash, redirect, url_for, session, request, logging #stuff from Flask
+from project import mysql
+
+class adminPackageTripTRSightseeingTransferModel(object):
+
+    # Adding the Transaction for Sightseeing Transfer to Itinerary
+    def addPackageTripSightseeingTransferData(self, sightseeing_transfer_id, package_trip_id, day_no, itinerary_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            INSERT INTO tr_package_trip_sightseeing_transfer
+            (sightseeing_transfer_id, package_trip_id, day_no, itinerary_id)
+            VALUES (%s, %s, %s, %s)
+        ''', (sightseeing_transfer_id, package_trip_id, day_no, itinerary_id))
+
+        # Commit to DB
+        mysql.connection.commit()
+
+        # Close connection
+        cur.close()
