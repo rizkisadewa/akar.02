@@ -57,6 +57,7 @@ class adminItineraryModel(object):
             *
             FROM `itinerary`
             WHERE `itinerary`.`package_trip_id` = %s
+            ORDER BY day_no
         ''', [package_trip_id])
 
         # Asign to the variable

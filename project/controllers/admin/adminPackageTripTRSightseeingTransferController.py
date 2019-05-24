@@ -79,3 +79,64 @@ def componentPackageTripAddSightseeingTransfer(country, destination, trip_id, pa
         package_trip_id=package_trip_id,
         sightseeing_transfer_data=sightseeing_transfer_data
     )
+
+# Edit Sightseeing Transfer to Package Trip Data
+@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>/sightseeing-transfer/edit/<string:itinerary_id>', methods=['GET','POST'])
+@is_logged_in
+def componentPackageTripEditSightseeingTransfer(country, destination, trip_id, package_trip_id, itinerary_id):
+    # Fetch One Package Trip Data from package_trip_id
+    package_trip_data = adminPackageTripModel.packageTripDataFetchOne(package_trip_id)
+
+    # Fit the Add Component of Package Trip Form Class
+    form = AddComponentPackageTripData(request.form)
+
+    # Fetch the Itinerary Data
+    itinerary_data = adminItineraryModel.itineraryFetchDataFromId(itinerary_id)
+
+    # Populate Itinerary Data from fields
+    form.day_no.data = itinerary_data['day_no']
+
+    # Update Day No
+    if request.method == 'POST' and form.validate():
+
+        # asight the variable value from request form value
+        day_no = request.form['day_no']
+
+        # Execute query for update Day No of Itinerary Table
+        adminItineraryModel.updateDayNo(day_no, itinerary_id)
+
+        # Execute query for update Day No of Sightseeing Transfer Table
+        adminPackageTripTRSightseeingTransferModel.updatePackageTripSightseeingTransferData(day_no, itinerary_id)
+
+        # Send notification to the dashboard
+        flash('Sightseeing Transfer in Itinerary has been updated', 'success')
+
+        # redirect to the package trip component
+        return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
+
+
+    return render_template(
+        'admin/adminPackageTripTREditSightseeingTransfer.html',
+        country=country,
+        destination=destination,
+        trip_id=trip_id,
+        form=form,
+        itinerary_data=itinerary_data,
+        package_trip_data=package_trip_data
+    )
+
+# Deleting Sightseeing Transfer to PackageTrip Data
+@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>/sightseeing-transfer/delete/<string:itinerary_id>', methods=['GET', 'POST'])
+@is_logged_in
+def componentPackageTripDeleteSightseeingTransfer(country, destination, trip_id, package_trip_id, itinerary_id):
+    # Execute query for delete Itinerary Table
+    adminItineraryModel.deleteItineraryData(itinerary_id)
+
+    # Execute query for delete Sightseeing Transfer Transaction Table
+    adminPackageTripTRSightseeingTransferModel.deletePackageTripSightseeingTransferData(itinerary_id)
+
+    # Send notification to the dashboard
+    flash('Sightseeing Transfer has been deleted from Itinerary', 'danger')
+    
+    # redirect to the package trip component
+    return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))

@@ -137,4 +137,5 @@ def componentPackageTripDeleteAirportTransfer(country, destination, trip_id, pac
     # Send notification to the dashboard
     flash('Airport Transfer in Itinerary has been deleted','danger')
 
+    # redirect to the package trip component
     return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))

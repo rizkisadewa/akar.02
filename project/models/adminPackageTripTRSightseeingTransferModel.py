@@ -23,3 +23,39 @@ class adminPackageTripTRSightseeingTransferModel(object):
 
         # Close connection
         cur.close()
+
+    # Updating the Transaction for Sightseeing Transfer to Itinerary
+    def updatePackageTripSightseeingTransferData(self, day_no, itinerary_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            UPDATE tr_package_trip_sightseeing_transfer
+            SET day_no = %s
+            WHERE itinerary_id = %s
+        ''', (day_no, itinerary_id))
+
+        # Commite to the DB
+        mysql.connection.commit()
+
+        # Close the connection
+        cur.close()
+
+    # Deleting the Transaction for Sightseeing Transfer to Itinerary
+    def deletePackageTripSightseeingTransferData(self, itinerary_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            DELETE FROM  tr_package_trip_sightseeing_transfer WHERE itinerary_id = %s
+        ''', [itinerary_id])
+
+        # Commite to DB
+        mysql.connection.commit()
+
+        # Close the DB connection
+        cur.close()

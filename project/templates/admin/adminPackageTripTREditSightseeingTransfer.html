@@ -9,7 +9,7 @@
   <ol class="breadcrumb">
     <li><a href="/admin/package-trip-setting/{{country}}/{{destination}}/{{trip_id}}">Select Package: {{package_trip_data.package_trip_name}}</a></li>
     <li><a href="/admin/package-trip-setting/{{country}}/{{destination}}/{{trip_id}}/component/{{package_trip_id}}">Component Details</a></li>
-    <li class="active">Add Sightseeing Transfer</li>
+    <li class="active">Update Sightseeing Transfer</li>
   </ol>
 </section>
 <!-- /Content Header (Page header) -->
@@ -39,11 +39,7 @@
               </div>
               <div class="col-sm-9">
                 <label for="sightseeing_transfer_id">Input Sightseeing Transfer</label>
-                <select class="form-control select2" name="sightseeing_transfer_id">
-                  {% for sightseeing_transfer_data in sightseeing_transfer_data %}
-                    <option value="{{sightseeing_transfer_data.sightseeing_transfer_id}}">{{sightseeing_transfer_data.sightseeing_transfer_title}}</option>
-                  {% endfor %}
-                </select>
+                <p>{{itinerary_data.itinerary_title}}</p>
               </div>
             </div>
           </div>
@@ -51,7 +47,7 @@
 
           <!-- .box-footer -->
           <div class="box-footer">
-            <button type="submit" class="btn btn-info">Add Sightseeing Transfer</button>
+            <button type="submit" class="btn btn-info">Update Sightseeing Transfer</button>
           </div>
           <!-- /.box-footer -->
         </form>

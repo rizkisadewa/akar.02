@@ -84,12 +84,22 @@
                     </form>
                   </td>
 
-                {% else %}
+                {% elif component_data.type == "Sightseeing Transfer" %}
                   <td>
-                    TBA
+                    <a class="btn btn-primary" href="{{url_for('componentPackageTripEditSightseeingTransfer', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_data.package_trip_id, itinerary_id=component_data.itinerary_id)}}">Edit Day No</a>
                   </td>
                   <td>
-                    TBA
+                    <form class="" action="{{url_for('componentPackageTripDeleteSightseeingTransfer', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_data.package_trip_id, itinerary_id=component_data.itinerary_id)}}" method="post">
+                      <input type="submit" class="btn btn-danger confirmation_delete" value="Delete">
+                    </form>
+                  </td>
+
+                {% else %}
+                  <td>
+                    Type of Component undefined
+                  </td>
+                  <td>
+                    Type of Component undefined
                   </td>
                 {% endif %}
 
