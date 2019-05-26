@@ -6,9 +6,11 @@ from functools import wraps
 
 # Import from Model
 from project.models.adminRateCardModel import adminRateCardModel
+from project.models.adminPackageBracketPriceModel import adminPackageBracketPriceModel
 
 # an object from admin model
 adminRateCardModel = adminRateCardModel()
+adminPackageBracketPriceModel = adminPackageBracketPriceModel()
 
 # Check if logged in
 def is_logged_in(f):
@@ -38,6 +40,7 @@ def addRateCardComponent(country,destination,trip_id,package_trip_id):
     if request.method == 'POST' and form.validate():
         name_of_rate = form.name_of_rate.data
 
+        # Checking the data to avoid the redudant data
         standard_chk = adminRateCardModel.countingRateCardData(package_trip_id, "Standard")
         deluxe_chk = adminRateCardModel.countingRateCardData(package_trip_id, "Deluxe")
         premium_chk = adminRateCardModel.countingRateCardData(package_trip_id, "Premium")
@@ -84,5 +87,25 @@ def addRateCardComponent(country,destination,trip_id,package_trip_id):
         else:
             # Send the notification
             flash('Error, the category is neither Standard nor Deluxe nor Premium','danger')
+
+        return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
+
+# Deleting the Rate Card Data
+@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>/delete-rate-card/<string:rate_card_id>', methods=['GET','POST'])
+@is_logged_in
+def deleteRateCardComponent(country,destination,trip_id,package_trip_id,rate_card_id):
+
+    rate_card_checker = adminPackageBracketPriceModel.chkPriceBracketPrice(rate_card_id)
+
+    if int(rate_card_checker['COUNT(*)']) < 1:
+
+        adminRateCardModel.deleteRateCardData(rate_card_id)
+
+        flash('Rate Card Has been deleted','danger')
+
+        return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
+
+    else :
+        flash('Cannot be deleted due to there is still Package Bracket Price in this Rate Card')
 
         return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))

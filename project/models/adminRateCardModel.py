@@ -61,3 +61,20 @@ class adminRateCardModel(object):
 
         # Close the connection
         cur.close()
+
+    # Deleting the Rate Card
+    def deleteRateCardData(self, rate_card_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            DELETE FROM rate_card WHERE rate_card_id = %s
+        ''',[rate_card_id])
+
+        # Commit to DB
+        mysql.connection.commit()
+
+        # Close connection
+        cur.close()
