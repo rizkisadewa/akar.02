@@ -41,3 +41,23 @@ class adminRateCardModel(object):
 
         # Close the connection
         cur.close()
+
+    # Fetch the Rate Card
+    def rateCardDataFetchAll(self, package_trip_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            SELECT * FROM rate_card WHERE package_trip_id = %s
+        ''', [package_trip_id])
+
+        # Asign to the variable
+        rate_card_data = cur.fetchall()
+
+        # Return the variable
+        return rate_card_data
+
+        # Close the connection
+        cur.close()

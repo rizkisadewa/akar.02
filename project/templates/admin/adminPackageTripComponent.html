@@ -204,7 +204,7 @@
           <div class="row">
             <div class="col-md-6">
               <h3 class="box-title">Rate Card</h3>
-              
+
             </div>
             <div class="col-md-6">
               <div class="row">
@@ -236,10 +236,21 @@
               <tr>
                 <th>No.</th>
                 <th>Name Rate Card</th>
-                <th>Add Price Bracket</th>
-                <th>Activity</th>
+                <th colspan="2" style="text-align: center;">Activity</th>
               </tr>
             </thead>
+            {% for i in range(rate_card_data|length) %}
+              <tr>
+                <td>{{i+1}}</td>
+                <td>{{rate_card_data[i].name_of_rate}}</td>
+                <td>
+                  <a href="#" class="btn btn-success">Add Price Bracket</a>
+                </td>
+                <td>
+                  <button type="button" name="button" class="btn btn-danger">Delete</button>
+                </td>
+              </tr>
+            {% endfor %}
             <tbody>
             </tbody>
           </table>

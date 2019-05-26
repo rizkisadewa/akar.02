@@ -210,6 +210,9 @@ def componentPackageTrip(country, destination, trip_id, package_trip_id):
     # Feth Package Trip Image Profie
     package_trip_image_profile = adminPackageTripModel.packageTripImageProfile(package_trip_data['package_trip_image_profile'])
 
+    # Fetch Rate Card
+    rate_card_data = adminRateCardModel.rateCardDataFetchAll(package_trip_id)
+
     return render_template(
         'admin/adminPackageTripComponent.html',
         country=country,
@@ -221,7 +224,8 @@ def componentPackageTrip(country, destination, trip_id, package_trip_id):
         component_data=component_data,
         package_trip_image_data=package_trip_image_data,
         package_trip_image_profile=package_trip_image_profile,
-        form=form
+        form=form,
+        rate_card_data=rate_card_data
         )
 
 # Uploading the service images
