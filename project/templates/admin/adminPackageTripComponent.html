@@ -192,11 +192,67 @@
         <!-- /.box-body -->
       </div>
     </div>
+    <!-- /Package Trip Image Profile -->
+
+
+    <!-- Rate Card -->
+
+    <div class="col-md-12">
+      <div class="box box-info">
+        <!-- .box-header -->
+        <div class="box-header with-border">
+          <div class="row">
+            <div class="col-md-6">
+              <h3 class="box-title">Rate Card</h3>
+              
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+
+                {% from "includes/_formhelpers.html" import render_field %}
+                <form name="rate_card_form" action="{{url_for('addRateCardComponent', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id)}}" method="post">
+                  <div class="col-md-6">
+                    <input type="submit"value="Add Rate Card Category" class="btn btn-primary pull-right">
+                  </div>
+                  <div class="col-md-6">
+                    <select class="form-control" name="name_of_rate">
+                      <option value="Standard">Standard</option>
+                      <option value="Deluxe">Deluxe</option>
+                      <option value="Premium">Premium</option>
+                    </select>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.box-header -->
+
+        <!-- .box-body -->
+        <div class="box-body">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Name Rate Card</th>
+                <th>Add Price Bracket</th>
+                <th>Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </div>
+    <!-- Rate Card -->
+
 
   </div>
 
 
 </section>
-
 
 {% endblock %}

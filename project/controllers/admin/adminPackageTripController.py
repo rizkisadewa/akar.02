@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from project import app
 from flask import render_template, flash, redirect, url_for, session, request, logging #stuff from Flask
-from wtforms import Form, StringField, TextAreaField, PasswordField, validators, DateField, IntegerField
+from wtforms import Form, StringField, TextAreaField, PasswordField, validators, DateField, IntegerField, SelectMultipleField
 from functools import wraps
 import sys
 import os
@@ -17,6 +17,7 @@ from project.models.adminServiceModel import adminServiceModel
 from project.models.adminModels import adminModel
 from project.models.adminDayExcursionModel import adminDayExcursionModel
 from project.models.adminItineraryModel import adminItineraryModel
+from project.models.adminRateCardModel import adminRateCardModel
 
 # an object from admin model
 adminPackageTripModel = adminPackageTripModel()
@@ -25,6 +26,7 @@ adminServiceModel = adminServiceModel()
 adminModel = adminModel()
 adminDayExcursionModel = adminDayExcursionModel()
 adminItineraryModel = adminItineraryModel()
+adminRateCardModel = adminRateCardModel()
 
 # Check if logged in
 def is_logged_in(f):
@@ -44,6 +46,12 @@ class AddPackageTripData(Form):
     validity_date_finish = DateField('Validity Date Finish', format='%Y-%m-%d')
     tag_line = StringField('Tag Line', [validators.Length(min=1, max=200)])
     inclusions = TextAreaField('Inclusions', [validators.Length(min=1, max=500)])
+
+# Add Rate Card Data Form Class
+class AddRateCardData(Form):
+    package_trip_id = IntegerField()
+    name_of_hotel = StringField()
+    name_of_rate = StringField()
 
 # Choose the Country
 @app.route('/admin/package-trip-setting')
@@ -79,6 +87,7 @@ def packageTripDataCenter(country, destination, trip_id):
 
     # Fit the Package Trip Form Class
     form = AddPackageTripData(request.form)
+
 
     # Fetch Trip Data
     trip_data = adminTripModel.tripDataFetchOne(trip_id)
@@ -186,6 +195,9 @@ def componentPackageTrip(country, destination, trip_id, package_trip_id):
     # Fetch One Package Trip Data from package_trip_id
     package_trip_data = adminPackageTripModel.packageTripDataFetchOne(package_trip_id)
 
+    # Fitting the Form Add Rate Card Data
+    form = AddRateCardData(request.form)
+
     # Fetch the Day Excursion Data
     day_excursion_data = adminDayExcursionModel.dayExcursionDataFetchOneServiceId(package_trip_data['service_id'])
 
@@ -208,7 +220,8 @@ def componentPackageTrip(country, destination, trip_id, package_trip_id):
         day_excursion_data=day_excursion_data,
         component_data=component_data,
         package_trip_image_data=package_trip_image_data,
-        package_trip_image_profile=package_trip_image_profile
+        package_trip_image_profile=package_trip_image_profile,
+        form=form
         )
 
 # Uploading the service images
