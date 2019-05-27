@@ -1,0 +1,75 @@
+{% extends "layout/admin-layout-template.html" %}
+{% block body %}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Package Bracket Price Center: {{destination}} in <strong>{{country}}</strong>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin/package-trip-setting/{{country}}/{{destination}}/{{trip_id}}/component/{{package_trip_id}}">Package Trip Component</a></li>
+    <li class="active">Package Bracket Price</li>
+  </ol>
+</section>
+<!-- /Content Header (Page header) -->
+
+<!-- Main Content -->
+<section class="content">
+  <div class="row">
+    <!-- Package Bracket Price Compnent Add Form -->
+    <div class="col-md-12">
+
+      <div class="box box-info">
+
+        <!-- .box-header -->
+        <div class="box-header with-border">
+          <h3 class="box-title">Input Package Bracket Price</h3>
+        </div>
+        <!-- /.box-header -->
+
+        <!-- form start -->
+        {% from "includes/_formhelpers.html" import render_field %}
+        <form class="form-horizontal" action="" method="POST">
+          <!-- .box-body -->
+          <div class="box-body">
+            <div class="row">
+              <div class="col-sm-2">
+                <label for="min_pax">Minimum Pax </label>
+                {{form.min_pax(class = "form-control")}}
+              </div>
+              <div class="col-sm-2">
+                <label for="max_pax">Maximum Pax </label>
+                {{form.max_pax(class = "form-control")}}
+              </div>
+              <div class="col-sm-2">
+                <label for="price_per_person">Price Per Person</label>
+                {{form.price_per_person(class="form-control")}}
+              </div>
+              <div class="col-sm-3">
+                <label>Price Segment Type : </label>
+                <select name="price_segment_id" class="form-control" style="width: 100%;">
+                  {% for price_segment_data in price_segment_data %}
+                  <option value="{{price_segment_data.price_segment_id}}">{{price_segment_data.segment_type}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-sm-2">
+                <dt><label></label></dt>
+                <dd><button type="submit" class="btn btn-info">Add Package Bracket Price</button></dd>
+              </div>
+            </div>
+          </div>
+          <!-- /.box-body -->
+        </form>
+        <!-- form start -->
+
+      </div>
+
+    </div>
+    <!-- /Package Bracket Price Compnent Add Form -->
+  </div>
+</section>
+
+<!-- /Main Content -->
+
+{% endblock %}

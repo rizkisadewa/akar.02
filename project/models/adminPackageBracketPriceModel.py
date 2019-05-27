@@ -25,3 +25,20 @@ class adminPackageBracketPriceModel(object):
 
         # return the variable
         return rate_card_checker
+
+    # Add Package Bracket Price Data
+    def addPackageBracketPriceData(self, price_segment_id, admin_id, min_pax, max_pax, price_per_person, rate_card_id):
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute Query
+        cur.execute('''
+            INSERT INTO package_bracket_price(price_segment_id,admin_id, min_pax, max_pax, price_per_person, rate_card_id)
+            VALUES (%s, %s, %s, %s, %s, %s)
+        ''',(price_segment_id, admin_id, min_pax, max_pax, price_per_person, rate_card_id))
+
+        # Commit to DB
+        mysql.connection.commit()
+
+        # close the connection
+        cur.close()
