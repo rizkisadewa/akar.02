@@ -67,6 +67,46 @@
 
     </div>
     <!-- /Package Bracket Price Compnent Add Form -->
+
+    <!-- Package Price Table -->
+    <div class="col-md-12">
+      <div class="box">
+        <!-- .box-header -->
+        <div class="box-header">
+          <h3 class="box-title">Package Bracket Price Table</h3>
+        </div>
+        <!-- /.box-header -->
+
+        <!-- .box-body -->
+        <div class="box-body">
+          <table class="table table-border table-hover">
+            <thead>
+              <th>Pax Bracket</th>
+              <th>Package Price</th>
+              <th>Validity From</th>
+              <th>Validity Until</th>
+              <th>Activity</th>
+            </thead>
+            <tbody>
+              {% for package_bracket_price_data in package_bracket_price_data %}
+              <td>{{package_bracket_price_data.min_pax}} - {{package_bracket_price_data.max_pax}}</td>
+              <td>{{package_bracket_price_data.price_per_person}}</td>
+              <td>{{package_bracket_price_data.validity_date_start.strftime('%d-%B-%Y')}}</td>
+              <td>{{package_bracket_price_data.validity_date_finish.strftime('%d-%B-%Y')}}</td>
+              <td>
+                <form action="{{url_for('packageBracketPriceDelete', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id, rate_card_id=rate_card_id, package_bracket_price_id=package_bracket_price_data.package_bracket_price_id)}}" method="post">
+                  <input class="btn btn-danger confirmation_delete" type="Submit" value="Delete">
+                </form>
+              </td>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- .box-body -->
+      </div>
+    </div>
+    <!-- /Package Price Table -->
+
   </div>
 </section>
 

@@ -42,3 +42,41 @@ class adminPackageBracketPriceModel(object):
 
         # close the connection
         cur.close()
+
+    # Fetch the Package Bracket Price
+    def packageBracketPriceDataFetchData(self):
+
+        # Create Cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            SELECT `package_bracket_price`.*, `price_segment`.`validity_date_start`, `price_segment`.`validity_date_finish`
+            FROM `package_bracket_price`, `price_segment`
+            WHERE `package_bracket_price`.`price_segment_id` = `price_segment`.`price_segment_id`
+            ORDER BY `package_bracket_price`.`min_pax` AND `price_segment`.`segment_type`
+        ''')
+
+        # Asign to the other variable that would be returned
+        package_bracket_price_data = cur.fetchall()
+
+        # Closing the Database
+        cur.close()
+
+        # Returning the variable
+        return package_bracket_price_data
+
+    # Deleting the Package Bracket Price
+    def deletePackageBracketPrice(self, package_bracket_price_id):
+
+        # Create a Cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('DELETE FROM package_bracket_price WHERE package_bracket_price_id = %s', [package_bracket_price_id])
+
+        # commit to the DB
+        mysql.connection.commit()
+
+        # Close the cursor
+        cur.close()
