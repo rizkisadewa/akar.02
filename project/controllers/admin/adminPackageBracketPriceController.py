@@ -94,3 +94,51 @@ def deletePackageBracketPrice(country, destination, trip_id, package_trip_id, ra
 
     # return to the day package component
     return redirect(url_for('packageBracketPrice', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id, rate_card_id=rate_card_id))
+
+# Edit the Package Bracket Price Data Center
+@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>/package-bracket-price/<string:rate_card_id>/edit/<string:package_bracket_price_id>', methods=['GET','POST'])
+@is_logged_in
+def editPackageBracketPrice(country, destination, trip_id, package_trip_id, rate_card_id, package_bracket_price_id):
+    # Fit the Package Bracket Price Form Class
+    form = AddPackageBracketPriceData(request.form)
+
+    # Fetch the Price Segment Data
+    price_segment_data = adminPriceSegmentModel.priceSegmentFetchData()
+
+    # Fetch One Package Price Data
+    package_bracket_price_data_fo = adminPackageBracketPriceModel.packageBracketPriceFetchOne(package_bracket_price_id)
+
+    # Populate Day Excursion form fields
+    form.min_pax.data = package_bracket_price_data_fo['min_pax']
+    form.max_pax.data = package_bracket_price_data_fo['max_pax']
+    form.price_per_person.data = package_bracket_price_data_fo['price_per_person']
+
+    # Update Package Bracket Price
+    if request.method == 'POST' and form.validate():
+
+        # asign the variable value from request form value
+        min_pax = request.form['min_pax']
+        max_pax = request.form['max_pax']
+        price_per_person = request.form['price_per_person']
+        price_segment_id = request.form['price_segment_id']
+
+        # Execute the query
+        adminPackageBracketPriceModel.updatePackageBracketPriceData(min_pax, max_pax, price_per_person, price_segment_id, package_bracket_price_id)
+
+        # Send the notification to the dashboard
+        flash('Package Bracket Price has been updated', 'success')
+
+        # retur the the certain page
+        return redirect(url_for('packageBracketPrice', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id, rate_card_id=rate_card_id))
+
+    return render_template(
+        'admin/adminPackageBracketPriceDataCenterEdit.html',
+        country=country,
+        destination=destination,
+        trip_id=trip_id,
+        package_trip_id=package_trip_id,
+        form=form,
+        price_segment_data=price_segment_data,
+        rate_card_id=rate_card_id,
+        package_bracket_price_data_fo=package_bracket_price_data_fo
+    )

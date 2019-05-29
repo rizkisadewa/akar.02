@@ -80,3 +80,47 @@ class adminPackageBracketPriceModel(object):
 
         # Close the cursor
         cur.close()
+
+    # Fetch One Package Bracket Price Data
+    def packageBracketPriceFetchOne(self, package_bracket_price_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            SELECT * FROM package_bracket_price
+            WHERE package_bracket_price_id = %s
+        ''', [package_bracket_price_id])
+
+        # Asign to the variable
+        package_bracket_price_data = cur.fetchone()
+
+        # close the connection
+        cur.close()
+
+        # return the variable
+        return package_bracket_price_data
+
+    # Updating Package Bracket Price Data
+    def updatePackageBracketPriceData(self, min_pax, max_pax, price_per_person, price_segment_id, package_bracket_price_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            UPDATE package_bracket_price
+            SET
+            min_pax = %s,
+            max_pax = %s,
+            price_per_person = %s,
+            price_segment_id = %s
+            WHERE package_bracket_price_id = %s
+        ''', (min_pax, max_pax, price_per_person, price_segment_id, package_bracket_price_id))
+
+        # Commit to the DB
+        mysql.connection.commit()
+
+        # Close the connection
+        cur.close()

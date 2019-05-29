@@ -94,6 +94,9 @@
               <td>{{package_bracket_price_data.validity_date_start.strftime('%d-%B-%Y')}}</td>
               <td>{{package_bracket_price_data.validity_date_finish.strftime('%d-%B-%Y')}}</td>
               <td>
+                <a href="{{url_for('editPackageBracketPrice', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id, rate_card_id=rate_card_id, package_bracket_price_id=package_bracket_price_data.package_bracket_price_id)}}" class="btn btn-success">Edit</a>
+              </td>
+              <td>
                 <form action="{{url_for('deletePackageBracketPrice', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id, rate_card_id=rate_card_id, package_bracket_price_id=package_bracket_price_data.package_bracket_price_id)}}" method="post">
                   <input class="btn btn-danger confirmation_delete" type="submit" value="Delete">
                 </form>
