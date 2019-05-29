@@ -67,7 +67,7 @@ class adminPackageBracketPriceModel(object):
         return package_bracket_price_data
 
     # Deleting the Package Bracket Price
-    def deletePackageBracketPrice(self, package_bracket_price_id):
+    def deletePackageBracketPriceData(self, package_bracket_price_id):
 
         # Create a Cursor
         cur = mysql.connection.cursor()

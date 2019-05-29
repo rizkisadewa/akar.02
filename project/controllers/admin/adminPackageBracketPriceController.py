@@ -77,19 +77,20 @@ def packageBracketPrice(country, destination, trip_id, package_trip_id, rate_car
         package_trip_id=package_trip_id,
         form=form,
         price_segment_data=price_segment_data,
-        package_bracket_price_data=package_bracket_price_data
+        package_bracket_price_data=package_bracket_price_data,
+        rate_card_id=rate_card_id
     )
 
-# Package Bracket Price Data Center
-@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>/package-bracket-price/<string:rate_card_id>/<string:package_bracket_price_id>/delete', methods=['GET','POST'])
+# Delete Package Bracket Price Data Center
+@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>/package-bracket-price/<string:rate_card_id>/delete/<string:package_bracket_price_id>', methods=['GET','POST'])
 @is_logged_in
-def packageBracketPriceDelete(country, destination, trip_id, package_trip_id, rate_card_id, package_bracket_price_id):
+def deletePackageBracketPrice(country, destination, trip_id, package_trip_id, rate_card_id, package_bracket_price_id):
 
-    # Execute query in Model
-    adminPackageBracketPriceModel.deletePackageBracketPrice(package_bracket_price_id)
+    # execute query in Model
+    adminPackageBracketPriceModel.deletePackageBracketPriceData(package_bracket_price_id)
 
-    # show notification to the dashboard
+    # Send the notification to the dashboard
     flash('Package Bracket Price has been deleted','danger')
 
-    # Redirect to the package component
+    # return to the day package component
     return redirect(url_for('packageBracketPrice', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id, rate_card_id=rate_card_id))
