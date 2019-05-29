@@ -236,7 +236,7 @@
               <tr>
                 <th>No.</th>
                 <th>Name Rate Card</th>
-                <th colspan="2" style="text-align: center;">Activity</th>
+                <th colspan="3" style="text-align: center;">Activity</th>
               </tr>
             </thead>
             {% for i in range(rate_card_data|length) %}
@@ -245,6 +245,9 @@
                 <td>{{rate_card_data[i].name_of_rate}}</td>
                 <td>
                   <a href="{{url_for('packageBracketPrice', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_data.package_trip_id, rate_card_id=rate_card_data[i].rate_card_id)}}" class="btn btn-success">Add Bracket Price</a>
+                </td>
+                <td>
+                  <a href="{{url_for('singleSupplementDataCenter', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_data.package_trip_id, rate_card_id=rate_card_data[i].rate_card_id)}})}}" class="btn btn-success">Add Single Supplement</a>
                 </td>
                 <td>
                   <form action="{{url_for('deleteRateCardComponent', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id, rate_card_id=rate_card_data[i].rate_card_id)}}" method="post">

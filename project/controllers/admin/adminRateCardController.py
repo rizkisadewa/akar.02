@@ -7,10 +7,12 @@ from functools import wraps
 # Import from Model
 from project.models.adminRateCardModel import adminRateCardModel
 from project.models.adminPackageBracketPriceModel import adminPackageBracketPriceModel
+from project.models.adminSingleSupplementModel import adminSingleSupplementModel
 
 # an object from admin model
 adminRateCardModel = adminRateCardModel()
 adminPackageBracketPriceModel = adminPackageBracketPriceModel()
+adminSingleSupplementModel = adminSingleSupplementModel()
 
 # Check if logged in
 def is_logged_in(f):
@@ -96,16 +98,24 @@ def addRateCardComponent(country,destination,trip_id,package_trip_id):
 def deleteRateCardComponent(country,destination,trip_id,package_trip_id,rate_card_id):
 
     rate_card_checker = adminPackageBracketPriceModel.chkPriceBracketPrice(rate_card_id)
+    ss_rate_card_checker = adminSingleSupplementModel.chkSingleSupplement(rate_card_id)
 
     if int(rate_card_checker['COUNT(*)']) < 1:
 
-        adminRateCardModel.deleteRateCardData(rate_card_id)
+        if int(ss_rate_card_checker['COUNT(*)'] < 1):
 
-        flash('Rate Card Has been deleted','danger')
+            adminRateCardModel.deleteRateCardData(rate_card_id)
 
-        return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
+            flash('Rate Card Has been deleted','danger')
+
+            return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
+
+        else :
+            flash('Cannot be deleted due to there is still Single Supplement in this Rate Card', 'danger')
+
+            return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
 
     else :
-        flash('Cannot be deleted due to there is still Package Bracket Price in this Rate Card')
+        flash('Cannot be deleted due to there is still Package Bracket Price in this Rate Card', 'danger')
 
         return redirect(url_for('componentPackageTrip', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id))
