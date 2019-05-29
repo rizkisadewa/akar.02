@@ -129,3 +129,17 @@ def editSingleSupplement(country, destination, trip_id, package_trip_id, rate_ca
         rate_card_id=rate_card_id,
         single_supplement_data_fo=single_supplement_data_fo
     )
+
+# Deleting the Single supplement
+@app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/component/<string:package_trip_id>/single-supplement/<string:rate_card_id>/delete/<string:single_supplement_id>',methods=['GET','POST'])
+@is_logged_in
+def deleteSingleSupplement(country, destination, trip_id, package_trip_id, rate_card_id, single_supplement_id):
+
+    # Execute query in Model
+    adminSingleSupplementModel.deleteSingleSupplement(single_supplement_id)
+
+    # Send the notification to the dashboard
+    flash('Single Supplement has been deleted','danger')
+
+    # Return the single supplement data center
+    return redirect(url_for('singleSupplementDataCenter', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id, rate_card_id=rate_card_id))

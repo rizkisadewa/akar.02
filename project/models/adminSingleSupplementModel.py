@@ -110,3 +110,18 @@ class adminSingleSupplementModel(object):
 
         # Close the connection
         cur.close()
+
+    # Deleting the Single Supplement
+    def deleteSingleSupplement(self, single_supplement_id):
+
+        # Create a Cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('DELETE FROM single_supplement WHERE single_supplement_id = %s', [single_supplement_id])
+
+        # commit to the DB
+        mysql.connection.commit()
+
+        # Close the cursor
+        cur.close()

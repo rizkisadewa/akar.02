@@ -94,6 +94,11 @@
               <td>
                 <a href="{{url_for('editSingleSupplement', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id, rate_card_id=rate_card_id, single_supplement_id=single_supplement_data.single_supplement_id)}}" class="btn btn-success">Edit</a>
               </td>
+              <td>
+                <form class="" action="{{url_for('deleteSingleSupplement', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id, rate_card_id=rate_card_id, single_supplement_id=single_supplement_data.single_supplement_id)}}" method="post">
+                  <input type="submit" class="btn btn-danger confirmation_delete" name="" value="Delete">
+                </form>
+              </td>
               {% endfor %}
             </tbody>
           </table>
