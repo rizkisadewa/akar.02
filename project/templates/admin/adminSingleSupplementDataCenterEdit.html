@@ -23,7 +23,7 @@
 
         <!-- .box-header -->
         <div class="box-header with-border">
-          <h3 class="box-title">Input Single Supplement</h3>
+          <h3 class="box-title">Update Single Supplement</h3>
         </div>
         <!-- /.box-header -->
 
@@ -49,13 +49,13 @@
                 <label>Price Segment Type : </label>
                 <select name="price_segment_id" class="form-control" style="width: 100%;">
                   {% for price_segment_data in price_segment_data %}
-                  <option value="{{price_segment_data.price_segment_id}}">{{price_segment_data.segment_type}}</option>
+                  <option value="{{price_segment_data.price_segment_id}}" {% if price_segment_data.price_segment_id == single_supplement_data_fo.price_segment_id %} selected {% endif %}>{{price_segment_data.segment_type}}</option>
                   {% endfor %}
                 </select>
               </div>
               <div class="col-sm-2">
                 <dt><label></label></dt>
-                <dd><button type="submit" class="btn btn-info">Add Single Supplement</button></dd>
+                <dd><button type="submit" class="btn btn-info">Update Single Supplement</button></dd>
               </div>
             </div>
           </div>
@@ -65,43 +65,6 @@
       </div>
     </div>
     <!-- /Single Supplement Component Add Form -->
-
-    <!-- Single Supplement Data Table -->
-    <div class="col-md-12">
-      <div class="box">
-        <!-- .box-header -->
-        <div class="box-header">
-          <h3 class="box-title">Package Bracket Price Table</h3>
-        </div>
-        <!-- /.box-header -->
-
-        <!-- .box-body -->
-        <div class="box-body">
-          <table class="table table-border table-hover">
-            <thead>
-              <th>Pax Bracket</th>
-              <th>Package Price</th>
-              <th>Validity From</th>
-              <th>Validity Until</th>
-              <th>Activity</th>
-            </thead>
-            <tbody>
-              {% for single_supplement_data in single_supplement_data %}
-              <td>{{single_supplement_data.min_pax}} - {{single_supplement_data.max_pax}}</td>
-              <td>{{single_supplement_data.price_per_person}}</td>
-              <td>{{single_supplement_data.validity_date_start.strftime('%d-%B-%Y')}}</td>
-              <td>{{single_supplement_data.validity_date_finish.strftime('%d-%B-%Y')}}</td>
-              <td>
-                <a href="{{url_for('editSingleSupplement', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id, rate_card_id=rate_card_id, single_supplement_id=single_supplement_data.single_supplement_id)}}" class="btn btn-success">Edit</a>
-              </td>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-        <!-- .box-body -->
-      </div>
-    </div>
-    <!-- /Single Supplement Data Table -->
 
 
   </div>

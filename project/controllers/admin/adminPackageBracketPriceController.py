@@ -105,7 +105,7 @@ def editPackageBracketPrice(country, destination, trip_id, package_trip_id, rate
     # Fetch the Price Segment Data
     price_segment_data = adminPriceSegmentModel.priceSegmentFetchData()
 
-    # Fetch One Package Price Data
+    # Fetch One Package Bracket Price Data
     package_bracket_price_data_fo = adminPackageBracketPriceModel.packageBracketPriceFetchOne(package_bracket_price_id)
 
     # Populate Day Excursion form fields

@@ -66,3 +66,47 @@ class adminSingleSupplementModel(object):
 
         # Returning the variable
         return single_supplement_data
+
+    # Fetch One Single Supplement Data
+    def singleSupplementFetchOne(self, single_supplement_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            SELECT * FROM single_supplement
+            WHERE single_supplement_id = %s
+        ''', [single_supplement_id])
+
+        # Asign to the variable
+        single_supplement_data = cur.fetchone()
+
+        # close the connection
+        cur.close()
+
+        # return the variable
+        return single_supplement_data
+
+    # Update the Single Supplement Data
+    def updateSingleSupplementData(self, min_pax, max_pax, price_per_person, price_segment_id, single_supplement_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            UPDATE single_supplement
+            SET
+            min_pax = %s,
+            max_pax = %s,
+            price_per_person = %s,
+            price_segment_id = %s
+            WHERE single_supplement_id = %s
+        ''', (min_pax, max_pax, price_per_person, price_segment_id, single_supplement_id))
+
+        # Commit to the DB
+        mysql.connection.commit()
+
+        # Close the connection
+        cur.close()
