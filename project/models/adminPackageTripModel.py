@@ -32,6 +32,7 @@ class adminPackageTripModel(object):
             `package_trip`.`package_trip_id`,
             `package_trip`.`package_trip_name`,
             `service`.`service_id`,
+            `service`.`name_of_service`,
             `trip`.`destination`,
             `trip`.`country`,
             `admin`.`name`
@@ -69,7 +70,7 @@ class adminPackageTripModel(object):
         return package_trip_fetch_one_data
 
     # Update the Package Trip Data
-    def updatePackageTripData(self, package_trip_name, tag_line, validity_date_start, validity_date_finish, inclusions, package_trip_id):
+    def updatePackageTripData(self, package_trip_name, tag_line, validity_date_start, validity_date_finish, inclusions, service_id, package_trip_id):
         # Create a cursor
         cur = mysql.connection.cursor()
 
@@ -81,10 +82,11 @@ class adminPackageTripModel(object):
             tag_line = %s,
             validity_date_start = %s,
             validity_date_finish = %s,
-            inclusions = %s
+            inclusions = %s,
+            service_id = %s
             WHERE
             package_trip_id = %s
-        ''', (package_trip_name, tag_line, validity_date_start, validity_date_finish, inclusions, package_trip_id))
+        ''', (package_trip_name, tag_line, validity_date_start, validity_date_finish, inclusions, service_id, package_trip_id))
 
         # Commit to DB
         mysql.connection.commit()

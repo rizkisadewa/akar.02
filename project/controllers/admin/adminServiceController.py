@@ -31,7 +31,7 @@ def is_logged_in(f):
 # Add Services Data Form Class
 class AddServiceData(Form):
     name_of_service = StringField('Name of Service', [validators.Length(min=1, max=200)])
-
+    slug = StringField('Slug(URL)', [validators.Length(min=1, max=50)])
 
 # Choose the Country
 @app.route('/admin/service-setting')
@@ -78,8 +78,9 @@ def serviceDataCenter(country, destination, trip_id):
     if request.method == 'POST' and form.validate():
         name_of_service = form.name_of_service.data
         trip_id = trip_data['trip_id']
+        slug = form.slug.data
 
-        adminServiceModel.addServiceData(name_of_service, trip_id)
+        adminServiceModel.addServiceData(name_of_service, trip_id, slug)
 
         flash('Service Added', 'success')
 

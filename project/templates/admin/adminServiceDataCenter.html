@@ -32,6 +32,9 @@
               <div class="col-sm-6">
                 {{render_field(form.name_of_service, class = "form-control")}}
               </div>
+              <div class="col-sm-6">
+                {{render_field(form.slug, class="form-control")}}
+              </div>
             </div>
           </div>
 
@@ -66,6 +69,7 @@
               <th>Name of Service</th>
               <th>Destination</th>
               <th>Country</th>
+              <th>Slug(for URL)</th>
               <th>Activity</th>
             </tr>
             </thead>
@@ -76,6 +80,7 @@
               <td>{{service_data.name_of_service}}</td>
               <td>{{service_data.destination}}</td>
               <td>{{service_data.country}}</td>
+              <td>{{service_data.slug}}</td>
               <td>
                 <form class="" action="{{url_for('serviceDataDelete', country=trip_data.country, destination=trip_data.destination, trip_id=trip_data.trip_id, service_id=service_data.service_id)}}" method="post">
                   <input type="submit" value="Delete" class="btn btn-danger confirmation_delete">

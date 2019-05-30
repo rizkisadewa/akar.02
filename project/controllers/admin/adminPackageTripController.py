@@ -46,6 +46,7 @@ class AddPackageTripData(Form):
     validity_date_finish = DateField('Validity Date Finish', format='%Y-%m-%d')
     tag_line = StringField('Tag Line', [validators.Length(min=1, max=200)])
     inclusions = TextAreaField('Inclusions', [validators.Length(min=1, max=500)])
+    service_id = StringField()
 
 # Add Rate Card Data Form Class
 class AddRateCardData(Form):
@@ -103,7 +104,7 @@ def packageTripDataCenter(country, destination, trip_id):
 
     # Add the Data
     if request.method == 'POST' and form.validate():
-        service_id = service_data['service_id']
+        service_id = form.service_id.data
         admin_id = admin_data['admin_id']
         package_trip_name = form.package_trip_name.data
         validity_date_start = form.validity_date_start.data
@@ -139,6 +140,9 @@ def packageTripDataEdit(country, destination, trip_id, package_trip_id):
     # Fetch Trip Data
     trip_data = adminTripModel.tripDataFetchOne(trip_id)
 
+    # Fetch Service Data
+    service_data = adminServiceModel.serviceDataFetchOne(trip_id)
+
     # Fit the Package Trip Form Class
     form = AddPackageTripData(request.form)
 
@@ -158,9 +162,10 @@ def packageTripDataEdit(country, destination, trip_id, package_trip_id):
         validity_date_start = request.form['validity_date_start']
         validity_date_finish = request.form['validity_date_finish']
         inclusions = request.form['inclusions']
+        service_id = request.form['service_id']
 
         # Execute the query
-        adminPackageTripModel.updatePackageTripData(package_trip_name, tag_line, validity_date_start, validity_date_finish, inclusions, package_trip_id)
+        adminPackageTripModel.updatePackageTripData(package_trip_name, tag_line, validity_date_start, validity_date_finish, inclusions, service_id, package_trip_id)
 
         # Send notification to the dashboard
         flash('Package Trip has been updated', 'success')
@@ -172,7 +177,8 @@ def packageTripDataEdit(country, destination, trip_id, package_trip_id):
     trip_data=trip_data,
     country=country,
     destination=destination,
-    package_trip_data=package_trip_data)
+    package_trip_data=package_trip_data,
+    service_data=service_data)
 
 # Delete Package Trip Data
 @app.route('/admin/package-trip-setting/<string:country>/<string:destination>/<string:trip_id>/delete/<string:package_trip_id>', methods=['GET', 'POST'])

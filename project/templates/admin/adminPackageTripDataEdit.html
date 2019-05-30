@@ -64,6 +64,15 @@
                   {{ render_field(form.inclusions, class = "form-control", id="editor") }}
                 </div>
 
+                <div class="col-sm-6">
+                  <label for="service_id">Select Service Type</label>
+                  <select class="form-control" name="service_id">
+                    {% for service_data in service_data %}
+                    <option value="{{service_data.service_id}}" {% if service_data.service_id == package_trip_data.service_id %} selected {% endif %}>{{service_data.name_of_service}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
               </div>
             </div>
 

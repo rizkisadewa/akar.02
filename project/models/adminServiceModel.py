@@ -7,13 +7,13 @@ from passlib.hash import sha256_crypt
 class adminServiceModel(object):
 
     # Add Service Data
-    def addServiceData(self, name_of_service, trip_id):
+    def addServiceData(self, name_of_service, trip_id, slug):
 
         # Create Cursor
         cur = mysql.connection.cursor()
 
         # Execute Query
-        cur.execute("INSERT INTO service(name_of_service, trip_id) VALUES(%s, %s)", (name_of_service, trip_id))
+        cur.execute("INSERT INTO service(name_of_service, trip_id, slug) VALUES(%s, %s, %s)", (name_of_service, trip_id, slug))
 
         # commit to DB
         mysql.connection.commit()
@@ -28,7 +28,7 @@ class adminServiceModel(object):
 
         # Execute query
         cur.execute('''
-            SELECT `service`.`name_of_service`, `service`.`service_id`, `trip`.`country`, `trip`.`destination`
+            SELECT `service`.`name_of_service`,`service`.`slug`, `service`.`service_id`, `trip`.`country`, `trip`.`destination`
             FROM `service`, `trip`
             WHERE `service`.`trip_id` = `trip`.`trip_id` AND
             `trip`.`destination` = %s
@@ -63,6 +63,6 @@ class adminServiceModel(object):
             WHERE trip_id = %s
         ''', [trip_id])
 
-        service_data = cur.fetchone()
+        service_data = cur.fetchall()
 
         return service_data

@@ -63,6 +63,15 @@
                   {{ render_field(form.inclusions, class = "form-control", id="editor") }}
                 </div>
 
+                <div class="col-sm-6">
+                  <label for="service_id">Select Service Type</label>
+                  <select class="form-control" name="service_id">
+                    {% for service_data in service_data %}
+                    <option value="{{service_data.service_id}}">{{service_data.name_of_service}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
               </div>
             </div>
 
@@ -96,6 +105,7 @@
                 <th>Package Trip Name</th>
                 <th>Destination</th>
                 <th>Country</th>
+                <th>Service Type</th>
                 <th>Created by</th>
                 <th colspan="3" style="text-align: center;">Activity</th>
               </tr>
@@ -107,6 +117,7 @@
                 <td>{{ package_trip_data.package_trip_name }}</td>
                 <td>{{ package_trip_data.destination }}</td>
                 <td>{{ package_trip_data.country }}</td>
+                <td>{{ package_trip_data.name_of_service }}</td>
                 <td>{{ package_trip_data.name }}</td>
                 <td><a class="btn btn-primary" href="/admin/package-trip-setting/{{country}}/{{destination}}/{{trip_data.trip_id}}/edit/{{ package_trip_data.package_trip_id }}">Edit</a></td>
                 <td><a class="btn btn-success" href="/admin/package-trip-setting/{{country}}/{{destination}}/{{trip_data.trip_id}}/component/{{ package_trip_data.package_trip_id }}">Add Component</a></td>
