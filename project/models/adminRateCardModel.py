@@ -78,3 +78,23 @@ class adminRateCardModel(object):
 
         # Close connection
         cur.close()
+
+    # Fetch One Rate Card
+    def rateCardDataFetchOne(self, rate_card_id):
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # Execute query
+        cur.execute('''
+            SELECT * FROM rate_card WHERE rate_card_id = %s
+        ''', [rate_card_id])
+
+        # Asign to the variable
+        rate_card_data = cur.fetchone()
+
+        # Return the variable
+        return rate_card_data
+
+        # Close the connection
+        cur.close()

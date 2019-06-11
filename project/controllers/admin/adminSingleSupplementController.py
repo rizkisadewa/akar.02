@@ -8,11 +8,15 @@ from functools import wraps
 from project.models.adminPriceSegmentModel import adminPriceSegmentModel
 from project.models.adminModels import adminModel
 from project.models.adminSingleSupplementModel import adminSingleSupplementModel
+from project.models.adminPackageTripModel import adminPackageTripModel
+from project.models.adminRateCardModel import adminRateCardModel
 
 # an object from Model
 adminPriceSegmentModel = adminPriceSegmentModel()
 adminModel = adminModel()
 adminSingleSupplementModel = adminSingleSupplementModel()
+adminPackageTripModel = adminPackageTripModel()
+adminRateCardModel = adminRateCardModel()
 
 # Check if logged in
 def is_logged_in(f):
@@ -49,7 +53,14 @@ def singleSupplementDataCenter(country, destination, trip_id, package_trip_id, r
     admin_data = adminModel.adminIdFetchOne(session['username'])
 
     # Fetch Single Supplement Data
-    single_supplement_data = adminSingleSupplementModel.singleSupplementFetchData()
+    single_supplement_data = adminSingleSupplementModel.singleSupplementFetchData(rate_card_id)
+
+    # Fetch One Package Trip Data
+    package_trip_data = adminPackageTripModel.packageTripDataFetchOne(package_trip_id)
+
+    # Fetch The Rate Card Data
+    rate_card_data = adminRateCardModel.rateCardDataFetchOne(rate_card_id)
+
 
     # Add the Data
     if request.method == 'POST' and form.validate():
@@ -78,7 +89,9 @@ def singleSupplementDataCenter(country, destination, trip_id, package_trip_id, r
         form=form,
         price_segment_data=price_segment_data,
         single_supplement_data=single_supplement_data,
-        rate_card_id=rate_card_id
+        rate_card_id=rate_card_id,
+        package_trip_data=package_trip_data,
+        rate_card_data=rate_card_data
     )
 
 # Edit the Single Supplement Data
@@ -94,6 +107,13 @@ def editSingleSupplement(country, destination, trip_id, package_trip_id, rate_ca
 
     # Fetch One Single Supplement Data
     single_supplement_data_fo = adminSingleSupplementModel.singleSupplementFetchOne(single_supplement_id)
+
+    # Fetch One Package Trip Data
+    package_trip_data = adminPackageTripModel.packageTripDataFetchOne(package_trip_id)
+
+    # Fetch The Rate Card Data
+    rate_card_data = adminRateCardModel.rateCardDataFetchOne(rate_card_id)
+
 
     # Populate Single Supplement Form Fields
     form.min_pax.data = single_supplement_data_fo['min_pax']
@@ -127,7 +147,9 @@ def editSingleSupplement(country, destination, trip_id, package_trip_id, rate_ca
         form=form,
         price_segment_data=price_segment_data,
         rate_card_id=rate_card_id,
-        single_supplement_data_fo=single_supplement_data_fo
+        single_supplement_data_fo=single_supplement_data_fo,
+        package_trip_data=package_trip_data,
+        rate_card_data=rate_card_data
     )
 
 # Deleting the Single supplement

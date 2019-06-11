@@ -8,11 +8,15 @@ from functools import wraps
 from project.models.adminPriceSegmentModel import adminPriceSegmentModel
 from project.models.adminModels import adminModel
 from project.models.adminPackageBracketPriceModel import adminPackageBracketPriceModel
+from project.models.adminPackageTripModel import adminPackageTripModel
+from project.models.adminRateCardModel import adminRateCardModel
 
 # an object from Model
 adminPriceSegmentModel = adminPriceSegmentModel()
 adminModel = adminModel()
 adminPackageBracketPriceModel = adminPackageBracketPriceModel()
+adminPackageTripModel = adminPackageTripModel()
+adminRateCardModel = adminRateCardModel()
 
 # Check if logged in
 def is_logged_in(f):
@@ -48,8 +52,14 @@ def packageBracketPrice(country, destination, trip_id, package_trip_id, rate_car
     # Fetch admin_id
     admin_data = adminModel.adminIdFetchOne(session['username'])
 
+    # Fetch One Package Trip Data
+    package_trip_data = adminPackageTripModel.packageTripDataFetchOne(package_trip_id)
+
     # Fetch Package Bracket Price
     package_bracket_price_data = adminPackageBracketPriceModel.packageBracketPriceDataFetchData(rate_card_id)
+
+    # Fetch The Rate Card Data
+    rate_card_data = adminRateCardModel.rateCardDataFetchOne(rate_card_id)
 
     # Add the Data
     if request.method == 'POST' and form.validate():
@@ -78,7 +88,9 @@ def packageBracketPrice(country, destination, trip_id, package_trip_id, rate_car
         form=form,
         price_segment_data=price_segment_data,
         package_bracket_price_data=package_bracket_price_data,
-        rate_card_id=rate_card_id
+        rate_card_id=rate_card_id,
+        package_trip_data=package_trip_data,
+        rate_card_data=rate_card_data
     )
 
 # Delete Package Bracket Price Data Center
@@ -105,8 +117,14 @@ def editPackageBracketPrice(country, destination, trip_id, package_trip_id, rate
     # Fetch the Price Segment Data
     price_segment_data = adminPriceSegmentModel.priceSegmentFetchData()
 
+    # Fetch One Package Trip Data
+    package_trip_data = adminPackageTripModel.packageTripDataFetchOne(package_trip_id)
+
     # Fetch One Package Bracket Price Data
     package_bracket_price_data_fo = adminPackageBracketPriceModel.packageBracketPriceFetchOne(package_bracket_price_id)
+
+    # Fetch The Rate Card Data
+    rate_card_data = adminRateCardModel.rateCardDataFetchOne(rate_card_id)
 
     # Populate Day Excursion form fields
     form.min_pax.data = package_bracket_price_data_fo['min_pax']
@@ -140,5 +158,7 @@ def editPackageBracketPrice(country, destination, trip_id, package_trip_id, rate
         form=form,
         price_segment_data=price_segment_data,
         rate_card_id=rate_card_id,
-        package_bracket_price_data_fo=package_bracket_price_data_fo
+        package_bracket_price_data_fo=package_bracket_price_data_fo,
+        package_trip_data=package_trip_data,
+        rate_card_data=rate_card_data
     )

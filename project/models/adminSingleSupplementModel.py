@@ -45,18 +45,19 @@ class adminSingleSupplementModel(object):
         cur.close()
 
     # Fetch the Single Supplement Data
-    def singleSupplementFetchData(self):
+    def singleSupplementFetchData(self, rate_card_id):
 
         # Create Cursor
         cur = mysql.connection.cursor()
 
         # Execute query
         cur.execute('''
-            SELECT `single_supplement`.*, `price_segment`.`validity_date_start`, `price_segment`.`validity_date_finish`
+            SELECT DISTINCT `single_supplement`.*, `price_segment`.`validity_date_start`, `price_segment`.`validity_date_finish`
             FROM `single_supplement`, `price_segment`
             WHERE `single_supplement`.`price_segment_id` = `price_segment`.`price_segment_id`
-            ORDER BY `single_supplement`.`min_pax` AND `price_segment`.`segment_type`
-        ''')
+            AND `single_supplement`.`rate_card_id` = %s
+            ORDER BY `single_supplement`.`min_pax` ASC
+        ''', [rate_card_id])
 
         # Asign to the other variable that would be returned
         single_supplement_data = cur.fetchall()

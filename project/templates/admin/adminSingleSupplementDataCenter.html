@@ -23,7 +23,7 @@
 
         <!-- .box-header -->
         <div class="box-header with-border">
-          <h3 class="box-title">Input Single Supplement</h3>
+          <h3 class="box-title">Input Single Supplement - {{package_trip_data.package_trip_name}} - {{rate_card_data.name_of_rate}}</h3>
         </div>
         <!-- /.box-header -->
 
@@ -79,26 +79,30 @@
         <div class="box-body">
           <table class="table table-border table-hover">
             <thead>
-              <th>Pax Bracket</th>
-              <th>Package Price</th>
-              <th>Validity From</th>
-              <th>Validity Until</th>
-              <th>Activity</th>
+              <tr>
+                <th>Pax Bracket</th>
+                <th>Package Price</th>
+                <th>Validity From</th>
+                <th>Validity Until</th>
+                <th>Activity</th>
+              </tr>
             </thead>
             <tbody>
               {% for single_supplement_data in single_supplement_data %}
-              <td>{{single_supplement_data.min_pax}} - {{single_supplement_data.max_pax}}</td>
-              <td>{{single_supplement_data.price_per_person}}</td>
-              <td>{{single_supplement_data.validity_date_start.strftime('%d-%B-%Y')}}</td>
-              <td>{{single_supplement_data.validity_date_finish.strftime('%d-%B-%Y')}}</td>
-              <td>
-                <a href="{{url_for('editSingleSupplement', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id, rate_card_id=rate_card_id, single_supplement_id=single_supplement_data.single_supplement_id)}}" class="btn btn-success">Edit</a>
-              </td>
-              <td>
-                <form class="" action="{{url_for('deleteSingleSupplement', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id, rate_card_id=rate_card_id, single_supplement_id=single_supplement_data.single_supplement_id)}}" method="post">
-                  <input type="submit" class="btn btn-danger confirmation_delete" name="" value="Delete">
-                </form>
-              </td>
+              <tr>
+                <td>{{single_supplement_data.min_pax}} - {{single_supplement_data.max_pax}}</td>
+                <td>{{ "Rp {:,.2f}".format(single_supplement_data.price_per_person) }}</td>
+                <td>{{single_supplement_data.validity_date_start.strftime('%d-%B-%Y')}}</td>
+                <td>{{single_supplement_data.validity_date_finish.strftime('%d-%B-%Y')}}</td>
+                <td>
+                  <a href="{{url_for('editSingleSupplement', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id, rate_card_id=rate_card_id, single_supplement_id=single_supplement_data.single_supplement_id)}}" class="btn btn-success">Edit</a>
+                </td>
+                <td>
+                  <form class="" action="{{url_for('deleteSingleSupplement', country=country, destination=destination, trip_id=trip_id, package_trip_id=package_trip_id, rate_card_id=rate_card_id, single_supplement_id=single_supplement_data.single_supplement_id)}}" method="post">
+                    <input type="submit" class="btn btn-danger confirmation_delete" name="" value="Delete">
+                  </form>
+                </td>
+              </tr>
               {% endfor %}
             </tbody>
           </table>
