@@ -56,7 +56,7 @@ class adminSingleSupplementModel(object):
             FROM `single_supplement`, `price_segment`
             WHERE `single_supplement`.`price_segment_id` = `price_segment`.`price_segment_id`
             AND `single_supplement`.`rate_card_id` = %s
-            ORDER BY `single_supplement`.`min_pax` ASC
+            ORDER BY `single_supplement`.`min_pax` ASC, `price_segment`.`validity_date_start` ASC
         ''', [rate_card_id])
 
         # Asign to the other variable that would be returned

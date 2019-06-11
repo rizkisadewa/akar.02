@@ -55,7 +55,7 @@ class adminPackageBracketPriceModel(object):
             FROM `package_bracket_price`, `price_segment`, `package_trip`
             WHERE `package_bracket_price`.`price_segment_id` = `price_segment`.`price_segment_id`
             AND `package_bracket_price`.`rate_card_id` = %s
-            ORDER BY `package_bracket_price`.`min_pax` ASC
+            ORDER BY `package_bracket_price`.`min_pax` ASC, `price_segment`.`validity_date_start` ASC
         ''', [rate_card_id])
 
         # Asign to the other variable that would be returned
