@@ -8,7 +8,7 @@
   <ol class="breadcrumb">
     <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
     <li><a href="/admin/sightseeing-transfer-setting">Select Country : {{country}}</a></li>
-    <li><a href="/admin/sightseeing-transfer-setting{{country}}">Select Destination : {{destination}}</a></li>
+    <li><a href="/admin/sightseeing-transfer-setting/{{country}}">Select Destination : {{destination}}</a></li>
     <li class="active">Sightseeing Transfer Center</li>
   </ol>
 </section>
@@ -47,6 +47,14 @@
             <div class="col-sm-6">
               {{render_field(form.duration, class="form-control")}}
             </div>
+            <div class="col-sm-6">
+              <label for="service_id">Service Type</label>
+              <select class="form-control" name="service_id">
+                {% for service_data in service_data %}
+                <option value="{{service_data.service_id}}">{{service_data.name_of_service}}</option>
+                {% endfor %}
+              </select>              
+            </div>
 
             <div class="col-sm-12">
               {{render_field(form.sightseeing_transfer_description, class="form-control", id="editor")}}
@@ -83,6 +91,7 @@
               <tr>
                 <th>Sightseeing Transfer ID</th>
                 <th>Sightseeing Transfer Title</th>
+                <th>Service Type</th>
                 <th>Created By</th>
                 <th colspan="2" style="text-align: center;">Activity</th>
               </tr>
@@ -92,6 +101,7 @@
               <tr>
                 <td>{{sightseeing_transfer_data.sightseeing_transfer_id}}</td>
                 <td>{{sightseeing_transfer_data.sightseeing_transfer_title}}</td>
+                <td>{{sightseeing_transfer_data.name_of_service}}</td>
                 <td>{{sightseeing_transfer_data.name}}</td>
                 <td>
                   <a href="{{url_for('sightseeingTransferDataUpdate', country=country, destination=destination, trip_id=trip_id, sightseeing_transfer_id=sightseeing_transfer_data.sightseeing_transfer_id)}}" class="btn btn-primary">Edit</a>

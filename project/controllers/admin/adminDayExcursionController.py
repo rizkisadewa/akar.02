@@ -34,6 +34,7 @@ class AddDayExcursionData(Form):
     inclusions = StringField(u'Day Excursion Inclusions')
     estimation_time_start = TimeField(u'Estimation Time Start')
     estimation_time_finish = TimeField(u'Estimation Time Finish')
+    service_id = StringField()
 
 # Choose the Country
 @app.route('/admin/day-excursion-setting')
@@ -82,7 +83,7 @@ def dayExcursionDataCenter(country, destination, trip_id):
 
     # Add the Data
     if request.method == 'POST' and form.validate():
-        service_id = service_data['service_id']
+        service_id = form.service_id.data
         admin_id = admin_data['admin_id']
         day_excursion_title = form.day_excursion_title.data
         day_excursions_description = form.day_excursions_description.data
@@ -119,6 +120,9 @@ def dayExcursionDataUpdate(country, destination, trip_id, day_excursion_id):
     # Fetch Trip Data
     trip_data = adminTripModel.tripDataFetchOne(trip_id)
 
+    # Fetch Service Data
+    service_data = adminServiceModel.serviceDataFetchOne(trip_id)
+
     # Fit the Day Excursion Form Class
     form = AddDayExcursionData(request.form)
 
@@ -138,9 +142,10 @@ def dayExcursionDataUpdate(country, destination, trip_id, day_excursion_id):
         estimation_time_start = request.form['estimation_time_start']
         estimation_time_finish = request.form['estimation_time_finish']
         day_excursions_description = request.form['day_excursions_description']
+        service_id = request.form['service_id']
 
         # Execute the query
-        adminDayExcursionModel.updateDayExcursionData(day_excursion_title, inclusions, estimation_time_start, estimation_time_finish, day_excursions_description, day_excursion_id)
+        adminDayExcursionModel.updateDayExcursionData(day_excursion_title, inclusions, estimation_time_start, estimation_time_finish, day_excursions_description, service_id, day_excursion_id)
 
         # send notification to the dashboard
         flash('Day Excursion has been updated', 'success')
@@ -153,7 +158,8 @@ def dayExcursionDataUpdate(country, destination, trip_id, day_excursion_id):
         destination=destination,
         day_excursion_data=day_excursion_data,
         country=country,
-        trip_data=trip_data
+        trip_data=trip_data,
+        service_data=service_data
     )
 
 # Day Excursion Delete

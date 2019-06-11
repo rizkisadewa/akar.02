@@ -34,7 +34,8 @@ class adminAirportTransferModel(object):
             SELECT
             `airport_transfer`.`airport_transfer_id`,
             `airport_transfer`.`airport_transfer_title`,
-            `admin`.`name`
+            `admin`.`name`,
+            `service`.`name_of_service`
             FROM `airport_transfer`, `admin`, `service`
             WHERE `airport_transfer`.`admin_id` = `admin`.`admin_id`
             AND `airport_transfer`.`service_id` = `service`.`service_id`
@@ -70,7 +71,7 @@ class adminAirportTransferModel(object):
         return airport_transfer_data
 
     # Updating the Airport Transfer Data
-    def updateAirportTransferData(self, airport_transfer_title, inclusions, pickup_point, drop_off_point, duration, airport_transfer_description, airport_transfer_id):
+    def updateAirportTransferData(self, airport_transfer_title, inclusions, pickup_point, drop_off_point, duration, airport_transfer_description, service_id, airport_transfer_id):
 
         # Create a cursor
         cur = mysql.connection.cursor()
@@ -84,10 +85,11 @@ class adminAirportTransferModel(object):
             pickup_point = %s,
             drop_off_point = %s,
             duration = %s,
-            airport_transfer_description = %s
+            airport_transfer_description = %s,
+            service_id = %s
             WHERE
             airport_transfer_id = %s
-        ''', (airport_transfer_title, inclusions, pickup_point, drop_off_point, duration, airport_transfer_description, airport_transfer_id))
+        ''', (airport_transfer_title, inclusions, pickup_point, drop_off_point, duration, airport_transfer_description, service_id, airport_transfer_id))
 
         # Commit to DB
         mysql.connection.commit()

@@ -50,9 +50,20 @@
               {{render_field(form.duration, class="form-control")}}
             </div>
 
+            <div class="col-sm-6">
+              <label for="service_id">Select Service Type</label>
+              <select class="form-control" name="service_id">
+                {% for service_data in service_data %}
+                <option value="{{service_data.service_id}}">{{service_data.name_of_service}}</option>
+                {% endfor %}
+              </select>
+            </div>
+
             <div class="col-sm-12">
               {{render_field(form.airport_transfer_description, class="form-control", id="editor")}}
             </div>
+
+
           </div>
 
           <!-- /.box-body -->
@@ -84,6 +95,7 @@
               <tr>
                 <th>Airport Transfer ID</th>
                 <th>Airport Transfer Title</th>
+                <th>Service Type</th>
                 <th>Created By</th>
                 <th colspan="2">Activity</th>
               </tr>
@@ -93,6 +105,7 @@
               <tr>
                 <td>{{airport_transfer_data.airport_transfer_id}}</td>
                 <td>{{airport_transfer_data.airport_transfer_title}}</td>
+                <td>{{airport_transfer_data.name_of_service}}</td>
                 <td>{{airport_transfer_data.name}}</td>
                 <td>
                   <a href="/admin/aiport-transfer/{{country}}/{{destination}}/{{trip_data.trip_id}}/edit/{{airport_transfer_data.airport_transfer_id}}" class="btn btn-primary">Update</a>

@@ -49,7 +49,7 @@ def packageBracketPrice(country, destination, trip_id, package_trip_id, rate_car
     admin_data = adminModel.adminIdFetchOne(session['username'])
 
     # Fetch Package Bracket Price
-    package_bracket_price_data = adminPackageBracketPriceModel.packageBracketPriceDataFetchData()
+    package_bracket_price_data = adminPackageBracketPriceModel.packageBracketPriceDataFetchData(rate_card_id)
 
     # Add the Data
     if request.method == 'POST' and form.validate():

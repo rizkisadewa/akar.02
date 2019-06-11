@@ -34,7 +34,8 @@ class adminDayExcursionModel(object):
             SELECT
             `day_excursion`.`day_excursion_id`,
             `day_excursion`.`day_excursion_title`,
-            `admin`.`name`
+            `admin`.`name`,
+            `service`.`name_of_service`
             FROM `day_excursion`, `admin`, `service`
             WHERE `day_excursion`.`admin_id` = `admin`.`admin_id` AND `day_excursion`.`service_id` = `service`.`service_id`
             AND `service`.`trip_id` = %s
@@ -68,7 +69,7 @@ class adminDayExcursionModel(object):
 
 
     # Update the Day Excursions Data
-    def updateDayExcursionData(self, day_excursion_title, inclusions, estimation_time_start, estimation_time_finish, day_excursions_description, day_excursion_id):
+    def updateDayExcursionData(self, day_excursion_title, inclusions, estimation_time_start, estimation_time_finish, day_excursions_description, service_id, day_excursion_id):
 
         # Create a cursor
         cur = mysql.connection.cursor()
@@ -81,10 +82,11 @@ class adminDayExcursionModel(object):
             inclusions = %s,
             estimation_time_start = %s,
             estimation_time_finish = %s,
-            day_excursions_description = %s
+            day_excursions_description = %s,
+            service_id = %s
             WHERE
             day_excursion_id = %s
-        ''', (day_excursion_title, inclusions, estimation_time_start, estimation_time_finish, day_excursions_description, day_excursion_id))
+        ''', (day_excursion_title, inclusions, estimation_time_start, estimation_time_finish, day_excursions_description, service_id, day_excursion_id))
 
         # Commit to DB
         mysql.connection.commit()

@@ -35,7 +35,7 @@ class AddSightSeeingTransferData(Form):
     duration = IntegerField(u'Duration in Minutes')
     pickup_point = StringField("Pickup Point")
     drop_off_point = StringField("Drop Off Point")
-
+    service_id = StringField()
 
 # Choose the Country
 @app.route('/admin/sightseeing-transfer-setting')
@@ -86,7 +86,7 @@ def sightseeingTransferDataCenter(country, destination, trip_id):
     # Add the Data
     if request.method == 'POST' and form.validate():
 
-        service_id = service_data['service_id']
+        service_id = form.service_id.data
         admin_id = admin_data['admin_id']
         sightseeing_transfer_title = form.sightseeing_transfer_title.data
         inclusions = form.inclusions.data
@@ -109,7 +109,8 @@ def sightseeingTransferDataCenter(country, destination, trip_id):
         destination = destination,
         trip_id = trip_id,
         form=form,
-        sightseeing_transfer_data=sightseeing_transfer_data
+        sightseeing_transfer_data=sightseeing_transfer_data,
+        service_data=service_data
     )
 
 # Updating Sightseeing Transfer Data
@@ -125,6 +126,9 @@ def sightseeingTransferDataUpdate(country, destination, trip_id, sightseeing_tra
 
     # fit the Sightseeing Transfer Form class
     form = AddSightSeeingTransferData(request.form)
+
+    # Fetch Service Data
+    service_data = adminServiceModel.serviceDataFetchOne(trip_id)
 
     # Populate Sightseeing Transfer form fields
     form.sightseeing_transfer_title.data = sightseeing_transfer_data['sightseeing_transfer_title']
@@ -144,9 +148,10 @@ def sightseeingTransferDataUpdate(country, destination, trip_id, sightseeing_tra
         drop_off_point = request.form['drop_off_point']
         duration = request.form['duration']
         sightseeing_transfer_description = request.form['sightseeing_transfer_description']
+        service_id = request.form['service_id']
 
         # Execute the query
-        adminSightseeingTransferModel.updateSightseeingTransferData(sightseeing_transfer_title, inclusions , pickup_point , drop_off_point, duration, sightseeing_transfer_description, sightseeing_transfer_id)
+        adminSightseeingTransferModel.updateSightseeingTransferData(sightseeing_transfer_title, inclusions , pickup_point , drop_off_point, duration, sightseeing_transfer_description, service_id, sightseeing_transfer_id)
 
         # Send the notification to the dashboard
         flash('Sightseeing Transfer has been updated', 'success')
@@ -159,7 +164,9 @@ def sightseeingTransferDataUpdate(country, destination, trip_id, sightseeing_tra
         destination=destination,
         trip_id=trip_id,
         form=form,
-        trip_data=trip_data
+        trip_data=trip_data,
+        service_data=service_data,
+        sightseeing_transfer_data=sightseeing_transfer_data
     )
 
 # Deleting Sightseeing Transfer Data
@@ -173,5 +180,5 @@ def deleteSightseeingTransfer(country, destination, trip_id, sightseeing_transfe
     # Send the notification to the Dashboard
     flash('Sightseeing Transfer has been deleted', 'danger')
 
-    # Return to the Sightseeing Transfer Data Center  
+    # Return to the Sightseeing Transfer Data Center
     return redirect(url_for('sightseeingTransferDataCenter', country=country, destination=destination, trip_id=trip_id))

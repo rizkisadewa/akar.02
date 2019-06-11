@@ -35,6 +35,7 @@ class AddAirportTransferData(Form):
     duration = IntegerField(u'Duration in Minutes')
     pickup_point = StringField("Pickup Point")
     drop_off_point = StringField("Drop Off Point")
+    service_id = StringField()
 
 # Choose the Country
 @app.route('/admin/airport-transfer-setting')
@@ -84,7 +85,7 @@ def airportTransferDataCenter(country, destination, trip_id):
 
     # Add the Data
     if request.method == 'POST' and form.validate():
-        service_id = service_data['service_id']
+        service_id = form.service_id.data
         admin_id = admin_data['admin_id']
         airport_transfer_title = form.airport_transfer_title.data
         inclusions = form.inclusions.data
@@ -108,7 +109,8 @@ def airportTransferDataCenter(country, destination, trip_id):
         trip_id=trip_id,
         form=form,
         airport_transfer_data=airport_transfer_data,
-        trip_data=trip_data
+        trip_data=trip_data,
+        service_data=service_data
     )
 
 # Airport Transfer Update Data
@@ -121,6 +123,9 @@ def airportTransferDataUpdate(country, destination, trip_id, airport_transfer_id
 
     # Fetch Trip Data
     trip_data = adminTripModel.tripDataFetchOne(trip_id)
+
+    # Fetch Service Data
+    service_data = adminServiceModel.serviceDataFetchOne(trip_id)
 
     # fit the Airport Transfer Form Class
     form = AddAirportTransferData(request.form)
@@ -143,9 +148,10 @@ def airportTransferDataUpdate(country, destination, trip_id, airport_transfer_id
         drop_off_point = request.form['drop_off_point']
         duration = request.form['duration']
         airport_transfer_description = request.form['airport_transfer_description']
+        service_id = request.form['service_id']
 
         # Execute the query
-        adminAirportTransferModel.updateAirportTransferData(airport_transfer_title, inclusions, pickup_point, drop_off_point, duration, airport_transfer_description, airport_transfer_id)
+        adminAirportTransferModel.updateAirportTransferData(airport_transfer_title, inclusions, pickup_point, drop_off_point, duration, airport_transfer_description, service_id, airport_transfer_id)
 
         # Send the notification to the dashboard
         flash('Airport Transfer has been updated', 'success')
@@ -158,7 +164,8 @@ def airportTransferDataUpdate(country, destination, trip_id, airport_transfer_id
         destination=destination,
         airport_transfer_data=airport_transfer_data,
         country=country,
-        trip_data=trip_data
+        trip_data=trip_data,
+        service_data=service_data
     )
 
 # Airport Transfer Delete Data

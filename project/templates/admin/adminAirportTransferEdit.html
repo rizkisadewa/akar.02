@@ -50,6 +50,15 @@
               {{render_field(form.duration, class="form-control")}}
             </div>
 
+            <div class="col-sm-6">
+              <label for="service_id">Select Service Type</label>
+              <select class="form-control" name="service_id">
+                {% for service_data in service_data %}
+                <option value="{{service_data.service_id}}" {% if airport_transfer_data.service_id == service_data.service_id %} selected {% endif %}>{{service_data.name_of_service}}</option>
+                {% endfor %}
+              </select>
+            </div>
+
             <div class="col-sm-12">
               {{render_field(form.airport_transfer_description, class="form-control", id="editor")}}
             </div>

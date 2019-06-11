@@ -44,18 +44,19 @@ class adminPackageBracketPriceModel(object):
         cur.close()
 
     # Fetch the Package Bracket Price
-    def packageBracketPriceDataFetchData(self):
+    def packageBracketPriceDataFetchData(self, rate_card_id):
 
         # Create Cursor
         cur = mysql.connection.cursor()
 
         # Execute query
         cur.execute('''
-            SELECT `package_bracket_price`.*, `price_segment`.`validity_date_start`, `price_segment`.`validity_date_finish`
-            FROM `package_bracket_price`, `price_segment`
+            SELECT DISTINCT `package_bracket_price`.*, `price_segment`.`validity_date_start`, `price_segment`.`validity_date_finish`
+            FROM `package_bracket_price`, `price_segment`, `package_trip`
             WHERE `package_bracket_price`.`price_segment_id` = `price_segment`.`price_segment_id`
-            ORDER BY `package_bracket_price`.`min_pax` AND `price_segment`.`segment_type`
-        ''')
+            AND `package_bracket_price`.`rate_card_id` = %s
+            ORDER BY `package_bracket_price`.`min_pax` ASC
+        ''', [rate_card_id])
 
         # Asign to the other variable that would be returned
         package_bracket_price_data = cur.fetchall()

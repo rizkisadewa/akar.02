@@ -34,7 +34,8 @@ class adminSightseeingTransferModel(object):
             SELECT
             `sightseeing_transfer`.`sightseeing_transfer_id`,
             `sightseeing_transfer`.`sightseeing_transfer_title`,
-            `admin`.`name`
+            `admin`.`name`,
+            `service`.`name_of_service`
             FROM `sightseeing_transfer`, `admin`, `service`
             WHERE `sightseeing_transfer`.`admin_id` = `admin`.`admin_id`
             AND `sightseeing_transfer`.`service_id` = `service`.`service_id`
@@ -70,7 +71,7 @@ class adminSightseeingTransferModel(object):
         return sightseeing_transfer_data
 
     # Updating the Data for Sightseeing Transfer
-    def updateSightseeingTransferData(self, sightseeing_transfer_title, inclusions , pickup_point , drop_off_point, duration, sightseeing_transfer_description, sightseeing_transfer_id):
+    def updateSightseeingTransferData(self, sightseeing_transfer_title, inclusions , pickup_point , drop_off_point, duration, sightseeing_transfer_description, service_id, sightseeing_transfer_id):
 
         # Create a cursor
         cur = mysql.connection.cursor()
@@ -84,10 +85,11 @@ class adminSightseeingTransferModel(object):
             pickup_point = %s,
             drop_off_point = %s,
             duration = %s,
-            sightseeing_transfer_description = %s
+            sightseeing_transfer_description = %s,
+            service_id = %s
             WHERE
             sightseeing_transfer_id = %s
-        ''', (sightseeing_transfer_title, inclusions , pickup_point , drop_off_point, duration, sightseeing_transfer_description, sightseeing_transfer_id))
+        ''', (sightseeing_transfer_title, inclusions , pickup_point , drop_off_point, duration, sightseeing_transfer_description, service_id, sightseeing_transfer_id))
 
         # Commit to DB
         mysql.connection.commit()
