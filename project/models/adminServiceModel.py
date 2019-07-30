@@ -66,3 +66,6 @@ class adminServiceModel(object):
         service_data = cur.fetchall()
 
         return service_data
+
+        # close
+        cur.close()

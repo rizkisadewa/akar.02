@@ -14,7 +14,7 @@
   <!-- meta character set -->
   <meta charset="UTF-8">
   <!-- Site Title -->
-  <title>Travel Asia</title>
+  <title>Jepunku Destination</title>
 
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
     <!--
@@ -66,11 +66,11 @@
           <div class="row fullscreen align-items-center justify-content-start" style="height: 915px;">
             <div class="banner-content col-lg-9 col-md-12">
               <h1>
-                Wherever you go  <br>
-                it’ll inside the World
+                Create your own <br>
+                destination
               </h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua.</p>
-              <a href="#" class="primary-btn">See Details<span class="lnr lnr-arrow-right"></span></a>
+              <p>Temukan destinasi terbaik untuk mu bersama kami.</p>
+              <a href="#" class="primary-btn">Lebih Detail<span class="lnr lnr-arrow-right"></span></a>
             </div>
           </div>
       </div>
@@ -84,137 +84,45 @@
           <div class="col-lg-8">
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link" href="#flights" role="tab" data-toggle="tab">flights</a>
+                  <a class="nav-link" href="#paket-wisata" role="tab" data-toggle="tab">Paket Wisata - Reguler</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#hotels" role="tab" data-toggle="tab">hotels</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#flights-hotels" role="tab" data-toggle="tab">flights+hotels</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#holidays" role="tab" data-toggle="tab">Holidays</a>
-                </li>
+
             </ul>
 
             <!-- Tab panes -->
             <div class="tab-content">
-              <div role="tabpanel" class="tab-pane fade in active" id="flights">
-                <h4>Book Your Flights</h4>
-                  <form class="booking-form" id="booking" action="mail.php">
+              <div role="tabpanel" class="tab-pane fade in active" id="paket-wisata">
+                <h4>Cek Destinasimu</h4>
+                  <form class="booking-form" id="booking" action="{{url_for('startIndex')}}" method="POST">
                    <div class="row">
-                      <div class="col-md-6">
-                        <input type="text" name="from" class="single-in form-control" placeholder="From" onfocus="this.placeholder = ''" onblur="this.placeholder = 'From'" required="">
-                      </div>
-                      <div class="col-md-6">
-                        <input type="text" name="to" class="single-in form-control" placeholder="To" onfocus="this.placeholder = ''" onblur="this.placeholder = 'To'" required="">
+
+                      {% from "includes/_formhelpers.html" import render_field %}
+                      <div class="col-md-3">
+                        {{ form.depart_date(class="single-in form-control", id="datepicker", placeholder="Tanggal Berangkat") }}
                       </div>
                       <div class="col-md-3">
-                        <input id="datepicker" name="start" class="single-in form-control"  onblur="this.placeholder = 'Start'" type="text" placeholder="Start" required>
+                        <input id="datepicker2" name="return" class="single-in form-control"  onblur="this.placeholder = 'Return'" type="text" placeholder="Tanggal Pulang" required>
                       </div>
                       <div class="col-md-3">
-                        <input id="datepicker2" name="return" class="single-in form-control"  onblur="this.placeholder = 'Return'" type="text" placeholder="Return" required>
+                        <input type="text" name="adults" class="single-in form-control" placeholder="Total Peserta" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Dewasa'" required="">
                       </div>
+
                       <div class="col-md-3">
-                        <input type="text" name="adults" class="single-in form-control" placeholder="Adults" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults'" required="">
-                      </div>
-                      <div class="col-md-3">
-                        <input type="text" name="child" class="single-in form-control" placeholder="Child" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Child'">
+                        <select class="single-in form-control" name="">
+                          {% for trip_data in trip_data %}
+                          <option value="{{trip_data.destination}}">{{trip_data.destination}}</option>
+                          {% endfor %}
+                        </select>
                       </div>
                       <div class="col-lg-12 d-flex justify-content-end">
-                      <button class="primary-btn mt-20">Send Message<span class="lnr lnr-arrow-right"></span></button>
+                      <input type="submit" name="" class="primary-btn mt-20" value="Lihat Rekomendasi">
                     </div>
                     <div class="alert-msg"></div>
                     </div>
                   </form>
               </div>
-              <div role="tabpanel" class="tab-pane fade" id="hotels">
-                <h4>Book Your Hotels</h4>
-                  <form class="booking-form" id="booking" action="mail.php">
-                   <div class="row">
-                      <div class="col-md-6">
-                        <input type="text" name="from" class="single-in form-control" placeholder="From" onfocus="this.placeholder = ''" onblur="this.placeholder = 'From'" required="">
-                      </div>
-                      <div class="col-md-6">
-                        <input type="text" name="to" class="single-in form-control" placeholder="To" onfocus="this.placeholder = ''" onblur="this.placeholder = 'To'" required="">
-                      </div>
-                      <div class="col-md-3">
-                        <input id="datepicker" name="start" class="single-in form-control"  onblur="this.placeholder = 'Start'" type="text" placeholder="Start" required>
-                      </div>
-                      <div class="col-md-3">
-                        <input id="datepicker2" name="return" class="single-in form-control"  onblur="this.placeholder = 'Return'" type="text" placeholder="Return" required>
-                      </div>
-                      <div class="col-md-3">
-                        <input type="text" name="adults" class="single-in form-control" placeholder="Adults" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults'" required="">
-                      </div>
-                      <div class="col-md-3">
-                        <input type="text" name="child" class="single-in form-control" placeholder="Child" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Child'">
-                      </div>
-                      <div class="col-lg-12 d-flex justify-content-end">
-                      <button class="primary-btn mt-20">Send Message<span class="lnr lnr-arrow-right"></span></button>
-                    </div>
-                    <div class="alert-msg"></div>
-                    </div>
-                  </form>
-              </div>
-              <div role="tabpanel" class="tab-pane fade" id="flights-hotels">
-                <h4>Book Your Flights & Hotels</h4>
-                  <form class="booking-form" id="booking" action="mail.php">
-                   <div class="row">
-                      <div class="col-md-6">
-                        <input type="text" name="from" class="single-in form-control" placeholder="From" onfocus="this.placeholder = ''" onblur="this.placeholder = 'From'" required="">
-                      </div>
-                      <div class="col-md-6">
-                        <input type="text" name="to" class="single-in form-control" placeholder="To" onfocus="this.placeholder = ''" onblur="this.placeholder = 'To'" required="">
-                      </div>
-                      <div class="col-md-3">
-                        <input id="datepicker" name="start" class="single-in form-control"  onblur="this.placeholder = 'Start'" type="text" placeholder="Start" required>
-                      </div>
-                      <div class="col-md-3">
-                        <input id="datepicker2" name="return" class="single-in form-control"  onblur="this.placeholder = 'Return'" type="text" placeholder="Return" required>
-                      </div>
-                      <div class="col-md-3">
-                        <input type="text" name="adults" class="single-in form-control" placeholder="Adults" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults'" required="">
-                      </div>
-                      <div class="col-md-3">
-                        <input type="text" name="child" class="single-in form-control" placeholder="Child" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Child'">
-                      </div>
-                      <div class="col-lg-12 d-flex justify-content-end">
-                      <button class="primary-btn mt-20">Send Message<span class="lnr lnr-arrow-right"></span></button>
-                    </div>
-                    <div class="alert-msg"></div>
-                    </div>
-                  </form>
-              </div>
-              <div role="tabpanel" class="tab-pane fade" id="holidays">
-                <h4>Book Your Holidays</h4>
-                  <form class="booking-form" id="booking" action="mail.php">
-                   <div class="row">
-                      <div class="col-md-6">
-                        <input type="text" name="from" class="single-in form-control" placeholder="From" onfocus="this.placeholder = ''" onblur="this.placeholder = 'From'" required="">
-                      </div>
-                      <div class="col-md-6">
-                        <input type="text" name="to" class="single-in form-control" placeholder="To" onfocus="this.placeholder = ''" onblur="this.placeholder = 'To'" required="">
-                      </div>
-                      <div class="col-md-3">
-                        <input id="datepicker" name="start" class="single-in form-control"  onblur="this.placeholder = 'Start'" type="text" placeholder="Start" required>
-                      </div>
-                      <div class="col-md-3">
-                        <input id="datepicker2" name="return" class="single-in form-control"  onblur="this.placeholder = 'Return'" type="text" placeholder="Return" required>
-                      </div>
-                      <div class="col-md-3">
-                        <input type="text" name="adults" class="single-in form-control" placeholder="Adults" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults'" required="">
-                      </div>
-                      <div class="col-md-3">
-                        <input type="text" name="child" class="single-in form-control" placeholder="Child" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Child'">
-                      </div>
-                      <div class="col-lg-12 d-flex justify-content-end">
-                      <button class="primary-btn mt-20">Send Message<span class="lnr lnr-arrow-right"></span></button>
-                    </div>
-                    <div class="alert-msg"></div>
-                    </div>
-                  </form>
-              </div>
+              <!-- /Tab panes -->
+
             </div>
           </div>
         </div>

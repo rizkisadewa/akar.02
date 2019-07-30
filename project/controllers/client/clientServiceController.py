@@ -24,6 +24,7 @@ def clientServices(destination):
     # Fetch all Destination Info
     destination_data = clientServiceModel.destinationFetchData()
 
+    
     return render_template('client/clientServices.html',
     service_data=service_data,
     destination_data=destination_data,
