@@ -11,3 +11,8 @@
 .main-menubar nav a:hover{
   color: #FF0062;
 }
+
+/* CONTACT FORM */
+#contact h4{
+  font-size: 30px;
+}
