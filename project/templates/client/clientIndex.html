@@ -108,7 +108,7 @@
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane fade in active" id="paket-wisata">
                 <h4>Cek Destinasimu</h4>
-                  <form class="booking-form" id="booking" action="{{url_for('startIndex')}}" method="POST">
+                  <form class="booking-form" id="booking" action="{{ url_for('startIndex') }}" method="POST">
                    <div class="row">
 
                       {% from "includes/_formhelpers.html" import render_field %}
@@ -116,7 +116,8 @@
                         {{ form.depart_date(class="single-in form-control", id="datepicker", placeholder="Tanggal Berangkat") }}
                       </div>
                       <div class="col-md-4">
-                        <input type="text" name="adults" class="single-in form-control" placeholder="Total Peserta" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Total Peserta'" required="">
+                        {{ form.total_pax(class="single-in form-control", placeholder="Total Peserta") }}
+                        <!-- <input type="text" name="adults" class="single-in form-control" placeholder="Total Peserta" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Total Peserta'" required=""> -->
                       </div>
 
                       <div class="col-md-4">
@@ -127,7 +128,8 @@
                         </select>
                       </div>
                       <div class="col-lg-12 d-flex justify-content-end">
-                      <input type="submit" name="" class="primary-btn mt-20" value="Lihat Rekomendasi">
+
+                      <button type="submit" class="primary-btn mt-20">Lihat Rekomendasi</button>
                     </div>
                     <div class="alert-msg"></div>
                     </div>

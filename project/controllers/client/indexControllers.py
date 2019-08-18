@@ -17,11 +17,11 @@ adminTripModel = adminTripModel()
 # Check Paket Wisata
 class PaketWisataCheckDestination(Form):
     depart_date = StringField("Tanggal Berangkat")
-    finish_date = StringField("Tanggal Pulang")
     total_pax = StringField("Total Peserta")
     destination = StringField()
 
-@app.route('/')
+# Index
+@app.route('/', methods=['GET','POST'])
 def startIndex():
     # Fetch All Trip
     trip_data = adminTripModel.tripFetchData()
@@ -31,8 +31,11 @@ def startIndex():
 
     # check if the client press the submit button
     if request.method == 'POST' and form.validate():
+        destination = form.destination.data
+        total_pax = form.total_pax.data
+        depart_date = form.depart_date.data
 
-        return redirect(url_for('clientServices'), destination)
+        return redirect(url_for('clientServices'), destination, total_pax, depart_date)
 
     return render_template(
         'client/clientIndex.html',
