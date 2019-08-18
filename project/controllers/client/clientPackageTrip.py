@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from project import app
-from flask import render_template, request
+from flask import render_template, flash, redirect, url_for, session, request, logging #stuff from Flask
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators, DateField, TimeField
 
 

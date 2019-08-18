@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from project import app
-from flask import render_template, request
+from flask import render_template, flash, redirect, url_for, session, request, logging #stuff from Flask
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators, DateField, TimeField
 
 
@@ -35,7 +35,7 @@ def startIndex():
         total_pax = form.total_pax.data
         depart_date = form.depart_date.data
 
-        return redirect(url_for('clientServices'), destination, total_pax, depart_date)
+        return redirect(url_for('clientPackageTrip', destination=destination, total_pax=total_pax, depart_date=depart_date.format('DD-MM-YY')))
 
     return render_template(
         'client/clientIndex.html',
