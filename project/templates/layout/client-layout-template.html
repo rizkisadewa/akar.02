@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+<head>
+  <!-- Mobile Specific Meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Favicon-->
+  <link rel="shortcut icon" href="{{ url_for('static', filename='client-prop/travelasia-temp/img/jepun-favicon.ico') }}">
+  <!-- Author Meta -->
+  <meta name="author" content="Colorlib">
+  <!-- Meta Description -->
+  <meta name="description" content="">
+  <!-- Meta Keyword -->
+  <meta name="keywords" content="">
+  <!-- meta character set -->
+  <meta charset="UTF-8">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131279693-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-131279693-1');
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-W2JGMS3');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Site Title -->
+  <title>Jepunku Destination</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <!--
+    CSS
+    ============================================= -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='client-prop/travelasia-temp/css/linearicons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='client-prop/travelasia-temp/css/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='client-prop/travelasia-temp/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='client-prop/travelasia-temp/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='client-prop/travelasia-temp/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='client-prop/travelasia-temp/css/main.css') }}">
+
+    <!-- Own Style CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='client-prop/travelasia-temp/css/mystyle.css') }}">
+  </head>
+  <body>
+
+    <!-- Start Header Area -->
+    <header class="default-header">
+      <div class="container">
+        <div class="header-wrap">
+          <div class="header-top d-flex justify-content-between align-items-center">
+            <div class="logo">
+              <a href="#home"><img src="{{ url_for('static', filename='client-prop/travelasia-temp/img/Jepunku Logo - V2.png') }}" alt=""></a>
+            </div>
+            <div class="main-menubar d-flex align-items-center">
+              <nav class="hide">
+                <a href="#home">Beranda</a>
+                <a href="#booking">Temukan Perjalanan</a>
+                <a href="#">Blog</a>
+                <a href="#contact">Kontak</a>
+              </nav>
+              <div class="menu-bar"><span class="lnr lnr-menu"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- End Header Area -->
+
+
+
+
+    
+    {% block body %}{% endblock %}
+
+
+
+    <!-- start footer Area -->
+    <footer class="footer-area section-gap">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3  col-md-6 col-sm-6">
+            <div class="single-footer-widget">
+              <h6>Tentang Kami</h6>
+              <p>
+                Kami adalah penyedia perjalanan wisata untuk mengisi hari liburmu dan membawa
+                kesenangan untukmu.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-3  col-md-6 col-sm-6">
+            <div class="single-footer-widget">
+              <h6>Newsletter</h6>
+              <p>Tetap update dengan informasi terbaru kami</p>
+              <div class="d-flex flex-row" id="mc_embed_signup">
+                <!-- <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscription relative">
+                  <input name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email kamu'" required="" type="email">
+                  <div style="position: absolute; left: -5000px;">
+                    <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                  </div>
+                  <button class="btn bb-btn"><span class="lnr lnr-arrow-right"></span></button>
+                  <div class="info"></div>
+                </form> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3  col-md-6 col-sm-6">
+            <div class="single-footer-widget mail-chimp">
+              <h6 class="mb-20">Instragram Feed</h6>
+              <ul class="instafeed d-flex flex-wrap">
+                <li><img src="{{ url_for('static', filename='client-prop/travelasia-temp/img/i1.jpg') }}" alt=""></li>
+                <li><img src="{{ url_for('static', filename='client-prop/travelasia-temp/img/i2.jpg') }}" alt=""></li>
+                <li><img src="{{ url_for('static', filename='client-prop/travelasia-temp/img/i3.jpg') }}" alt=""></li>
+                <li><img src="{{ url_for('static', filename='client-prop/travelasia-temp/img/i4.jpg') }}" alt=""></li>
+                <li><img src="{{ url_for('static', filename='client-prop/travelasia-temp/img/i5.jpg') }}" alt=""></li>
+                <li><img src="{{ url_for('static', filename='client-prop/travelasia-temp/img/i6.jpg') }}" alt=""></li>
+                <li><img src="{{ url_for('static', filename='client-prop/travelasia-temp/img/i7.jpg') }}" alt=""></li>
+                <li><img src="{{ url_for('static', filename='client-prop/travelasia-temp/img/i8.jpg') }}" alt=""></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="single-footer-widget">
+              <h6>Follow Kami</h6>
+              <p>Di bawah ini:</p>
+              <div class="footer-social d-flex align-items-center">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+    <!-- End footer Area -->
+
+    <script src="{{ url_for('static', filename='client-prop/travelasia-temp/js/vendor/jquery-2.2.4.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='client-prop/travelasia-temp/js/vendor/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='client-prop/travelasia-temp/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='client-prop/travelasia-temp/js/jquery.ajaxchimp.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='client-prop/travelasia-temp/js/jquery.sticky.js') }}"></script>
+    <script src="{{ url_for('static', filename='client-prop/travelasia-temp/js/parallax.min.js') }}"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="{{ url_for('static', filename='client-prop/travelasia-temp/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='client-prop/travelasia-temp/js/main.js') }}"></script>
+  </body>
+</html>
