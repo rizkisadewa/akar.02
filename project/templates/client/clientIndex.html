@@ -112,10 +112,10 @@
                   <form class="booking-form" id="booking" action="{{ url_for('startIndex') }}" method="post">
                     <div class="row">
                       <div class="col-md-4">
-                        {{ form.depart_date(class="single-in form-control", id="datepicker", placeholder="Tanggal Berangkat") }}
+                        {{ form.depart_date(class="single-in form-control", id="datepicker", placeholder="Tanggal Berangkat", required='required') }}
                       </div>
                       <div class="col-md-4">
-                        {{ form.total_pax(class="single-in form-control", placeholder="Total Peserta") }}
+                        {{ form.total_pax(class="single-in form-control", placeholder="Total Peserta", required='required') }}
                         <!-- <input type="text" name="adults" class="single-in form-control" placeholder="Total Peserta" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Total Peserta'" required=""> -->
                       </div>
 

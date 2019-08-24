@@ -16,3 +16,174 @@
 #contact h4{
   font-size: 30px;
 }
+
+/*
+   *** PACKAGE TRIP CARD ***
+*/
+
+/* left side */
+.content{
+  background-color: #fafafa;
+  padding: 5px;
+}
+
+.service-card {
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  width: 95%;
+  max-width: 1500px;
+  height: 180px;
+  margin: 20px auto;
+  border-radius: 5px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 20% 50% 30%;
+}
+
+.service-card .service-card-left img {
+  width: 100%;
+  max-width: 220px;
+  height: 170px;
+  padding: 5px;
+  margin: 0
+}
+
+
+
+/* /left side */
+
+/* middle side */
+.service-card .service-card-desc {
+  margin: 0;
+  padding: 5px 10px 5px 10px;
+}
+/* /middle side */
+
+/* right side */
+.service-card-right{
+  display: grid;
+  grid-template-rows: 50% 50%;
+}
+
+.service-card-right .service-card-right-top .left{
+  margin: 50% 0 0 0;
+}
+
+.service-card-right .service-card-right-bottom{
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.service-card-right .service-card-right-top h3{
+  font-size: 1vw;
+  font-weight: normal;
+}
+
+.service-card-right .service-card-right-top p{
+  font-size: 1.5vw;
+  font-weight: bold;
+}
+
+.service-card-right .service-card-right-bottom .left{
+  margin: 20% 0 0 0;
+}
+
+.service-card-right .service-card-right-bottom .right{
+  margin: 20% 0 0 0;
+}
+
+/* /right side */
+
+
+/*
+   *** PACKAGE TRIP CARD ***
+*/
+
+
+
+/*
+   *** BUTTON SECTION ***
+*/
+
+/* btn request */
+.btn-srv-req {
+    -moz-box-shadow: inset 0px 1px 0px 0px #d9fbbe;
+    background-color: #fafafa;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #fafafa;
+    display: inline-block;
+    cursor: pointer;
+    color: #8BC53D;
+    font-size: 15px;
+    padding: 7px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.btn-srv-req:hover {
+	background-color:#e4e4e4;
+  color: #8BC53D;
+}
+.btn-srv-req:active {
+	position:relative;
+	top:1px;
+}
+
+/* /btn request */
+
+/* btn call to action */
+
+.btn-cta {
+  -moz-box-shadow: inset 0px 1px 0px 0px #d9fbbe;
+  background-color: #8BC53D;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  border: 1px solid #8BC53D;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 10px;
+  text-decoration: none;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.btn-cta:hover{
+  background-color:#94d53d;
+  color: #fff;
+}
+
+/* /btn call to action */
+
+/* btn itinerary */
+.btn-srv-itn {
+    -moz-box-shadow: inset 0px 1px 0px 0px #d9fbbe;
+    background-color: #8BC53D;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #8BC53D;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 7px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.btn-srv-itn:hover {
+	background-color:#94d53d;
+  color: #fff;
+}
+.btn-srv-itn:active {
+	position:relative;
+	top:1px;
+}
+
+/* /btn itinerary */
+
+/*
+   *** /BUTTON SECTION ***
+*/

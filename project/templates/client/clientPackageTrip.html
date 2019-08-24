@@ -1,18 +1,44 @@
 {% extends "layout/client-layout-template.html" %}
 {% block body %}
 
+<!-- Package Trip Option -->
 <section class="package-trip-option" id="package-trip-option">
   <div class="container">
     <div class="row d-flex justify-content-center">
 
-      <div class="tab-content">
-        <div class="tab-pane fade in active">
-          <h4>Hello</h4>
+      <!-- Service Card  -->
+      <div class="service-card">
+        <div class="service-card-left">
+          <img src="{{ url_for('static', filename='images/test/services/18-Bali-jepunku-wisata-bogor-devoyage.jpg')}}" alt="18-Lombok-HopingIsland-GiliTrawangan-Jepunku.jpg">
+        </div>
+
+        <div class="service-card-middle">
+          <article class="service-card-desc">
+            <h4>3 Hari 2 Malam Gili Trawangans Experience</h4>
+            <p>Pantai nan putih, air yang biru begitu jernih mengajak kita untuk terjun menikmati pemandangan bawah air dengan warna karang yang berbagai macam</p>
+          </article>
+        </div>
+
+        <div class="service-card-right">
+          <div class="service-card-right-top">
+            <h3>Harga berlaku minimum 5 dewasa</h3>
+            <p>Rp 3,070,000 per orang**</p>
+          </div>
+          <div class="service-card-right-bottom">
+            <div class="left">
+              <a href="" class="btn-srv-itn">Lihat Program</a>
+            </div>
+            <div class="right">
+              <a href="#" class="btn-srv-req">Permintaan</a>
+            </div>
+          </div>
         </div>
       </div>
+      <!-- /Service Card  -->
 
     </div>
   </div>
 </section>
+<!-- /Package Trip Option -->
 
 {% endblock %}
