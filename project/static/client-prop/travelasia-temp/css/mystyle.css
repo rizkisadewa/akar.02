@@ -41,9 +41,8 @@
 }
 
 .service-card .service-card-left img {
-  width: 100%;
   max-width: 220px;
-  height: 170px;
+  height: auto;
   padding: 5px;
   margin: 0
 }
@@ -72,6 +71,15 @@
 .service-card-right .service-card-right-bottom{
   display: grid;
   grid-template-columns: 50% 50%;
+}
+
+.service-card-middle .service-card-desc h4{
+  font-size: 2vw;
+}
+
+.service-card-middle .service-card-desc p{
+  font-size: 1vw;
+  text-align: justify;
 }
 
 .service-card-right .service-card-right-top h3{
@@ -116,8 +124,8 @@
     display: inline-block;
     cursor: pointer;
     color: #8BC53D;
-    font-size: 15px;
-    padding: 7px;
+    font-size: 1vw;
+    padding: 0.7vw;
     text-decoration: none;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
@@ -144,8 +152,8 @@
   display: inline-block;
   cursor: pointer;
   color: #ffffff;
-  font-size: 15px;
-  padding: 10px;
+  font-size: 1vw;
+  padding: 0.7vw;
   text-decoration: none;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
@@ -168,8 +176,8 @@
     display: inline-block;
     cursor: pointer;
     color: #ffffff;
-    font-size: 15px;
-    padding: 7px;
+    font-size: 1vw;
+    padding: 0.7vw;
     text-decoration: none;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
@@ -186,4 +194,211 @@
 
 /*
    *** /BUTTON SECTION ***
+*/
+
+
+
+/*
+  *** TABLET SECTION OR IPAD
+*/
+@media screen and (max-width: 900px){
+
+  /* service card */
+  .package-trip-option
+  .container
+  .row
+  .service-card
+  .service-card-right
+  .service-card-right-top
+  p {
+    font-size: 2vw;
+  }
+
+}
+
+/*
+  *** /TABLET SECTION OR IPAD
+*/
+
+
+
+/*
+  *** PHONE
+*/
+@media screen and (max-width: 600px){
+
+  /* service card */
+  .package-trip-option
+  .container
+  .row
+  .service-card{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 40% 30% 30%;
+    height: 150vw;
+    width: 85%;
+  }
+
+  .package-trip-option
+  .container
+  .row
+  .service-card
+  .service-card-left{
+    margin: 0;
+    padding: 0;
+  }
+
+  .package-trip-option
+  .container
+  .row
+  .service-card
+  .service-card-left
+  img
+  {
+    max-width: 80vw;
+    height: auto;
+  }
+
+
+  .package-trip-option
+  .container
+  .row
+  .service-card
+  .service-card-middle
+  {
+    padding: 0;
+    margin-top: 1vw;
+  }
+
+  .package-trip-option
+  .container
+  .row
+  .service-card
+  .service-card-middle
+  .service-card-desc
+  {
+    margin: 0;
+  }
+
+  .package-trip-option
+  .container
+  .row
+  .service-card
+  .service-card-middle
+  .service-card-desc
+  h4
+  {
+    font-size: 5vw;
+    text-align: center;
+  }
+
+  .package-trip-option
+  .container
+  .row
+  .service-card
+  .service-card-middle
+  .service-card-desc
+  p
+  {
+    font-size: 4vw;
+  }
+
+  .package-trip-option
+  .container
+  .row
+  .service-card
+  .service-card-right
+  .service-card-right-top
+  h3
+  {
+    font-size: 2vw;
+    text-align: center;
+  }
+
+  .package-trip-option
+  .container
+  .row
+  .service-card
+  .service-card-right
+  .service-card-right-top
+  p
+  {
+    font-size: 4vw;
+    text-align: center;
+  }
+
+  .package-trip-option
+  .container
+  .row
+  .service-card
+  .service-card-right
+  .service-card-right-bottom
+  {
+    grid-template-columns: 100%;
+    grid-template-rows: 50% 50%;
+  }
+
+  .package-trip-option
+  .container
+  .row
+  .service-card
+  .service-card-right
+  .service-card-right-bottom
+  .left
+  {
+    margin: 0;
+    padding: 0;
+  }
+
+
+  .package-trip-option
+  .container
+  .row
+  .service-card
+  .service-card-right
+  .service-card-right-bottom
+  .left
+  .btn-srv-itn
+  {
+    width: 90%;
+    font-size: 4vw;
+    text-align: center;
+    margin: 0 20px 0 20px;
+  }
+
+
+  .package-trip-option
+  .container
+  .row
+  .service-card
+  .service-card-right
+  .service-card-right-bottom
+  .right
+  {
+    margin: 0;
+    padding: 0;
+  }
+
+  .package-trip-option
+  .container
+  .row
+  .service-card
+  .service-card-right
+  .service-card-right-bottom
+  .right
+  .btn-srv-req
+  {
+    width: 90%;
+    font-size: 4vw;
+    text-align: center;
+    margin: 0 20px 0 20px;
+  }
+
+
+
+
+
+}
+/*
+  *** /PHONE
 */
