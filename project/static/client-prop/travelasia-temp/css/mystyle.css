@@ -234,8 +234,8 @@
   .service-card{
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 40% 30% 30%;
-    height: 150vw;
+    grid-template-rows: 40% 35% 25%;
+    height: 180vw;
     width: 85%;
   }
 

@@ -34,7 +34,40 @@
           </div>
         </div>
       </div>
+      <!-- /Service Prototype  -->
+
+
+      {% for package_trip_options_data in package_trip_options_data %}
+      <!-- Service Card  -->
+      <div class="service-card">
+        <div class="service-card-left">
+          <img src="{{ url_for('static', filename='')}}{{package_trip_options_data.path}}" alt="18-Lombok-HopingIsland-GiliTrawangan-Jepunku.jpg">
+        </div>
+
+        <div class="service-card-middle">
+          <article class="service-card-desc">
+            <h4>{{package_trip_options_data.package_trip_name}}</h4>
+            <p>{{package_trip_options_data.tag_line}}</p>
+          </article>
+        </div>
+
+        <div class="service-card-right">
+          <div class="service-card-right-top">
+            <h3>Harga berlaku minimum 5 dewasa</h3>
+            <p>Rp 3,070,000 per orang**</p>
+          </div>
+          <div class="service-card-right-bottom">
+            <div class="left">
+              <a href="" class="btn-srv-itn">Lihat Program</a>
+            </div>
+            <div class="right">
+              <a href="#" class="btn-srv-req">Permintaan</a>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- /Service Card  -->
+      {% endfor %}
 
     </div>
   </div>
