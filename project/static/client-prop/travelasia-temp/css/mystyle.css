@@ -402,3 +402,11 @@
 /*
   *** /PHONE
 */
+
+/* Paket Wisata Card */
+.tourism-package-card{
+  max-width: 1500px;
+  width: 95%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+/* /Paket Wisata Card */

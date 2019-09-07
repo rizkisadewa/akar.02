@@ -6,37 +6,6 @@
   <div class="container">
     <div class="row d-flex justify-content-center">
 
-      <!-- Service Card  -->
-      <div class="service-card">
-        <div class="service-card-left">
-          <img src="{{ url_for('static', filename='images/test/services/18-Bali-jepunku-wisata-bogor-devoyage.jpg')}}" alt="18-Lombok-HopingIsland-GiliTrawangan-Jepunku.jpg">
-        </div>
-
-        <div class="service-card-middle">
-          <article class="service-card-desc">
-            <h4>3 Hari 2 Malam Gili Trawangans Experience</h4>
-            <p>Pantai nan putih, air yang biru begitu jernih mengajak kita untuk terjun menikmati pemandangan bawah air dengan warna karang yang berbagai macam</p>
-          </article>
-        </div>
-
-        <div class="service-card-right">
-          <div class="service-card-right-top">
-            <h3>Harga berlaku minimum 5 dewasa</h3>
-            <p>Rp 3,070,000 per orang**</p>
-          </div>
-          <div class="service-card-right-bottom">
-            <div class="left">
-              <a href="" class="btn-srv-itn">Lihat Program</a>
-            </div>
-            <div class="right">
-              <a href="#" class="btn-srv-req">Permintaan</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /Service Prototype  -->
-
-
       {% for package_trip_options_data in package_trip_options_data %}
       <!-- Service Card  -->
       <div class="service-card">
@@ -67,6 +36,38 @@
         </div>
       </div>
       <!-- /Service Card  -->
+      {% endfor %}
+
+      {% for package_trip_options_data in package_trip_options_data %}
+      <!-- Package Wisata -->
+      <div class="card mb-3 tourism-package-card">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{{ url_for('static', filename='images/test/services/18-Bali-jepunku-wisata-bogor-devoyage.jpg')}}" class="card-img" alt="...">
+          </div>
+          <div class="col-md-5">
+            <div class="card-body">
+              <h3 class="card-title">{{package_trip_options_data.package_trip_name}}</h3>
+              <p class="card-text">{{package_trip_options_data.tag_line}}</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card-body">
+              <p class="card-text"><small class="text-muted">Harga berlaku minimum 5 dewasa</small></p>
+              <h4 class="card-title">Rp 3,070,000 per orang**</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <a href="" class="btn-srv-itn">Lihat Program</a>
+                </div>
+                <div class="col-md-6">
+                  <a href="#" class="btn-srv-req">Permintaan</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Package Wisata -->
       {% endfor %}
 
     </div>
