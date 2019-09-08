@@ -1,3 +1,4 @@
+
 .logo a img{
   width: 100%;
   max-width: 105px;
@@ -108,89 +109,69 @@
 */
 
 
+/* Paket Wisata Card */
+.tourism-package-card{
+  max-width: 1500px;
+  width: 95%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.card-title, .card-text{
+  text-align: justify;
+}
+
+.package-trip-rate-cond{
+  font-size: 1vw;
+  padding-top: 3vw;
+}
+
+.package-trip-rate-opt{
+  color: #777777;
+  margin-bottom: 1vw;
+}
+/* /Paket Wisata Card */
+
+/*
+   *** /PACKAGE TRIP CARD ***
+*/
+
 
 /*
    *** BUTTON SECTION ***
 */
 
-/* btn request */
-.btn-srv-req {
-    -moz-box-shadow: inset 0px 1px 0px 0px #d9fbbe;
-    background-color: #fafafa;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    border-radius: 6px;
-    border: 1px solid #fafafa;
-    display: inline-block;
-    cursor: pointer;
-    color: #8BC53D;
-    font-size: 1vw;
-    padding: 0.7vw;
-    text-decoration: none;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-}
-.btn-srv-req:hover {
-	background-color:#e4e4e4;
-  color: #8BC53D;
-}
-.btn-srv-req:active {
-	position:relative;
-	top:1px;
-}
+/* Button for Package Service Option */
 
-/* /btn request */
-
-/* btn call to action */
-
-.btn-cta {
-  -moz-box-shadow: inset 0px 1px 0px 0px #d9fbbe;
+.btn-view{
   background-color: #8BC53D;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
   border: 1px solid #8BC53D;
-  display: inline-block;
-  cursor: pointer;
-  color: #ffffff;
   font-size: 1vw;
-  padding: 0.7vw;
-  text-decoration: none;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
-.btn-cta:hover{
+.btn-view:hover{
   background-color:#94d53d;
-  color: #fff;
+  border: 1px solid #94d53d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
-/* /btn call to action */
-
-/* btn itinerary */
-.btn-srv-itn {
-    -moz-box-shadow: inset 0px 1px 0px 0px #d9fbbe;
-    background-color: #8BC53D;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    border-radius: 6px;
-    border: 1px solid #8BC53D;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    font-size: 1vw;
-    padding: 0.7vw;
-    text-decoration: none;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-}
-.btn-srv-itn:hover {
-	background-color:#94d53d;
-  color: #fff;
-}
-.btn-srv-itn:active {
-	position:relative;
-	top:1px;
+.btn-req{
+  background-color: #fafafa;
+  border: 1px solid #fafafa;
+  font-size: 1vw;
+  color: #8BC53D;
+  border: 1px solid #fafafa;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
-/* /btn itinerary */
+.btn-req:hover{
+  background-color:#e4e4e4;
+  border: 1px solid #e4e4e4;
+  color: #8BC53D;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+/* /Button for Package Service Option */
 
 /*
    *** /BUTTON SECTION ***
@@ -201,16 +182,30 @@
 /*
   *** TABLET SECTION OR IPAD
 */
-@media screen and (max-width: 900px){
+@media screen and (max-width: 838px){
 
-  /* service card */
-  .package-trip-option
-  .container
-  .row
-  .service-card
-  .service-card-right
-  .service-card-right-top
-  p {
+  .card .card-body .card-title,
+  .card .card-body .card-text{
+    text-align: center;
+  }
+
+  .card .card-body .package-trip-rate-cond{
+    text-align: center;
+    font-size: 2vw;
+  }
+
+  .card .card-body .package-trip-rate-opt{
+    text-align: center;
+    font-size: 3vw;
+  }
+
+  .card .card-body-right .package-trip-opt-button{
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+  }
+
+  .card .card-body-right .package-trip-opt-button .btn{
+    width: 100%;
     font-size: 2vw;
   }
 
@@ -246,17 +241,6 @@
   .service-card-left{
     margin: 0;
     padding: 0;
-  }
-
-  .package-trip-option
-  .container
-  .row
-  .service-card
-  .service-card-left
-  img
-  {
-    max-width: 80vw;
-    height: auto;
   }
 
 
@@ -395,6 +379,22 @@
   }
 
 
+  /* Package Trip Option */
+
+  .card .card-body .package-trip-rate-cond{
+    font-size: 4vw;
+  }
+
+  .card .card-body .package-trip-rate-opt{
+    font-size: 6vw;
+  }
+
+  .card .card-body-right .package-trip-opt-button .btn{
+    width: 100%;
+    font-size: 5vw;
+  }
+
+
 
 
 
@@ -402,11 +402,3 @@
 /*
   *** /PHONE
 */
-
-/* Paket Wisata Card */
-.tourism-package-card{
-  max-width: 1500px;
-  width: 95%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-}
-/* /Paket Wisata Card */
