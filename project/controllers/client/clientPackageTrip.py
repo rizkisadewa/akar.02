@@ -21,7 +21,7 @@ def clientPackageTrip(destination, total_pax, depart_date):
     service_id = clientPackageTripModel.serviceIdFetchOne(trip_id["trip_id"])
 
     # Fetch the All Package Service
-    package_trip_options_data = clientPackageTripModel.packageTripOptionsFetchData(trip_id["trip_id"], service_id["service_id"])
+    package_trip_options_data = clientPackageTripModel.packageTripOptionsFetchData(trip_id["trip_id"], service_id["service_id"], total_pax, total_pax)
 
     return render_template(
         'client/clientPackageTrip.html',

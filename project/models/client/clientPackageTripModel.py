@@ -61,7 +61,7 @@ class clientPackageTripModel(object):
         return service_id
 
     # Obtaining the data from index #booking form
-    def packageTripOptionsFetchData(self, trip_id, service_id):
+    def packageTripOptionsFetchData(self, trip_id, service_id, min_pax, max_pax):
 
         # Create a Cursor
         cur = mysql.connection.cursor()
@@ -71,13 +71,16 @@ class clientPackageTripModel(object):
             SELECT DISTINCT
             `package_trip`.`package_trip_name`,
             `package_trip`.`tag_line`,
-            `package_trip_image`.`file_name`
+            `package_trip_image`.`file_name`,
+            `package_bracket_price`.`price_per_person`
 
             FROM
             `package_trip`,
             `service`,
             `trip`,
-            `package_trip_image`
+            `package_trip_image`,
+            `package_bracket_price`,
+            `rate_card`
 
             WHERE
             `service`.`trip_id` = %s
@@ -85,8 +88,16 @@ class clientPackageTripModel(object):
             `package_trip`.`package_trip_image_profile` =  `package_trip_image`.`package_trip_image_id`
             AND
             `package_trip`.`service_id` = %s
+            AND
+            `rate_card`.`package_trip_id` = `package_trip`.`package_trip_id`
+            AND
+            `package_bracket_price`.`rate_card_id` = `rate_card`.`rate_card_id`
+            AND
+            `package_bracket_price`.`min_pax` >= %s
+            AND
+            `package_bracket_price`.`max_pax` <= %s
 
-        ''', (trip_id, service_id))
+        ''', (trip_id, service_id, min_pax, max_pax))
 
         # Asign to the variable
         package_trip_options_data = cur.fetchall()
