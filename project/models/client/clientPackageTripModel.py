@@ -71,7 +71,7 @@ class clientPackageTripModel(object):
             SELECT DISTINCT
             `package_trip`.`package_trip_name`,
             `package_trip`.`tag_line`,
-            `package_trip_image`.`path`
+            `package_trip_image`.`file_name`
 
             FROM
             `package_trip`,
